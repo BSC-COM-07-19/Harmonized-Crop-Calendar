@@ -8,7 +8,7 @@ const AboutUs = () => {
         {/* Inside your component */}
         <div className=" ml-10 my-4">
           <hr className="border-t border-gray-300 mb-10" />
-          <h2 className="text-2xl font-bold mb-4 text-center">ABOUT US</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center">FACTS</h2>
           <p className="text-lg">Crop Calendar, passionate about empowering farmers and
             gardeners with the knowledge they need to optimize their crop
             production. Our team of experts has curated accurate and timely information 

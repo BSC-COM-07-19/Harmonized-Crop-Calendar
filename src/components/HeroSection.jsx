@@ -1,12 +1,13 @@
 import React from "react"
 import HeroImage from "../assets/crop calendar.jpg"
 import CalendarImage from "../assets/download.png"
-import {FaLocationArrow, FaCalendar} from "react-icons/fa" // replace with your small image path
+import { FaMapLocationDot } from "react-icons/fa6";
+import {FaCalendar, FaLeaf} from "react-icons/fa" // replace with your small image path
 
 const HeroSection = () => {
   return (
     <div className="relative mt-0.5 ml-0.5 mr-0.5 h-64 md:h-96 lg:h-90">
-      <img src={HeroImage} alt="Hero" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={HeroImage} alt="Hero" className="absolute inset-0 w-full h-full object-cover brightness-75" />
       <div className="absolute inset-0 flex flex-col items-center justify-center -mt-20 pointer-events-none">
         <div className="flex items-center mb-5">
           <img src={CalendarImage} alt="Small" className="w-16 md:w-24 lg:w-32 h-16 md:h-24 lg:h-32" />
@@ -19,8 +20,8 @@ const HeroSection = () => {
       </div>
       <div className="absolute -bottom-6 mx-6 w-auto h-10 shadow-lg bg-green-700 py-6 px-10 flex items-center justify-between">
         <label className="font-bold text-white">District</label>
-        <img src={FaLocationArrow} alt="Small" className="w-10 h-10 ml-10" /> {/* replace with your small image path */}
-        <select className="rounded-md ml-10 w-48 h-7 pl-2">
+        <FaMapLocationDot className="w-8 h-8 ml-6 text-white" /> {/* replace with your small image path */}
+        <select className="rounded-md ml-7 w-48 h-7 pl-2">
           <option value="district1">Zomba</option>
           <option value="district2">Blantyre</option>
           <option value="district2">Mulanje</option>
@@ -28,9 +29,9 @@ const HeroSection = () => {
           <option value="district2">Rumphi</option>
           {/* Add more options as needed */}
         </select>
-        <label className="font-bold text-white ml-48">CROP</label>
-        <img src={FaLocationArrow} alt="Small" className="w-10 h-10 ml-10" /> {/* replace with your small image path */}
-        <select className="rounded-md ml-10 w-48 h-7 pl-2">
+        <label className="font-bold text-white ml-64">CROP</label>
+        <FaLeaf className="w-8 h-8 ml-7 text-white" /> {/* replace with your small image path */}
+        <select className="rounded-md ml-7 w-48 h-7 pl-2">
           <option value="district1">Maize</option>
           <option value="district2">Soya Beans</option>
           <option value="district2">Rice</option>
