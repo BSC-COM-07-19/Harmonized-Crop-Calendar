@@ -1,10 +1,63 @@
-import React from "react"
-import HeroImage from "../assets/crop calendar.jpg"
-import CalendarImage from "../assets/download.png"
-import { FaMapLocationDot } from "react-icons/fa6";
-import {FaCalendar, FaLeaf} from "react-icons/fa" // replace with your small image path
+import React, { useState, useEffect } from "react";
+import HeroImage from "../assets/crop calendar.jpg";
+import CalendarImage from "../assets/download.png";
+import { FaMapLocationDot, FaLocationDot, FaCalendar, FaLeaf } from "react-icons/fa6";
+import api from "../api";
 
-const HeroSection = () => {
+const HeroSection = (props) => {
+  const [epa, setEpas] = useState([]);
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [epasForSelectedDistrict, setEpasForSelectedDistrict] = useState([]);
+  const [selectedEpa, setSelectedEpa] = useState("");
+  const [crops, setCrops] = useState([]);
+  const [showEpaMessage, setShowEpaMessage] = useState(false);
+  const [messagePosition, setMessagePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/epa");
+        setEpas(response.data);
+      } catch (error) {
+        console.error("Error fetching EPAs:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleDistrictClick = (district) => {
+    setSelectedDistrict(district);
+    const epas = epa.filter((currentEpa) => currentEpa.district_name === district);
+    setEpasForSelectedDistrict(epas);
+    setSelectedEpa("");
+    setCrops([]);
+    setShowEpaMessage(false);
+  };
+
+  const handleEpaChange = async (epaName) => {
+    setSelectedEpa(epaName);
+    try {
+      const response = await api.get(`/epa/crops/${epaName}`);
+      setCrops(response.data[epaName] || []);
+    } catch (error) {
+      console.error("Error fetching crops:", error);
+      setCrops([]);
+    }
+  };
+
+  const handleEpaMessage = () => {
+    if (selectedDistrict && epasForSelectedDistrict.length === 0) {
+      setShowEpaMessage(true);
+    } else {
+      setShowEpaMessage(false);
+    }
+  };
+
+  const handleEpaFieldPosition = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setMessagePosition({ x: rect.left, y: rect.top }); 
+  };
+
   return (
     <div className="relative mt-0.5 ml-0.5 mr-0.5 h-64 md:h-96 lg:h-90">
       <img src={HeroImage} alt="Hero" className="absolute inset-0 w-full h-full object-cover brightness-75" />
@@ -14,38 +67,80 @@ const HeroSection = () => {
           <h1 className="font-bold text-xl md:text-2xl lg:text-4xl ml-4">Crop Calendar</h1>
         </div>
         <p className="text-center text-white font-bold text-sm md:text-base lg:text-lg">
-          "Explore The Rythim Of Nature With Our Harmonised Calendar,
+          "Explore The Rhythm Of Nature With Our Harmonised Calendar,
           Simplifying Your Agricultural Planning And Optimizing Yields" 
         </p>
       </div>
-      <div className="absolute -bottom-6 mx-6 w-auto h-10 shadow-lg bg-green-700 py-6 px-10 flex items-center justify-between">
-        <label className="font-bold text-white">District</label>
-        <FaMapLocationDot className="w-8 h-8 ml-6 text-white" /> {/* replace with your small image path */}
-        <select className="rounded-md ml-7 w-48 h-7 pl-2">
-          <option value="district1">Zomba</option>
-          <option value="district2">Blantyre</option>
-          <option value="district2">Mulanje</option>
-          <option value="district2">Lilongwe</option>
-          <option value="district2">Rumphi</option>
-          {/* Add more options as needed */}
-        </select>
-        <label className="font-bold text-white ml-64">CROP</label>
-        <FaLeaf className="w-8 h-8 ml-7 text-white" /> {/* replace with your small image path */}
-        <select className="rounded-md ml-7 w-48 h-7 pl-2">
-          <option value="district1">Maize</option>
-          <option value="district2">Soya Beans</option>
-          <option value="district2">Rice</option>
-          <option value="district2">Grounddnuts</option>
-          <option value="district2">Tomatoes</option>
-          {/* Add more options as needed */}
-        </select>
+      
+      <div className="absolute bottom-0 lg:-bottom-6 mx-6 lg:mx-0 lg:left-6 xl:left-12 w-full lg:w-auto h-10 shadow-lg bg-green-700 lg:py-6 lg:px-10 py-4 px-6 flex items-center justify-between">
+        <div className="flex items-center mb-2 sm:mb-0">
+          <label className="font-bold text-white">District</label>
+          <FaMapLocationDot className="w-8 h-8 ml-6 text-white" />
+          <select
+            className="rounded-md ml-7 w-48 h-7 pl-2"
+            onChange={(e) => handleDistrictClick(e.target.value)}
+          >
+            <option value="">Select District</option>
+            <option value="Zomba">Zomba</option>
+            <option value="Blantyre">Blantyre</option>
+            <option value="Mulanje">Mulanje</option>
+            <option value="Lilongwe">Lilongwe</option>
+            <option value="Rumphi">Rumphi</option>
+          </select>
+        </div>
+
+        <div className="flex items-center mb-2 sm:mb-0">
+          <label className="font-bold text-white ml-48">EPA</label>
+          <FaLocationDot className="w-8 h-7 ml-7 text-white" />
+          {epasForSelectedDistrict.length > 0 ? (
+            <select
+              className="rounded-md ml-7 w-48 h-7 pl-2"
+              onChange={(e) => {
+                handleEpaChange(e.target.value);
+                handleEpaMessage();
+              }}
+              value={selectedEpa}
+              onMouseEnter={(e) => handleEpaFieldPosition(e)}
+            >
+              <option value="">Select EPA</option>
+              {epasForSelectedDistrict.map((currentEpa) => (
+                <option key={currentEpa.epa_id} value={currentEpa.epa_name}>
+                  {currentEpa.epa_name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <div className="relative ml-7">
+              <p className="text-white">EPAs for {selectedDistrict} are yet to be added.</p>
+              {showEpaMessage && (
+                <div className="absolute bg-red-500 p-2 rounded-md text-white" style={{ top: `${messagePosition.y - 50}px`, left: `${messagePosition.x}px` }}>
+                  <p>EPAs for {selectedDistrict} are yet to be added.</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center">
+          <label className="font-bold text-white ml-64">CROP</label>
+          <FaLeaf className="w-8 h-8 ml-7 text-white" />
+          <select className="rounded-md ml-7 w-48 h-7 pl-2">
+            <option value="">Select Crop</option>
+            {crops.map((crop, index) => (
+              <option key={index} value={crop}>
+                {crop}
+              </option>
+            ))}
+          </select>
+        </div> 
+      
         <div className="flex items-center ml-64 cursor-pointer hover:text-red-300">
           <label className=" text-white">View</label>
           <FaCalendar className="text-white ml-2"/>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default HeroSection
+export default HeroSection;
