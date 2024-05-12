@@ -6,7 +6,7 @@ import 'chartjs-adapter-date-fns';
 
 
 
-const Graph = () => {
+const MarketPricing = () => {
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     datasets: [
@@ -23,7 +23,7 @@ const Graph = () => {
 
   return (
     <div style={{ width: '80%', margin: 'auto' }}>
-      <h2>Sales Report</h2>
+      <h2>Market Pricing</h2>
       <div style={{ height: '400px' }}>
         <Line
           data={data}
@@ -42,6 +42,6 @@ const Graph = () => {
   );
 };
 
-export default Graph;
+export default MarketPricing;
 
 

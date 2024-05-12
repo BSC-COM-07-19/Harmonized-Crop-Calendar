@@ -1,19 +1,21 @@
 import React from "react";
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'; // Import Link component
 import HomeLink from "./HomeLink";
 
-const navigation = [
-  { name: 'Harmonised Crop Calendar', href: '#', current: false },
-  { name: 'Home', href: '#', current: false },
-  { name: 'About Us', href: '#', current: false },
-]
+const NavBar = () => {
+  const navigation = [
+    { name: 'Home', href: '/', current: false },
+    { name: 'About Us', href: '/about', current: false },
+    { name: 'Market Pricing', href: '/market', current: false },
+    { name: 'Weather Forecast', href: '/weather', current: false }
+  ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const NavBar = () => {
   return (
     <Disclosure as="nav" className="bg-green-700 text-green-100">
       {({ open }) => (
@@ -39,36 +41,21 @@ const NavBar = () => {
                   alt="Your Company"
                 />
               </div>
-              {/* Harmonised Crop Calendar */}
+              {/* Navigation Links */}
               <div className="flex flex-shrink-0 items-center">
-                <a
-                  href={navigation[0].href}
-                  className={classNames(
-                    navigation[0].current ? 'bg-gray-900 text-white text-lg' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'rounded-md px-3 py-2 text-medium font-bold hidden sm:block'
-                  )}
-                  aria-current={navigation[0].current ? 'page' : undefined}
-                >
-                  {navigation[0].name}
-                </a>
-              </div>
-              {/* Home and About Us */}
-              <div className="flex justify-end flex-1 mr-20 px-4">
-                <div className="hidden sm:block">
-                  <div className="flex items-center space-x-4">
-                    <HomeLink href={navigation[1].href} />
-                    <a
-                      href={navigation[2].href}
-                      className={classNames(
-                        navigation[2].current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium'
-                      )}
-                      aria-current={navigation[2].current ? 'page' : undefined}
-                    >
-                      {navigation[2].name}
-                    </a>
-                  </div>
-                </div>
+                {navigation.map(item => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={classNames(
+                      item.current ? 'bg-gray-900 text-white text-lg' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'rounded-md px-3 py-2 text-medium font-bold hidden sm:block'
+                    )}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
