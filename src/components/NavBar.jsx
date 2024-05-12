@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../assets/Transparent-Logo3.png"; 
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import HomeLink from "./HomeLink";
@@ -34,8 +35,8 @@ const NavBar = () => {
               {/* Image */}
               <div className="flex flex-shrink-0 items-center px-1 hidden sm:block">
                 <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  className="h-24 w-auto"
+                  src={logo}
                   alt="Your Company"
                 />
               </div>
