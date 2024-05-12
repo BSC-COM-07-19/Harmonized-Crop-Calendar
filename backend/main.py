@@ -6,9 +6,24 @@ import models
 import logging
 from database.DatabaseConnection import engine, SessionLocal
 from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 router = APIRouter()
+
+origins = [
+    "http://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+
 models.Base.metadata.create_all(bind=engine)
 
 
