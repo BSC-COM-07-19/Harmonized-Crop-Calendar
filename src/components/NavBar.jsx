@@ -2,20 +2,20 @@ import React from "react";
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'; // Import Link component
-import HomeLink from "./HomeLink";
 
-const NavBar = () => {
-  const navigation = [
-    { name: 'Home', href: '/', current: false },
-    { name: 'About Us', href: '/about', current: false },
-    { name: 'Market Pricing', href: '/market', current: false },
-    { name: 'Weather Forecast', href: '/weather', current: false }
-  ];
+const navigation = [
+  { name: 'Harmonised Crop Calendar', href: '#', current: false },
+  { name: 'Home', href: '/', current: false },
+  { name: 'Calendar', href: '/calendar', current: false },
+  { name: 'Market Pricing', href: '/market', current: false },
+  { name: 'Weather Forecast', href: '/weather', current: false },
+]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const NavBar = () => {
   return (
     <Disclosure as="nav" className="bg-green-700 text-green-100">
       {({ open }) => (

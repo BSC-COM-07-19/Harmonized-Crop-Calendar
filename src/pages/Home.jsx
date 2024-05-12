@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar';
+// import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection';
 import MapComponent from '../components/MapComponet';
 import AboutUs from '../components/AboutUs';
 import Facts from "../components/Facts";
 import { Link, Route, Routes } from 'react-router-dom';
 import MarketPricing from '../components/MarketPricing';
-//import WeatherForecast from '../components/WeatherForecast';
+import ActivityCalendar from '../components/ActivityCalendar';
+import WeatherApp from '../components/WeatherApp';
 
 const Home = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -18,7 +19,6 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="relative">
         <HeroSection handleDistrictClick={handleDistrictClick} />
         <div className="mt-10">
@@ -27,19 +27,10 @@ const Home = () => {
           {!selectedDistrict && <Facts />}
         </div>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/market">Market Pricing</Link>
-          </li>
-          {/* <li>
-            <Link to="/weather">Weather Forecast</Link>
-          </li> */}
-        </ul>
-      </nav>
       <Routes>
         <Route path="/market" element={<MarketPricing />} />
-        {/* <Route path="/weather" element={<WeatherForecast />} /> */}
+        <Route path="/weather" element={<WeatherApp />} />
+        <Route path="/calendar" element={<ActivityCalendar />} />
       </Routes>
     </div>
   );
