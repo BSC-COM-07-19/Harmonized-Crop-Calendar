@@ -10,6 +10,8 @@ const HeroSection = (props) => {
   const [epasForSelectedDistrict, setEpasForSelectedDistrict] = useState([]);
   const [selectedEpa, setSelectedEpa] = useState("");
   const [crops, setCrops] = useState([]);
+  const [showEpaMessage, setShowEpaMessage] = useState(false);
+  const [messagePosition, setMessagePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +31,7 @@ const HeroSection = (props) => {
     setEpasForSelectedDistrict(epas);
     setSelectedEpa("");
     setCrops([]);
+    setShowEpaMessage(false);
   };
 
   const handleEpaChange = async (epaName) => {
@@ -42,6 +45,19 @@ const HeroSection = (props) => {
     }
   };
 
+  const handleEpaMessage = () => {
+    if (selectedDistrict && epasForSelectedDistrict.length === 0) {
+      setShowEpaMessage(true);
+    } else {
+      setShowEpaMessage(false);
+    }
+  };
+
+  const handleEpaFieldPosition = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setMessagePosition({ x: rect.left, y: rect.top }); 
+  };
+
   return (
     <div className="relative mt-0.5 ml-0.5 mr-0.5 h-64 md:h-96 lg:h-90">
       <img src={HeroImage} alt="Hero" className="absolute inset-0 w-full h-full object-cover brightness-75" />
@@ -51,7 +67,7 @@ const HeroSection = (props) => {
           <h1 className="font-bold text-xl md:text-2xl lg:text-4xl ml-4">Crop Calendar</h1>
         </div>
         <p className="text-center text-white font-bold text-sm md:text-base lg:text-lg">
-          "Explore The Rythim Of Nature With Our Harmonised Calendar,
+          "Explore The Rhythm Of Nature With Our Harmonised Calendar,
           Simplifying Your Agricultural Planning And Optimizing Yields" 
         </p>
       </div>
@@ -64,7 +80,7 @@ const HeroSection = (props) => {
             className="rounded-md ml-7 w-48 h-7 pl-2"
             onChange={(e) => handleDistrictClick(e.target.value)}
           >
-            <option value="">Select Distric</option>
+            <option value="">Select District</option>
             <option value="Zomba">Zomba</option>
             <option value="Blantyre">Blantyre</option>
             <option value="Mulanje">Mulanje</option>
@@ -79,8 +95,12 @@ const HeroSection = (props) => {
           {epasForSelectedDistrict.length > 0 ? (
             <select
               className="rounded-md ml-7 w-48 h-7 pl-2"
-              onChange={(e) => handleEpaChange(e.target.value)}
+              onChange={(e) => {
+                handleEpaChange(e.target.value);
+                handleEpaMessage();
+              }}
               value={selectedEpa}
+              onMouseEnter={(e) => handleEpaFieldPosition(e)}
             >
               <option value="">Select EPA</option>
               {epasForSelectedDistrict.map((currentEpa) => (
@@ -90,7 +110,14 @@ const HeroSection = (props) => {
               ))}
             </select>
           ) : (
-            <p className="ml-7 text-white">EPAs for {selectedDistrict} are yet to be added.</p>
+            <div className="relative ml-7">
+              <p className="text-white">EPAs for {selectedDistrict} are yet to be added.</p>
+              {showEpaMessage && (
+                <div className="absolute bg-red-500 p-2 rounded-md text-white" style={{ top: `${messagePosition.y - 50}px`, left: `${messagePosition.x}px` }}>
+                  <p>EPAs for {selectedDistrict} are yet to be added.</p>
+                </div>
+              )}
+            </div>
           )}
         </div>
 
