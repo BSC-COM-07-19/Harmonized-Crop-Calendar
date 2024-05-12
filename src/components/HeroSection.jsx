@@ -34,16 +34,31 @@ const HeroSection = (props) => {
     setShowEpaMessage(false);
   };
 
-  const handleEpaChange = async (epaName) => {
-    setSelectedEpa(epaName);
-    try {
-      const response = await api.get(`/epa/crops/${epaName}`);
-      setCrops(response.data[epaName] || []);
-    } catch (error) {
-      console.error("Error fetching crops:", error);
-      setCrops([]);
-    }
-  };
+  // const handleEpaChange = async (epaName) => {
+  //   setSelectedEpa(epaName);
+  //   try {
+  //     const response = await api.get(`/epa/crops/${epaName}`);
+  //     setCrops(response.data[epaName] || []);
+  //   } catch (error) {
+  //     console.error("Error fetching crops:", error);
+  //     setCrops([]);
+  //   }
+  // };
+
+    // Inside handleEpaChange function
+    const handleEpaChange = async (epaName) => {
+      setSelectedEpa(epaName);
+      try {
+        const response = await api.get(`/epa/crops/${epaName}`);
+        setCrops(response.data[epaName] || []);
+        props.setSelectedCrop(response.data[epaName][0]); // Update selected crop
+      } catch (error) {
+        console.error("Error fetching crops:", error);
+        setCrops([]);
+        props.setSelectedCrop(""); // Clear selected crop if there's an error
+      }
+    };
+
 
   const handleEpaMessage = () => {
     if (selectedDistrict && epasForSelectedDistrict.length === 0) {
@@ -144,3 +159,4 @@ const HeroSection = (props) => {
 }
 
 export default HeroSection;
+

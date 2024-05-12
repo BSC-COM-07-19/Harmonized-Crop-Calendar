@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ActivityCalendar = () => {
+const ActivityCalendar = ({selectedCrop}) => {
     const [month, setMonth] = useState("");
     const [crop, setCrop] = useState("");
     const [activities, setActivities] = useState([]);
@@ -68,8 +68,8 @@ const ActivityCalendar = () => {
                         className="w-full rounded-lg border border-gray-400 p-2"
                     >
                         <option value="">Select Crop</option>
-                        {Object.keys(crops).map((c) => (
-                            <option key={c} value={c}>{crops[c]}</option>
+                        {Array.isArray(selectedCrop) && selectedCrop.map((crop) => (
+                            <option key={crop} value={crop}>{crop}</option>
                         ))}
                     </select>
                 </div>
