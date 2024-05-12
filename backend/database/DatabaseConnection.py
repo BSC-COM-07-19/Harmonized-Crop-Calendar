@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-URL_DATABASE = 'postgresql://postgres:12345@localhost:5432/harmon'
+URL_DATABASE = 'postgresql://postgres:2096@localhost:5432/calendardb'
 
 engine = create_engine(URL_DATABASE)
 
