@@ -3,6 +3,7 @@ import HeroImage from "../assets/crop calendar.jpg";
 import CalendarImage from "../assets/download.png";
 import { FaMapLocationDot, FaLocationDot, FaCalendar, FaLeaf } from "react-icons/fa6";
 import api from "../api";
+import { Link } from 'react-router-dom';
 
 const HeroSection = (props) => {
   const [epa, setEpas] = useState([]);
@@ -51,7 +52,7 @@ const HeroSection = (props) => {
       try {
         const response = await api.get(`/epa/crops/${epaName}`);
         setCrops(response.data[epaName] || []);
-        props.setSelectedCrop(response.data[epaName][0]); // Update selected crop
+        // props.setSelectedCrop(response.data[epaName][0]); // Update selected crop
       } catch (error) {
         console.error("Error fetching crops:", error);
         setCrops([]);
@@ -149,10 +150,10 @@ const HeroSection = (props) => {
           </select>
         </div> 
       
-        <div className="flex items-center ml-64 cursor-pointer hover:text-red-300">
+        <Link to="/calendar" className="flex items-center ml-64 cursor-pointer hover:text-red-300">
           <label className=" text-white">View</label>
           <FaCalendar className="text-white ml-2"/>
-        </div>
+        </Link>
       </div>
     </div>
   );

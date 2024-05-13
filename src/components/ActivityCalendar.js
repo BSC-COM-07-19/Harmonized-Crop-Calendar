@@ -68,10 +68,23 @@ const ActivityCalendar = ({selectedCrop}) => {
                         className="w-full rounded-lg border border-gray-400 p-2"
                     >
                         <option value="">Select Crop</option>
+                        {Object.keys(crops).map((c) => (
+                            <option key={c} value={c}>{crops[c]}</option>
+                        ))}
+                    </select>
+
+                    {/* <label htmlFor="crop" className="text-lg text-gray-800">Select Crop:</label>
+                    <select
+                        id="crop"
+                        value={crop}
+                        onChange={handleCropChange}
+                        className="w-full rounded-lg border border-gray-400 p-2"
+                    >
+                        <option value="">Select Crop</option>
                         {Array.isArray(selectedCrop) && selectedCrop.map((crop) => (
                             <option key={crop} value={crop}>{crop}</option>
                         ))}
-                    </select>
+                    </select> */}
                 </div>
 
                 {/* Selected Month Display */}
