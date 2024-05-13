@@ -1,32 +1,46 @@
-
-import NavBar from '../components/NavBar';
 import React, { useState } from 'react';
+// import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection';
-import MapComponet from '../components/MapComponet';
+// import MapComponet from '../components/MapComponet';
 import AboutUs from '../components/AboutUs';
 import Facts from "../components/Facts";
+//import ActivityCalendar from '../ActivityCalendar';
+// import MapComponent from '../components/MapComponet';
+// import AboutUs from '../components/AboutUs';
+// import Facts from "../components/Facts";
+import { Route, Routes } from 'react-router-dom';
+import MarketPricing from '../components/MarketPricing';
+import ActivityCalendar from '../components/ActivityCalendar';
+import WeatherApp from '../components/WeatherApp';
 
 const Home = () => {
-  const [selectedDistrict, setSelectedDistrict] = useState("");
+  // const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [setSelectedCrop] = useState("");
 
   // Function to handle click on district
-  const handleDistrictClick = (district) => {
-    setSelectedDistrict(district);
-  };
+  // const handleDistrictClick = (district) => {
+  //   setSelectedDistrict(district);
+  // };
 
   return (
     <div>
-      <NavBar />
       <div className="relative">
-      <HeroSection handleDistrictClick={handleDistrictClick} />
+      {/* <HeroSection handleDistrictClick={handleDistrictClick} /> */}
+      <HeroSection setSelectedCrop={setSelectedCrop} />
+      {/* <ActivityCalendar selectedCrop={selectedCrop} /> */}
         <div className="mt-10">
-        {selectedDistrict && <MapComponet showMap={true} />}
-          {!selectedDistrict && <AboutUs />}
-          {!selectedDistrict && <Facts />}
+        {/* {selectedDistrict && <MapComponet showMap={true} />} */}
+          {<AboutUs />}
+          {<Facts />}
         </div>
       </div>
+      <Routes>
+        <Route path="/market" element={<MarketPricing />} />
+        <Route path="/weather" element={<WeatherApp />} />
+        <Route path="/calendar" element={<ActivityCalendar />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default Home;
