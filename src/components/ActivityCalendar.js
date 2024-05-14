@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const ActivityCalendar = () => {
+import Modal from './Modal';
+const ActivityCalendar = ({ onClose, selectedCrop }) => {
     const [month, setMonth] = useState("");
     const [crop, setCrop] = useState("");
     const [activities, setActivities] = useState([]);
@@ -9,9 +9,9 @@ const ActivityCalendar = () => {
 
     useEffect(() => {
         const fetchActivities = async () => {
-            if (month && crop) {
+            if (month && selectedCrop) {
                 try {
-                    const response = await axios.get(`http://localhost:8000/activities/${month}/${crop}`);
+                    const response = await axios.get(`http://localhost:8000/activities/${month}/${selectedCrop}`);
                     setActivities(response.data.activities);
                     setShowCalendar(true);
                 } catch (error) {
@@ -23,11 +23,16 @@ const ActivityCalendar = () => {
         fetchActivities(); // Fetch activities when month or crop changes
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [month, crop]); // Include month and crop in dependency array
+    }, [month, selectedCrop]); // Include month and crop in dependency array
 
     const handleMonthChange = (e) => {
         setMonth(e.target.value);
     };
+
+    const handleViewCalendarClick = () => {
+        setShowCalendar(true); // Show the calendar when "View Calendar" button is clicked
+      };
+    
 
     const handleCropChange = (e) => {
         setCrop(e.target.value);
@@ -79,7 +84,8 @@ const ActivityCalendar = () => {
                     <div className="mt-8">
                         <h2 className="text-2xl font-semibold mb-4 text-gray-800">Selected Month: {month}</h2>
                         {/* Calendar here */}
-                        {showCalendar && <Calendar month={month} />}
+                        {/* {showCalendar && <Calendar month={month} />} */}
+                        <button className="text-blue-500 underline" onClick={() => setShowCalendar(true)}>View Calendar</button>
                     </div>
                 )}
 
@@ -94,6 +100,17 @@ const ActivityCalendar = () => {
                         </div>
                     </div>
                 )}
+                 {/* Selected Month Display */}
+      {month && showCalendar && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Selected Month: {month}</h2>
+          {/* Calendar here */}
+          <Calendar month={month} />
+        </div>
+      )}
+      
+      {/* Close the modal when needed */}
+      <button onClick={onClose}>Close</button> {/* Call onClose function from props */}
             </div>
         </div>
     );

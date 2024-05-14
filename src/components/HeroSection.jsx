@@ -3,15 +3,15 @@ import HeroImage from "../assets/crop calendar.jpg";
 import CalendarImage from "../assets/download.png";
 import { FaMapLocationDot, FaLocationDot, FaCalendar, FaLeaf } from "react-icons/fa6";
 import api from "../api";
+import { Link } from 'react-router-dom';
 
-const HeroSection = (props) => {
+const HeroSection = () => {
   const [epa, setEpas] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [epasForSelectedDistrict, setEpasForSelectedDistrict] = useState([]);
   const [selectedEpa, setSelectedEpa] = useState("");
+  const [selectedCrop, setSelectedCrop] = useState(""); // State to keep track of selected crop
   const [crops, setCrops] = useState([]);
-  const [showEpaMessage, setShowEpaMessage] = useState(false);
-  const [messagePosition, setMessagePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,8 +30,8 @@ const HeroSection = (props) => {
     const epas = epa.filter((currentEpa) => currentEpa.district_name === district);
     setEpasForSelectedDistrict(epas);
     setSelectedEpa("");
+    setSelectedCrop(""); // Reset selected crop when district changes
     setCrops([]);
-    setShowEpaMessage(false);
   };
 
   const handleEpaChange = async (epaName) => {
@@ -39,23 +39,15 @@ const HeroSection = (props) => {
     try {
       const response = await api.get(`/epa/crops/${epaName}`);
       setCrops(response.data[epaName] || []);
+      setSelectedCrop(""); // Reset selected crop when EPA changes
     } catch (error) {
       console.error("Error fetching crops:", error);
       setCrops([]);
     }
   };
 
-  const handleEpaMessage = () => {
-    if (selectedDistrict && epasForSelectedDistrict.length === 0) {
-      setShowEpaMessage(true);
-    } else {
-      setShowEpaMessage(false);
-    }
-  };
-
-  const handleEpaFieldPosition = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    setMessagePosition({ x: rect.left, y: rect.top }); 
+  const handleCropChange = (crop) => {
+    setSelectedCrop(crop);
   };
 
   return (
@@ -67,7 +59,7 @@ const HeroSection = (props) => {
           <h1 className="font-bold text-xl md:text-2xl lg:text-4xl ml-4">Crop Calendar</h1>
         </div>
         <p className="text-center text-white font-bold text-sm md:text-base lg:text-lg">
-          "Explore The Rhythm Of Nature With Our Harmonised Calendar,
+          "Explore The Rhythm Of Nature With Our Harmonized Calendar,
           Simplifying Your Agricultural Planning And Optimizing Yields" 
         </p>
       </div>
@@ -95,12 +87,8 @@ const HeroSection = (props) => {
           {epasForSelectedDistrict.length > 0 ? (
             <select
               className="rounded-md ml-7 w-48 h-7 pl-2"
-              onChange={(e) => {
-                handleEpaChange(e.target.value);
-                handleEpaMessage();
-              }}
+              onChange={(e) => handleEpaChange(e.target.value)}
               value={selectedEpa}
-              onMouseEnter={(e) => handleEpaFieldPosition(e)}
             >
               <option value="">Select EPA</option>
               {epasForSelectedDistrict.map((currentEpa) => (
@@ -110,21 +98,18 @@ const HeroSection = (props) => {
               ))}
             </select>
           ) : (
-            <div className="relative ml-7">
-              <p className="text-white">EPAs for {selectedDistrict} are yet to be added.</p>
-              {showEpaMessage && (
-                <div className="absolute bg-red-500 p-2 rounded-md text-white" style={{ top: `${messagePosition.y - 50}px`, left: `${messagePosition.x}px` }}>
-                  <p>EPAs for {selectedDistrict} are yet to be added.</p>
-                </div>
-              )}
-            </div>
+            <p className="ml-7 text-white">EPAs for {selectedDistrict} are yet to be added.</p>
           )}
         </div>
 
         <div className="flex items-center">
           <label className="font-bold text-white ml-64">CROP</label>
           <FaLeaf className="w-8 h-8 ml-7 text-white" />
-          <select className="rounded-md ml-7 w-48 h-7 pl-2">
+          <select
+            className="rounded-md ml-7 w-48 h-7 pl-2"
+            value={selectedCrop}
+            onChange={(e) => handleCropChange(e.target.value)}
+          >
             <option value="">Select Crop</option>
             {crops.map((crop, index) => (
               <option key={index} value={crop}>
@@ -134,10 +119,14 @@ const HeroSection = (props) => {
           </select>
         </div> 
       
-        <div className="flex items-center ml-64 cursor-pointer hover:text-red-300">
-          <label className=" text-white">View</label>
-          <FaCalendar className="text-white ml-2"/>
-        </div>
+        {selectedCrop && (
+          <div className="flex items-center">
+            <button className="flex items-center ml-8 cursor-pointer hover:text-red-300" onClick={() => alert("This will show the calendar popup")}>
+              <label className="text-white">View Calendar</label>
+              <FaCalendar className="text-white ml-2"/>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,7 @@
-import Chart from 'chart.js/auto'; 
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import Chart from 'chart.js/auto'; // Import Chart from chart.js/auto
 import 'chartjs-adapter-date-fns';
-
-
-
 
 const MarketPricing = () => {
   const data = {
@@ -23,7 +20,7 @@ const MarketPricing = () => {
 
   return (
     <div style={{ width: '80%', margin: 'auto' }}>
-      <h2>Market Pricing</h2>
+      {/* <h2>Market Pricing</h2> */}
       <div style={{ height: '400px' }}>
         <Line
           data={data}
@@ -34,6 +31,30 @@ const MarketPricing = () => {
               line: {
                 tension: 0.4
               }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Projected Price Curve'
+              },
+              legend: {
+                display: true,
+                position: 'bottom'
+              }
+            },
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Months'
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Percentage'
+                }
+              }
             }
           }}
         />
@@ -43,5 +64,3 @@ const MarketPricing = () => {
 };
 
 export default MarketPricing;
-
-
