@@ -12,6 +12,8 @@ const HeroSection = () => {
   const [selectedEpa, setSelectedEpa] = useState("");
   const [selectedCrop, setSelectedCrop] = useState(""); // State to keep track of selected crop
   const [crops, setCrops] = useState([]);
+  const [showCalendar, setShowCalendar] = useState(false); // State to control calendar popup visibility
+  const [selectedMonth, setSelectedMonth] = useState(new Date());
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +50,47 @@ const HeroSection = () => {
 
   const handleCropChange = (crop) => {
     setSelectedCrop(crop);
+  };
+
+  const handleViewCalendar = () => {
+    setShowCalendar(true);
+  };
+
+  const handleChangeMonth = (e) => {
+    setSelectedMonth(new Date(selectedMonth.getFullYear(), parseInt(e.target.value)));
+  };
+
+  const getDaysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  };
+
+  const getMonthName = (date) => {
+    const options = { month: 'long' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  };
+
+  const getFarmingActivities = () => {
+    // Example: Check for activities based on selected crop and month
+    // For simplicity, assuming the activities are always the same for every crop
+    const activities = {
+      January: ["Planting", "Weeding"],
+      February: ["Planting", "Weeding"],
+      March: ["Planting", "Weeding", "Harvesting"],
+      April: ["Weeding", "Harvesting"],
+      May: ["Weeding", "Harvesting"],
+      June: ["Weeding"],
+      July: ["Weeding"],
+      August: ["Weeding"],
+      September: ["Weeding"],
+      October: ["Weeding"],
+      November: ["Weeding"],
+      December: ["Weeding"]
+    };
+    return activities[getMonthName(selectedMonth)] || [];
   };
 
   return (
@@ -120,14 +163,65 @@ const HeroSection = () => {
         </div> 
       
         {selectedCrop && (
-          <div className="flex items-center">
-            <button className="flex items-center ml-8 cursor-pointer hover:text-red-300" onClick={() => alert("This will show the calendar popup")}>
-              <label className="text-white">View Calendar</label>
-              <FaCalendar className="text-white ml-2"/>
-            </button>
-          </div>
+          <button onClick={handleViewCalendar} className="flex items-center ml-8 cursor-pointer hover:text-red-300">
+            <label className="text-white">View Calendar</label>
+            <FaCalendar className="text-white ml-2"/>
+          </button>
         )}
       </div>
+
+      {showCalendar && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-75">
+          <div className="bg-white rounded-lg p-8 w-full md:w-3/4 lg:w-1/2">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="font-bold text-lg">Selected Crop: {selectedCrop}</h2>
+              <select
+                className="rounded-md w-1/2 p-2"
+                value={selectedMonth.getMonth()}
+                onChange={handleChangeMonth}
+              >
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+              </select>
+              <h2 className="font-bold text-lg">{getMonthName(selectedMonth)}</h2>
+            </div>
+            <div className="grid grid-cols-7 gap-1">
+              <div className="text-center text-gray-600 font-semibold">Sun</div>
+              <div className="text-center text-gray-600 font-semibold">Mon</div>
+              <div className="text-center text-gray-600 font-semibold">Tue</div>
+              <div className="text-center text-gray-600 font-semibold">Wed</div>
+              <div className="text-center text-gray-600 font-semibold">Thu</div>
+              <div className="text-center text-gray-600 font-semibold">Fri</div>
+              <div className="text-center text-gray-600 font-semibold">Sat</div>
+              {[...Array(getFirstDayOfMonth(selectedMonth)).keys()].map((_, index) => (
+                <div key={index}></div>
+              ))}
+              {[...Array(getDaysInMonth(selectedMonth)).keys()].map((day, index) => (
+                <div key={index} className="text-center py-2 border border-gray-200">{day + 1}</div>
+              ))}
+            </div>
+            <div className="mt-4">
+              <h3 className="font-semibold text-lg mb-2">Farming Activities</h3>
+              <ul className="list-disc list-inside">
+                {getFarmingActivities().map((activity, index) => (
+                  <li key={index}>{activity}</li>
+                ))}
+              </ul>
+            </div>
+            <button onClick={() => setShowCalendar(false)} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
