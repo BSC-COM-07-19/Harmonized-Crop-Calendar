@@ -8,19 +8,18 @@ const MarketPricing = () => {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     datasets: [
       {
-        label: 'Sales',
+        label: 'Crop Price',
         fill: false,
         backgroundColor: 'rgba(75,192,192,1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [65, 59, 80, 81, 56, 55, 40, 30, 25, 20, 15, 10] // Adjust data values accordingly
+        data: [200, 220, 230, 250, 260, 270, 280, 290, 300, 290, 280, 250] 
       }
     ]
   };
 
   return (
     <div style={{ width: '80%', margin: 'auto' }}>
-      {/* <h2>Market Pricing</h2> */}
       <div style={{ height: '400px' }}>
         <Line
           data={data}
@@ -35,7 +34,7 @@ const MarketPricing = () => {
             plugins: {
               title: {
                 display: true,
-                text: 'Projected Price Curve'
+                text: 'Crop Price Against Month'
               },
               legend: {
                 display: true,
@@ -52,7 +51,7 @@ const MarketPricing = () => {
               y: {
                 title: {
                   display: true,
-                  text: 'Percentage'
+                  text: 'Price (in MWK)' 
                 }
               }
             }

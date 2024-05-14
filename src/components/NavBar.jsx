@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'; // Import Link component
 
 const navigation = [
-  { name: 'Harmonised Crop Calendar', href: '#', current: false },
+  // { name: 'HCC', href: '#', current: false },
   { name: 'Home', href: '/', current: false },
   // { name: 'Calendar', href: '/calendar', current: false },
   { name: 'Weather Forecast', href: '/weather', current: false },
@@ -35,12 +35,18 @@ const NavBar = () => {
                 </Disclosure.Button>
               </div>
               {/* Image */}
-              <div className="flex flex-shrink-0 items-center px-1 hidden sm:block">
+              <div className="flex flex-shrink-0 items-center">
                 <img
-                  className="h-24 w-auto"
+                  className="h-24 w-auto mr-4"
                   src={logo}
                   alt="Your Company"
                 />
+              <Link
+                  to="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-medium font-bold sm:block"
+                >
+                  HCC
+                </Link>
               </div>
               {/* Navigation Links */}
               <div className="flex flex-shrink-0 items-center">
