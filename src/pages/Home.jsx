@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import MarketPricing from '../components/MarketPricing';
 import ActivityCalendar from '../components/ActivityCalendar';
 import WeatherApp from '../components/WeatherApp';
+import pestDiseaseData from '../components/PestDiseaseMgt';
 
 const Home = () => {
   // const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -34,6 +35,7 @@ const Home = () => {
         <Route path="/market" element={<MarketPricing />} />
         <Route path="/weather" element={<WeatherApp />} />
         <Route path="/calendar" element={<ActivityCalendar />} />
+        <Route path="/pests" element={<pestDiseaseData />} />
       </Routes>
     </div>
   );

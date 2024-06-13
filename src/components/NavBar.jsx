@@ -10,6 +10,7 @@ const navigation = [
   // { name: 'Calendar', href: '/calendar', current: false },
   { name: 'Weather Forecast', href: '/weather', current: false },
   { name: 'Market Pricing', href: '/market', current: false },
+  { name: 'Pest And Diseases', href: '/pests', current: false },
 ]
 
 function classNames(...classes) {
