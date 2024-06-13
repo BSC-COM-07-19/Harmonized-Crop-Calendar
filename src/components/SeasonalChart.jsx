@@ -1,10 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 import TransparentLogo from '../assets/download.png'; // Adjust the path based on your file structure
 
 const SeasonalChart = () => {
+  const navigate = useNavigate();
+
+  const handleCropSelection = (event) => {
+    const selectedCrop = event.target.value;
+    if (selectedCrop) {
+      navigate(`/${selectedCrop}`);
+    }
+  };
+
   const data = [
     {
       name: 'Corn, sweet (Low Altitude)',
@@ -71,6 +81,16 @@ const SeasonalChart = () => {
   return (
     <div>
       <h1>Seasonal Calendar</h1>
+      <div style={{ marginBottom: '20px' }}>
+        <label htmlFor="cropSelect">Pest and Disease Management:</label>
+        <select id="cropSelect" onChange={handleCropSelection} defaultValue="">
+          <option value="" disabled>Select a crop</option>
+          <option value="maize">Maize</option>
+          <option value="Rice">Rice</option>
+          <option value="groundnuts">Groundnuts</option>
+          <option value="soybeans">Soy Beans</option>
+        </select>
+      </div>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={transformedData}

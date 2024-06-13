@@ -6,6 +6,10 @@ import MarketPricing from './components/MarketPricing';
 import WeatherApp from './components/WeatherApp';
 import PestDiseaseMgt from './components/PestDiseaseMgt';
 import SeasonalChart from './components/SeasonalChart';
+import GroundnutsPestDisease from './components/Groundnuts';
+import SoybeansPestDisease from './components/Soy';
+import MaizePestDisease from './components/Maize';
+import RicePestDisease from './components/Rice';
 
 const App = () => {
   return (
@@ -17,8 +21,11 @@ const App = () => {
           <Route path="/market" element={<MarketPricing />} />
           <Route path="/weather" element={<WeatherApp />} />
           <Route path="/pests" element={<PestDiseaseMgt />} />
-          {/* <Route path="/calendar" element={<ActivityCalendar />} /> */}
           <Route path="/season" element={<SeasonalChart />} />
+          <Route path="/rice" element={<RicePestDisease />} />
+        <Route path="/maize" element={<MaizePestDisease />} />
+        <Route path="/groundnuts" element={<GroundnutsPestDisease />} />
+        <Route path="/soybeans" element={<SoybeansPestDisease />} />
         </Routes>
       </div>
     </Router>
