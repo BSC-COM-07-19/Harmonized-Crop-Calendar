@@ -3,10 +3,11 @@ import React from 'react';
 // Define the data for soybeans pests and diseases including image URLs
 const soybeansData = {
   name: "Soy Beans",
+//   image: "soy_1.jpg", 
   pestsDiseases: [
     {
       name: "Caterpillars",
-      image: "https://example.com/caterpillars.jpg", // Replace with actual image URL
+      image: "soy_2.png", // Replace with actual image URL
       symptoms: [
         "Soybean lopper, leaf miners, leaf rollers.",
         "These insect pests feed on the foliage.",
@@ -16,7 +17,7 @@ const soybeansData = {
     },
     {
       name: "Termite",
-      image: "https://example.com/termite.jpg", // Replace with actual image URL
+      image: "soy_3.jpg", 
       symptoms: [
         "Can attack soybean plants at any stage of development from seed to mature soybean plant particularly when there is prolonged dry spell.",
         "First sign of termite attack is wilting leading to death or falling over of plants.",
@@ -29,23 +30,22 @@ const soybeansData = {
     },
     {
       name: "Soybean Rust",
-      image: "https://example.com/soybean-rust.jpg", // Replace with actual image URL
+      image: "soy_4.png",
       symptoms: [
         "The only disease of economic importance.",
-        "Infected leaves have small tan to dark brown or reddish-brown lesions on which small raised pustules (or bumps) occur on the lower surface of the leaves.",
-        "Pustules produce a large number of spores.",
-        "Severe infection leads to premature defoliation and yield losses up to 80%.",
-        "Soybean rust is of great economic importance where humidity and rainfall are high.",
-        "Late planted soybean is prone to soybean rust infection."
-      ],
-      control: [
-        "Plant resistant varieties.",
-        "Fungicide applications as per recommendations when disease pressure is high."
+          "Other diseases such as frogeye, bacterial pastule, red lead blotch occur but are less important economically.",
+          "Asian soybean rust, caused by Phakapsora pachyrhizi, is one of the notable foliar soybean diseases in Malawi.",
+          "Infected leaves have small tan to dark brown or reddish-brown lesions on which small raised pustules (or bumps) occur on the lower surface of the leaves.",
+          "Pustules produce a large number of spores.",
+          "Brown or rust-colored powder falls when severely infected leaves are tapped over a white paper or cloth.",
+          "Severe infection leads to premature defoliation and yield losses up to 80%.",
+          "Soybean rust is of great economic importance where humidity and rainfall are high.",
+          "Late planted soybean is prone to soybean rust infection."
       ]
     },
     {
       name: "Soybean cyst nematode (SCN), Heterodera glycines",
-      image: "https://example.com/soybean-cyst-nematode.jpg", // Replace with actual image URL
+      image: "soy_6.jpg",
       symptoms: [
         "It can be present in the field without causing obvious above-ground symptoms.",
         "In heavily infested fields, SCN can cause yield losses of more than 30%.",
@@ -59,8 +59,16 @@ const soybeansData = {
       ]
     },
     {
+        name: "Pod-sucking buds",
+        image: "soy_8.jpg",
+        symptoms: [
+          "Attack crop from flowering onwards."
+        ],
+        control: "Insect pests can be controlled with a single spray of Cypermethrin + Dimethoate 10 EC. Read the chemical label for instructions."
+      },
+    {
       name: "Virus diseases",
-      image: "https://example.com/virus-diseases.jpg", // Replace with actual image URL
+      image: "soy_9.jpg",
       symptoms: [
         "Commonly transmitted by insects such as whitefly.",
         "Symptoms range from mosaic and mottling, leaf curling, green vein banding, and stunting.",
@@ -70,6 +78,7 @@ const soybeansData = {
     },
     {
       name: "General Control of Soybean diseases",
+      image: "soy_7.png",
       control: [
         "Use certified seed to avoid seed-borne infection.",
         "Use varieties resistant to prevailing diseases of the area.",
@@ -81,7 +90,6 @@ const soybeansData = {
         "Eradicate weeds and voluntary plants in the vicinity of soybeans sites as these act as host agents."
       ]
     }
-    // Add more pests and diseases as needed
   ]
 };
 
