@@ -2,16 +2,19 @@ import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
+import TransparentLogo from '../assets/download.png'; // Adjust the path based on your file structure
 
 const SeasonalChart = () => {
   const data = [
     {
       name: 'Corn, sweet (Low Altitude)',
+      imageUrl: TransparentLogo,
       sowing: { APR: 1, MAY: 1, JUN: 1 },
       harvesting: { JUL: 1, AUG: 1, SEP: 1 }
     },
     {
       name: 'Corn, sweet (Medium Altitude)',
+      imageUrl: TransparentLogo,
       sowing: { APR: 1, MAY: 1, JUN: 1 },
       harvesting: { NOV: 1, DEC: 1 }
     }
@@ -55,19 +58,28 @@ const SeasonalChart = () => {
     transformedData.push(monthData);
   });
 
+  const CustomYAxisTick = ({ x, y, payload }) => {
+    const activity = data[payload.value];
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <image href={activity.imageUrl} x="-70" y="0" height="50px" width="70px" />
+        <text x="-30" y="25" textAnchor="end" fill="#666" writingMode="vertical-rl">{activity.name}</text>
+      </g>
+    );
+  };
+
   return (
     <div>
-                      <h1>Seasonal Calendar</h1>
+      <h1>Seasonal Calendar</h1>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={transformedData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          margin={{ top: 20, right: 30, left: 70, bottom: 20 }}
           layout="vertical"
         >
-          <CartesianGrid lightingColor="2 3" />
-          <XAxis type="category" dataKey="month" />
-         
-          
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis type="category" dataKey="month" orientation="top" />
+          <YAxis type="number" tick={<CustomYAxisTick />} tickCount={data.length} />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
           {data.map(activity => (
