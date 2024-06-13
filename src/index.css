@@ -16,3 +16,57 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+/* src/SeasonalChart.css */
+.seasonal-chart {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.cell:first-child {
+  font-weight: bold;
+}
+/* src/SeasonalChart.css */
+.seasonal-chart-container {
+  margin-top: 20px; /* Shift the table downwards */
+  display: flex;
+  justify-content: center; /* Center the table horizontally */
+  padding: 85px; /* Add padding around the container */
+  background-color: #f9f9f9; /* Optional: add a background color to the container */
+  border: 1px solid #ccc; /* Optional: add a border to the container */
+  border-radius: 10px; /* Optional: add rounded corners to the container */
+}
+
+.seasonal-chart {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+  border: 1px solid #cccccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.cell:first-child {
+  font-weight: bold;
+}
+
