@@ -3,7 +3,7 @@ import HeroImage from "../assets/crop calendar.jpg";
 import CalendarImage from "../assets/download.png";
 import { FaMapLocationDot, FaLocationDot, FaCalendar, FaLeaf } from "react-icons/fa6";
 import api from "../api";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const [epa, setEpas] = useState([]);

@@ -3,7 +3,6 @@ import React from 'react';
 // Define the data for soybeans pests and diseases including image URLs
 const soybeansData = {
   name: "Soy Beans",
-//   image: "soy_1.jpg", 
   pestsDiseases: [
     {
       name: "Caterpillars",

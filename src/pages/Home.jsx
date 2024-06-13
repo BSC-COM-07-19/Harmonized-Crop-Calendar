@@ -8,7 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import MarketPricing from '../components/MarketPricing';
 import ActivityCalendar from '../components/ActivityCalendar';
 import WeatherApp from '../components/WeatherApp';
-import pestDiseaseData from '../components/PestDiseaseMgt';
+//import pestDiseaseData from '../components/PestDiseaseMgt';
 
 const Home = () => {
   // const [selectedDistrict, setSelectedDistrict] = useState("");
