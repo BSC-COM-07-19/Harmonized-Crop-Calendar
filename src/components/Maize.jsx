@@ -12,7 +12,7 @@ const maizeData = {
         "Early planting",
         "Remove and destroy all the infected growing plants."
       ],
-      image: "/path/to/stalk_borer.jpg" // Example image path (adjust as per your actual image structure)
+      image: "maize_1.jpg"
     },
     {
       name: "Army worm",
@@ -20,7 +20,7 @@ const maizeData = {
         "Feeds on maize leaves and they attack in large numbers (army worm) and very serious under dry condition."
       ],
       control: "Control is by spraying carbarlyl 85%wp (sevin) dissolved in 14 litres of water and providing training to farmers.",
-      image: "/path/to/army_worm.jpg" // Example image path (adjust as per your actual image structure)
+      image: "army.jpg"
     },
     {
       name: "Maize Weevil",
@@ -28,7 +28,7 @@ const maizeData = {
         "This is a post-harvest insect which eats stored maize grain. It is more destructive on dent maize."
       ],
       control: "Control is done by dusting Actellic dust or other recommended chemicals by extension officers.",
-      image: "/path/to/maize_weevil.jpg" // Example image path (adjust as per your actual image structure)
+      image: "maize_2.jpg"
     },
     {
       name: "Termites",
@@ -36,7 +36,7 @@ const maizeData = {
         "They attack maize stalks causing lodging. Fallen cobs are also attacked in the process."
       ],
       control: "To reduce the damage, banking should be done when the plants are still young.",
-      image: "/path/to/termites.jpg" // Example image path (adjust as per your actual image structure)
+      image: "termites.jpg"
     },
     {
       name: "Rodents",
@@ -44,7 +44,7 @@ const maizeData = {
         "These are very common in storage. They feed on the maize grain from the storage."
       ],
       control: [],
-      image: "/path/to/rodents.jpg" // Example image path (adjust as per your actual image structure)
+      image: "rods.jpg"
     },
     {
       name: "Leaf Blight",
@@ -54,8 +54,8 @@ const maizeData = {
         "The lower leaves are infected first and those heavily infected may die.",
         "The younger the plant, the greater the reduction in yield."
       ],
-      control: "Control is by use of improved certified seed. At a larger scale spray of some fungicides might be necessary.",
-      image: "/path/to/leaf_blight.jpg" // Example image path (adjust as per your actual image structure)
+      control: "Use of improved certified seed. At a larger scale spray of some fungicides might be necessary.",
+      image: "leaf.jpg"
     },
     {
       name: "Rust",
@@ -65,7 +65,7 @@ const maizeData = {
         "They attack every part of the plant."
       ],
       control: [],
-      image: "/path/to/rust.jpg" // Example image path (adjust as per your actual image structure)
+      image: "rust.jpg"
     },
     {
       name: "Smut",
@@ -78,7 +78,7 @@ const maizeData = {
         "Control virus vectors, aphids and white flies.",
         "Use resistant varieties."
       ],
-      image: "/path/to/smut.jpg" // Example image path (adjust as per your actual image structure)
+      image: "smut.jpg"
     }
   ]
 };
