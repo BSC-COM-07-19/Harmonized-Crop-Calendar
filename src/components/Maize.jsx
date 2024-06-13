@@ -28,7 +28,7 @@ const maizeData = {
         "This is a post-harvest insect which eats stored maize grain. It is more destructive on dent maize."
       ],
       control: "Control is done by dusting Actellic dust or other recommended chemicals by extension officers.",
-      image: "maize_2.jpg"
+      image: "weev.jpg"
     },
     {
       name: "Termites",
