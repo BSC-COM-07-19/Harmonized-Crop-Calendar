@@ -18,15 +18,16 @@ code {
 
 /* src/SeasonalChart.css */
 .calendar-header {
-  font-size: 5px;
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .seasonal-chart-container {
   margin-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 55px;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
@@ -61,8 +62,36 @@ code {
   padding: 12px; /* Increase padding for top cells */
 }
 
-/* Hover effect for month cells */
-.top-row .top-cell:hover {
-  background-color: #065a34; /* Darker green color on hover */
+/* Hover effect for entire column */
+.row .cell:hover {
+  background-color: #d1e7dd; /* Lighter green color on hover */
   cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Apply hover effect on columns */
+.cell-hover {
+  background-color: #bcd4cc;
+}
+
+/* Styles for the button container */
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Styles for the buttons */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #087a4af8;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #065a34;
 }
