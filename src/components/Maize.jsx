@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook from react-router-dom
 
 const maizeData = {
   name: "Maize",
@@ -83,38 +84,54 @@ const maizeData = {
   ]
 };
 
-const MaizePestDisease = () => (
-  <div className="mb-8">
-    <h2 className="text-2xl font-semibold mb-2">{maizeData.name}</h2>
-    {maizeData.pestsDiseases.map((item) => (
-      <div key={item.name} className="mb-4 p-4 border rounded-lg flex items-center">
-        {item.image && (
-          <img src={item.image} alt={item.name} className="h-32 w-32 object-cover mr-4 rounded-lg" />
-        )}
-        <div>
-          <h3 className="text-xl font-bold">{item.name}</h3>
-          <div className="ml-4">
-            <h4 className="font-semibold">Symptoms:</h4>
-            <ul className="list-disc list-inside">
-              {item.symptoms.map((symptom, index) => (
-                <li key={index}>{symptom}</li>
-              ))}
-            </ul>
-            <h4 className="font-semibold mt-2">Control:</h4>
-            {Array.isArray(item.control) ? (
+const MaizePestDisease = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  // Function to handle navigation back to the previous page
+  const handleBack = () => {
+    navigate(-1); // Navigate back one step in the history stack
+  };
+
+  return (
+    <div className="mb-8">
+      <h2 className="text-2xl font-semibold mb-2">
+        {/* Back button */}
+        <button className="back-button" onClick={handleBack}>
+          {/* Back symbol (arrow icon) */}
+          &#8592;
+        </button>
+        {maizeData.name}
+      </h2>
+      {maizeData.pestsDiseases.map((item) => (
+        <div key={item.name} className="mb-4 p-4 border rounded-lg flex items-center">
+          {item.image && (
+            <img src={item.image} alt={item.name} className="h-32 w-32 object-cover mr-4 rounded-lg" />
+          )}
+          <div>
+            <h3 className="text-xl font-bold">{item.name}</h3>
+            <div className="ml-4">
+              <h4 className="font-semibold">Symptoms:</h4>
               <ul className="list-disc list-inside">
-                {item.control.map((controlItem, index) => (
-                  <li key={index}>{controlItem}</li>
+                {item.symptoms.map((symptom, index) => (
+                  <li key={index}>{symptom}</li>
                 ))}
               </ul>
-            ) : (
-              <p>{item.control}</p>
-            )}
+              <h4 className="font-semibold mt-2">Control:</h4>
+              {Array.isArray(item.control) ? (
+                <ul className="list-disc list-inside">
+                  {item.control.map((controlItem, index) => (
+                    <li key={index}>{controlItem}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{item.control}</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
+};
 
 export default MaizePestDisease;
