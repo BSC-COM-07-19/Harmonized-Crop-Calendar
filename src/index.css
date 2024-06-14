@@ -95,3 +95,11 @@ code {
 .button:hover {
   background-color: #065a34;
 }
+
+.dropdown-container {
+  margin-top: 20px; /* Add space between buttons and dropdown */
+  border: 1px solid #ddd; /* Add border to dropdown */
+  padding: 20px;
+  width: 1500px;
+  background-color: #f9f9f9; /* Change to your desired background color */
+}
