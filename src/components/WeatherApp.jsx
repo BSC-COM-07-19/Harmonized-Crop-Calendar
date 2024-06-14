@@ -70,7 +70,7 @@ class WeatherApp extends React.Component {
 
   render() {
     return (
-      <div className="bg-blue-500  min-h-screen flex flex-col justify-center items-center">
+      <div className="bg-green-500  min-h-screen flex flex-col justify-center items-center">
         <Form getWeather={this.getWeather} />
         <Weather
           temperature={this.state.currentTemperature}
