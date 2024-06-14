@@ -14,10 +14,6 @@ const Home = () => {
   // const [selectedDistrict, setSelectedDistrict] = useState("");
   const [setSelectedCrop] = useState("");
 
-  // Function to handle click on district
-  // const handleDistrictClick = (district) => {
-  //   setSelectedDistrict(district);
-  // };
 
   return (
     <div>

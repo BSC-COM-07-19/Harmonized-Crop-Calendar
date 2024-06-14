@@ -8,11 +8,9 @@ const AboutUs = () => {
         {/* Inside your component */}
         <div className=" ml-10 my-4">
           <hr className="border-t border-gray-300 mb-10" />
-          <h2 className="text-2xl font-bold mb-4 text-center">ABOUT US</h2>
-          <p className="text-lg">Crop Calendar, passionate about empowering farmers and
-            gardeners with the knowledge they need to optimize their crop
-            production. Our team of experts has curated accurate and timely information 
-            on planting, harvesting, and management practices to help you succeed
+          <h2 className="text-2xl font-bold mb-4 text-center">ABOUT</h2>
+          <p className="text-lg">  
+            We are committed to promoting sustainable farming practices and environmental stewardship. Through collaboration with experts in agronomy and agricultural sciences, we curate comprehensive guides and resources to ensure farmers can make informed decisions and achieve sustainable yields.
           </p>
           <hr className="border-t border-gray-300 mt-16" />
         </div>
