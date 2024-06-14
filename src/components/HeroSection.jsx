@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import HeroImage from "../assets/crop calendar.jpg";
 import CalendarImage from "../assets/download.png";
-import { FaMapLocationDot, FaLocationDot, FaCalendar, FaLeaf } from "react-icons/fa6";
+import { FaMapLocationDot, FaCalendar, FaLeaf } from "react-icons/fa6";
 import api from "../api";
-//import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
-  const [epa, setEpas] = useState([]);
+  const [epas, setEpas] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [epasForSelectedDistrict, setEpasForSelectedDistrict] = useState([]);
-  const [selectedEpa, setSelectedEpa] = useState("");
-  const [selectedCrop, setSelectedCrop] = useState(""); // State to keep track of selected crop
-  const [crops, setCrops] = useState([]);
-  const [showCalendar, setShowCalendar] = useState(false); // State to control calendar popup visibility
+  const [recommendedCrop, setRecommendedCrop] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(new Date());
 
   useEffect(() => {
@@ -27,29 +23,15 @@ const HeroSection = () => {
     fetchData();
   }, []);
 
-  const handleDistrictClick = (district) => {
+  const handleDistrictClick = async (district) => {
     setSelectedDistrict(district);
-    const epas = epa.filter((currentEpa) => currentEpa.district_name === district);
-    setEpasForSelectedDistrict(epas);
-    setSelectedEpa("");
-    setSelectedCrop(""); // Reset selected crop when district changes
-    setCrops([]);
-  };
-
-  const handleEpaChange = async (epaName) => {
-    setSelectedEpa(epaName);
     try {
-      const response = await api.get(`/epa/crops/${epaName}`);
-      setCrops(response.data[epaName] || []);
-      setSelectedCrop(""); // Reset selected crop when EPA changes
+      const response = await api.get(`/epa/crops/${district}`);
+      setRecommendedCrop(response.data.recommendedCrop || "No crop recommended");
     } catch (error) {
-      console.error("Error fetching crops:", error);
-      setCrops([]);
+      console.error("Error fetching recommended crop:", error);
+      setRecommendedCrop("No crop recommended");
     }
-  };
-
-  const handleCropChange = (crop) => {
-    setSelectedCrop(crop);
   };
 
   const handleViewCalendar = () => {
@@ -74,8 +56,6 @@ const HeroSection = () => {
   };
 
   const getFarmingActivities = () => {
-    // Example: Check for activities based on selected crop and month
-    // For simplicity, assuming the activities are always the same for every crop
     const activities = {
       January: ["Planting", "Weeding"],
       February: ["Planting", "Weeding"],
@@ -99,20 +79,20 @@ const HeroSection = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-center -mt-20 pointer-events-none">
         <div className="flex items-center mb-5">
           <img src={CalendarImage} alt="Small" className="w-16 md:w-24 lg:w-32 h-16 md:h-24 lg:h-32" />
-          <h1 className="font-bold text-xl md:text-2xl lg:text-4xl ml-4">Crop Calendar</h1>
+          <h1 className="font-bold text-xl md:text-2xl lg:text-4xl ml-4 text-center md:text-left">Crop Calendar</h1>
         </div>
         <p className="text-center text-white font-bold text-sm md:text-base lg:text-lg">
           "Explore The Rhythm Of Nature With Our Harmonized Calendar,
-          Simplifying Your Agricultural Planning And Optimizing Yields" 
+          Simplifying Your Agricultural Planning And Optimizing Yields"
         </p>
       </div>
-      
-      <div className="absolute bottom-0 lg:-bottom-6 mx-6 lg:mx-0 lg:left-6 xl:left-12 w-full lg:w-auto h-10 shadow-lg bg-green-700 lg:py-6 lg:px-10 py-4 px-6 flex items-center justify-between">
-        <div className="flex items-center mb-2 sm:mb-0">
-          <label className="font-bold text-white">District</label>
-          <FaMapLocationDot className="w-8 h-8 ml-6 text-white" />
+
+      <div className="absolute bottom-0 left-0 right-0 mx-6 lg:mx-0 lg:left-6 xl:left-12 w-full lg:w-auto h-auto shadow-lg bg-green-700 lg:py-6 lg:px-10 py-4 px-6 flex flex-wrap lg:flex-nowrap items-center justify-between">
+        <div className="flex flex-wrap lg:flex-nowrap items-center mb-2 lg:mb-0">
+          <label className="font-bold text-white lg:mr-4 mb-2 lg:mb-0">District</label>
+          <FaMapLocationDot className="w-8 h-8 text-white mb-2 lg:mb-0" />
           <select
-            className="rounded-md ml-7 w-48 h-7 pl-2"
+            className="rounded-md lg:ml-2 w-full lg:w-auto h-7 pl-2"
             onChange={(e) => handleDistrictClick(e.target.value)}
           >
             <option value="">Select District</option>
@@ -124,48 +104,18 @@ const HeroSection = () => {
           </select>
         </div>
 
-        <div className="flex items-center mb-2 sm:mb-0">
-          <label className="font-bold text-white ml-48">EPA</label>
-          <FaLocationDot className="w-8 h-7 ml-7 text-white" />
-          {epasForSelectedDistrict.length > 0 ? (
-            <select
-              className="rounded-md ml-7 w-48 h-7 pl-2"
-              onChange={(e) => handleEpaChange(e.target.value)}
-              value={selectedEpa}
-            >
-              <option value="">Select EPA</option>
-              {epasForSelectedDistrict.map((currentEpa) => (
-                <option key={currentEpa.epa_id} value={currentEpa.epa_name}>
-                  {currentEpa.epa_name}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <p className="ml-7 text-white">EPAs for {selectedDistrict} are yet to be added.</p>
-          )}
+        <div className="flex flex-wrap lg:flex-nowrap items-center mt-2 lg:mt-0 lg:ml-4">
+          <label className="font-bold text-white mb-2 lg:mb-0">CROP</label>
+          <FaLeaf className="w-8 h-8 text-white ml-2 lg:ml-0 mb-2 lg:mb-0" />
+          <div className="text-white font-bold ml-2 lg:ml-2">
+            {recommendedCrop}
+          </div>
         </div>
 
-        <div className="flex items-center">
-          <label className="font-bold text-white ml-64">CROP</label>
-          <FaLeaf className="w-8 h-8 ml-7 text-white" />
-          <select
-            className="rounded-md ml-7 w-48 h-7 pl-2"
-            value={selectedCrop}
-            onChange={(e) => handleCropChange(e.target.value)}
-          >
-            <option value="">Select Crop</option>
-            {crops.map((crop, index) => (
-              <option key={index} value={crop}>
-                {crop}
-              </option>
-            ))}
-          </select>
-        </div> 
-      
-        {selectedCrop && (
-          <button onClick={handleViewCalendar} className="flex items-center ml-8 cursor-pointer hover:text-red-300">
+        {recommendedCrop && recommendedCrop !== "No crop recommended" && (
+          <button onClick={handleViewCalendar} className="flex items-center mt-2 lg:mt-0 ml-2 lg:ml-4 cursor-pointer hover:text-red-300">
             <label className="text-white">View Calendar</label>
-            <FaCalendar className="text-white ml-2"/>
+            <FaCalendar className="text-white ml-2" />
           </button>
         )}
       </div>
@@ -174,7 +124,7 @@ const HeroSection = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-75">
           <div className="bg-white rounded-lg p-8 w-full md:w-3/4 lg:w-1/2">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold text-lg">Selected Crop: {selectedCrop}</h2>
+              <h2 className="font-bold text-lg">Selected Crop: {recommendedCrop}</h2>
               <select
                 className="rounded-md w-1/2 p-2"
                 value={selectedMonth.getMonth()}
