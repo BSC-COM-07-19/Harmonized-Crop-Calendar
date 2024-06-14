@@ -17,42 +17,26 @@ code {
 @tailwind utilities;
 
 /* src/SeasonalChart.css */
-.seasonal-chart {
-  display: table;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.row {
-  display: table-row;
-}
-
-.cell {
-  display: table-cell;
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-}
-
-.cell:first-child {
+.calendar-header {
+  font-size: 5px;
   font-weight: bold;
+  margin-top: 30px;
 }
-/* src/SeasonalChart.css */
+
 .seasonal-chart-container {
-  margin-top: 20px; /* Shift the table downwards */
+  margin-top: 20px;
   display: flex;
-  justify-content: center; /* Center the table horizontally */
-  padding: 85px; /* Add padding around the container */
-  background-color: #f9f9f9; /* Optional: add a background color to the container */
-  border: 1px solid #ccc; /* Optional: add a border to the container */
-  border-radius: 10px; /* Optional: add rounded corners to the container */
+  justify-content: center;
+  padding: 55px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 20px;
 }
 
 .seasonal-chart {
   display: table;
   border-collapse: collapse;
   width: 100%;
-  
 }
 
 .row {
@@ -70,3 +54,15 @@ code {
   font-weight: bold;
 }
 
+.top-row .top-cell {
+  background-color: #087a4af8; /* Blue color for top row */
+  color: white; /* White text color for top row */
+  font-weight: bold; /* Optional: Make text bold */
+  padding: 12px; /* Increase padding for top cells */
+}
+
+/* Hover effect for month cells */
+.top-row .top-cell:hover {
+  background-color: #065a34; /* Darker green color on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+}

@@ -1,19 +1,29 @@
 import React from 'react';
-//import './SeasonalChart.css';
+import logoImage from '../assets/download.jpg'; // Adjust the path accordingly
 
 const SeasonalChart = () => {
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July',
-    'August', 'September', 'October', 'November', 'December'
+    'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
+    'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
   ];
+  
 
   return (
     <div className="seasonal-chart-container">
+       
+       <div className="calendar-header">
+        MAIZE CROP CALENDAR
+      </div>
+      
+      <div className="image-container">
+        <img src={logoImage} alt="Seasonal Image" className="seasonal-image" />
+      </div>
+     
       <div className="seasonal-chart">
-        <div className="row">
-          <div className="cell"></div>
+        <div className="row top-row">
+          <div className="cell top-cell"></div>
           {months.map((month, index) => (
-            <div key={index} className="cell">
+            <div key={index} className="cell top-cell">
               {month}
             </div>
           ))}
