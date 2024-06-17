@@ -16,3 +16,119 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+/* src/SeasonalChart.css */
+.calendar-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.seasonal-chart-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 55px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.image-container {
+  width: 200px; /* Ensure the container spans the full width */
+  display: flex;
+   /* Center the image horizontally */
+   /* Hide any overflow content */
+}
+.sowing-cell {
+  background-color: #ffcc00; /* Change to your desired color */
+  color: #fff; /* Change text color if needed */
+  font-weight: bold; /* Make the text bold */
+  cursor: pointer; /* Ensure the cell is clickable */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.sowing-cell:hover {
+  background-color: #ffaa00; /* Slightly darker shade for hover effect */
+}
+.sowing-cell-apr-may {
+  background-color: #6668cc; /* Different color for April-May */
+  color: #fff; /* Change text color if needed */
+  font-weight: bold; /* Make the text bold */
+  cursor: pointer; /* Ensure the cell is clickable */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.sowing-cell-apr-may:hover {
+  background-color: #4c53af; /* Slightly darker shade for hover effect */
+}
+
+
+.seasonal-chart {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+  border: 1px solid #cccccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.cell:first-child {
+  font-weight: bold;
+}
+
+.top-row .top-cell {
+  background-color: #087a4af8; /* Blue color for top row */
+  color: white; /* White text color for top row */
+  font-weight: bold; /* Optional: Make text bold */
+  padding: 12px; /* Increase padding for top cells */
+}
+
+/* Hover effect for entire column */
+.row .cell:hover {
+  background-color: #d1e7dd; /* Lighter green color on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Apply hover effect on columns */
+.cell-hover {
+  background-color: #bcd4cc;
+}
+
+/* Styles for the button container */
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Styles for the buttons */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #087a4af8;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #065a34;
+}
+
+.dropdown-container {
+  margin-top: 20px; /* Add space between buttons and dropdown */
+  border: 1px solid #ddd; /* Add border to dropdown */
+  padding: 20px;
+  width: 1500px;
+  background-color: #f9f9f9; /* Change to your desired background color */
+}
