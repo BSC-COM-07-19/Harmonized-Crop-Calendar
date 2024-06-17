@@ -118,7 +118,7 @@ const GroundnutsPestDisease = () => {
         {/* Back button */}
         <button className="back-button" onClick={handleBack}>
           {/* Back symbol (arrow icon) */}
-          &#8592;
+          {/* &#8592; */}
         </button>
         {groundnutsData.name}
       </h2>

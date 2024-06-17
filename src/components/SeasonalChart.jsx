@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-//import axios from 'axios';
+import React, { useState } from 'react';
 import logoImage from '../assets/crop calendar.jpg'; // Adjust the path accordingly
 import MaizePestDisease from './Maize'; // Import the MaizePestDisease component
 
@@ -11,8 +10,7 @@ const SeasonalChart = () => {
 
   const [hoveredColumn, setHoveredColumn] = useState(null);
   const [showPestDisease, setShowPestDisease] = useState(false);
-  
-  
+  const [showType, setShowType] = useState('pest');
 
   const handleMouseEnter = (index) => {
     setHoveredColumn(index);
@@ -24,13 +22,17 @@ const SeasonalChart = () => {
 
   const togglePestDisease = () => {
     setShowPestDisease(!showPestDisease);
+    setShowType('pest'); // Default to showing pests
   };
 
   const handleCellClick = (month) => {
     alert(`You clicked on ${month}`);
   };
 
-  
+  const handleToggleType = () => {
+    setShowType((prevType) => (prevType === 'pest' ? 'disease' : 'pest'));
+  };
+
   return (
     <div className="seasonal-chart-container">
       <div className="calendar-header">
@@ -41,7 +43,6 @@ const SeasonalChart = () => {
         <img src={logoImage} alt="Seasonal Image" className="seasonal-image" />
       </div>
 
-     
       <div className="seasonal-chart">
         <div className="row top-row">
           <div className="cell top-cell"></div>
@@ -72,8 +73,6 @@ const SeasonalChart = () => {
         </div>
       </div>
 
-     
-
       <div className="button-container">
         <button className="button" onClick={togglePestDisease}>
           PEST/DISEASE CONTROL {showPestDisease ? '▲' : '▼'}
@@ -83,7 +82,10 @@ const SeasonalChart = () => {
 
       {showPestDisease && (
         <div className="dropdown-container">
-          <MaizePestDisease />
+          <button className="button" onClick={handleToggleType}>
+            {showType === 'pest' ? 'Show Diseases' : 'Show Pests'}
+          </button>
+          <MaizePestDisease type={showType} />
         </div>
       )}
     </div>
