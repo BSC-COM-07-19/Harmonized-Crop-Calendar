@@ -118,7 +118,7 @@ code {
 }
 
 
-/* Styles for the Weathervisual component */
+/* Styles for the WeatherApp component */
 /* styles.css */
 /* styles.css */
 
@@ -163,7 +163,7 @@ day-forecast {
   margin: 10px;
   max-width: 200px;
   background-color: #087a4af8;  /* Changed background color to green */
-  color: rgb(16, 3, 3); /* Ensuring text color is readable against green background */
+  color: rgb(251, 248, 248); /* Ensuring text color is readable against green background */
 }
 
 .weather-icon {
@@ -177,6 +177,12 @@ day-forecast {
     align-items: center;
   }
 }
+
+
+
+
+
+
 
 .calendar-header {
   font-size: 24px;
