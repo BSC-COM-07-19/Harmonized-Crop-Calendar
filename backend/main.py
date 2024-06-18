@@ -2,6 +2,7 @@ from fastapi import APIRouter, FastAPI, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List, Annotated
+from datetime import datetime, timedelta
 import models
 import logging
 from database.DatabaseConnection import engine, SessionLocal
@@ -74,40 +75,80 @@ def get_dbconnection():
 
 db_dependency = Annotated[Session, Depends(get_dbconnection)]
 
-# Calendar Backend Code (Start)
-activities = {
-    "January": ["Planting", "Weeding"],
-    "February": ["Weeding", "Applying Fertilizer"],
-    "March": ["Applying Fertilizer", "Harvesting"],
-    "April": ["Harvesting", "Storage"],
-    "May": ["Storage", "Selling"],
-    "June": ["Selling", "Planting"],
-    "July": ["Planting", "Weeding"],
-    "August": ["Weeding", "Applying Fertilizer"],
-    "September": ["Applying Fertilizer", "Harvesting"],
-    "October": ["Harvesting", "Storage"],
-    "November": ["Storage", "Selling"],
-    "December": ["Selling", "Planting"],
+# Calendar Backend Code (Stsrt)
+
+
+crop_data = {
+    "Maize": {
+        "activities": [
+            {"activity": "Land Preparation"},
+            {"activity": "Planting"},
+            {"activity": "Weeding"},
+            {"activity": "Top-Dressing Fertilizer Application"},
+            {"activity": "Weeding (Second Round)"},
+            {"activity": "Pest and Disease Management"},
+            {"activity": "Harvesting"},
+        ],
+        "duration": "90-120 days",
+    },
+    "Groundnuts": {
+        "activities": [
+            {"activity": "Land Preparation"},
+            {"activity": "Planting"},
+            {"activity": "Weeding"},
+            {"activity": "Top-Dressing Fertilizer Application"},
+            {"activity": "Weeding (Second Round)"},
+            {"activity": "Pest and Disease Management"},
+            {"activity": "Harvesting"},
+        ],
+        "duration": "100-150 days",
+    },
+    "Soya Beans": {
+        "activities": [
+            {"activity": "Land Preparation"},
+            {"activity": "Planting"},
+            {"activity": "Weeding"},
+            {"activity": "Top-Dressing Fertilizer Application"},
+            {"activity": "Weeding (Second Round)"},
+            {"activity": "Pest and Disease Management"},
+            {"activity": "Harvesting"},
+        ],
+        "duration": "80-120 days",
+    },
+    "Rice": {
+        "activities": [
+            {"activity": "Land Preparation"},
+            {"activity": "Planting"},
+            {"activity": "Weeding"},
+            {"activity": "Top-Dressing Fertilizer Application"},
+            {"activity": "Weeding (Second Round)"},
+            {"activity": "Pest and Disease Management"},
+            {"activity": "Harvesting"},
+        ],
+        "duration": "100-160 days",
+    },
+    "Beans": {
+        "activities": [
+            {"activity": "Land Preparation"},
+            {"activity": "Planting"},
+            {"activity": "Weeding"},
+            {"activity": "Top-Dressing Fertilizer Application"},
+            {"activity": "Weeding (Second Round)"},
+            {"activity": "Pest and Disease Management"},
+            {"activity": "Harvesting"},
+        ],
+        "duration": "60-90 days",
+    },
 }
 
-crops_activities = {
-    "Maize": ["Planting", "Weeding", "Harvesting", "Storage", "Selling","M..."],
-    "Beans": ["Planting", "Weeding", "Harvesting", "Storage", "Selling","B..."],
-    "Rice": ["Planting", "Weeding", "Harvesting", "Storage", "Selling","R..."],
-    "Soybeans": ["Planting", "Weeding", "Harvesting", "Storage", "Selling","S..."],
-    "Tobacco": ["Planting", "Weeding", "Harvesting", "Storage", "Selling","T..."],
-}
-
-# Routes
-@app.get("/activities/{month}/{crop}")
-async def get_activities(month: str, crop: str):
-    if month not in activities or crop not in crops_activities:
-        raise HTTPException(status_code=404, detail="Month or crop not found")
-
-    if crop == "Maize" and "Applying Fertilizer" in activities[month]:
-        activities[month].remove("Applying Fertilizer")
-
-    return {"activities": crops_activities[crop]}
+# Endpoint to fetch activities and duration for a specific crop
+@app.get("/activities/{crop}")
+async def get_activities(crop: str):
+    crop_info = crop_data.get(crop, None)
+    if crop_info:
+        return {"activities": crop_info["activities"], "duration": crop_info["duration"]}
+    else:
+        return {"activities": [], "duration": "Unknown"}
 
 # Calendar Backend Code (End)
 
