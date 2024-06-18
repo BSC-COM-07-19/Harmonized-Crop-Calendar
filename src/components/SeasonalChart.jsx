@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import logoImage from '../assets/download.jpg'; // Adjust the path accordingly
+import logoImage from '../assets/crop calendar.jpg'; // Adjust the path accordingly
 import MaizePestDisease from './Maize'; // Import the MaizePestDisease component
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 const SeasonalChart = () => {
   const months = [
@@ -8,19 +11,20 @@ const SeasonalChart = () => {
     'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
   ];
 
-  const [hoveredColumn, setHoveredColumn] = useState(null);
-  const [showPestDisease, setShowPestDisease] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null); // State to track the selected date
+  const [showPestDisease, setShowPestDisease] = useState(false); // State to toggle pest/disease control dropdown
 
-  const handleMouseEnter = (index) => {
-    setHoveredColumn(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredColumn(null);
+  const handleDateChange = (date) => {
+    setSelectedDate(date); // Set the selected date
   };
 
   const togglePestDisease = () => {
-    setShowPestDisease(!showPestDisease);
+    setShowPestDisease(!showPestDisease); // Toggle the state to show/hide pest/disease control dropdown
+  };
+
+  const isIrrigationRecommended = (monthIndex) => {
+    // Check if the month index corresponds to May (4) to October (9)
+    return monthIndex >= 4 && monthIndex <= 9;
   };
 
   return (
@@ -29,40 +33,52 @@ const SeasonalChart = () => {
         MAIZE CROP CALENDAR
       </div>
       
-      <div className="image-container">
-        <img src={logoImage} alt="Seasonal Image" className="seasonal-image" />
-      </div>
-     
-      <div className="seasonal-chart">
-        <div className="row top-row">
-          <div className="cell top-cell"></div>
-          {months.map((month, index) => (
-            <div
-              key={index}
-              className={`cell top-cell ${hoveredColumn === index ? 'cell-hover' : ''}`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {month}
-            </div>
-          ))}
-        </div>
-        <div className="row">
-          <div className="cell">MAIZE</div>
-          {months.map((_, index) => (
-            <div
-              key={index}
-              className={`cell ${hoveredColumn === index ? 'cell-hover' : ''}`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {/* Replace this with your data */}
-            </div>
-          ))}
+      <div className="date-picker-container">
+        <div className="date-picker-label">SELECT PLANTING DATE:</div>
+        <div className="react-datepicker-wrapper">
+          <DatePicker
+            selected={selectedDate}
+            onChange={handleDateChange}
+            dateFormat="MMMM d, yyyy"
+            placeholderText="Select sowing date"
+            className="react-datepicker__input-container"
+          />
         </div>
       </div>
 
-      {/* Add a section for the buttons */}
+      <div className="chart-table-container">
+        <div className="seasonal-chart">
+          <div className="row top-row">
+            <div className="cell top-cell"></div>
+            {months.map((month, index) => (
+              <div
+                key={index}
+                className="cell top-cell"
+              >
+                {month}
+              </div>
+            ))}
+          </div>
+          <div className="row">
+            <div className="cell">MAIZE</div>
+            {months.map((month, index) => (
+              <div
+                key={index}
+                className={`cell ${selectedDate && selectedDate.getMonth() === index ? 'selected-month' : ''}`}
+              >
+                {selectedDate && selectedDate.getMonth() === index ? 'sowing' : ''}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {selectedDate && isIrrigationRecommended(selectedDate.getMonth()) && (
+        <div className="irrigation-text">
+          <p className="recommended-text">Irrigation recommended for this month.</p>
+        </div>
+      )}
+
       <div className="button-container">
         <button className="button" onClick={togglePestDisease}>
           PEST/DISEASE CONTROL {showPestDisease ? '▲' : '▼'}
@@ -70,7 +86,6 @@ const SeasonalChart = () => {
         <button className="button">ACTIVITIES</button>
       </div>
 
-      {/* Conditionally render the MaizePestDisease component */}
       {showPestDisease && (
         <div className="dropdown-container">
           <MaizePestDisease />

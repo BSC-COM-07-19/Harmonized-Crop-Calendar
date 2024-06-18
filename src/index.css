@@ -1,3 +1,6 @@
+/* src/index.css */
+
+/* General styles for the body and code elements */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -17,6 +20,8 @@ code {
 @tailwind utilities;
 
 /* src/SeasonalChart.css */
+
+/* Additional styles for the SeasonalChart component */
 .calendar-header {
   font-size: 20px;
   font-weight: bold;
@@ -28,16 +33,24 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 55px;
+  padding: 5vw; /* Use vw units for padding to maintain responsiveness */
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 20px;
 }
 
+@media (max-width: 768px) {
+  .seasonal-chart-container {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+}
+
 .seasonal-chart {
   display: table;
   border-collapse: collapse;
-  width: 100%;
+  width: 1800px;
+  height: 150px;
+  
 }
 
 .row {
@@ -56,24 +69,21 @@ code {
 }
 
 .top-row .top-cell {
-  background-color: #087a4af8; /* Blue color for top row */
-  color: white; /* White text color for top row */
-  font-weight: bold; /* Optional: Make text bold */
-  padding: 12px; /* Increase padding for top cells */
+  background-color: #087a4af8;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
 }
 
-/* Hover effect for entire column */
 .row .cell:hover {
-  background-color: #d1e7dd; /* Lighter green color on hover */
-  cursor: pointer; /* Pointer cursor on hover */
+  background-color: #d1e7dd;
+  cursor: pointer;
 }
 
-/* Apply hover effect on columns */
 .cell-hover {
   background-color: #bcd4cc;
 }
 
-/* Styles for the button container */
 .button-container {
   margin-top: 20px;
   display: flex;
@@ -81,7 +91,6 @@ code {
   gap: 10px;
 }
 
-/* Styles for the buttons */
 .button {
   padding: 10px 20px;
   border: none;
@@ -97,9 +106,291 @@ code {
 }
 
 .dropdown-container {
-  margin-top: 20px; /* Add space between buttons and dropdown */
-  border: 1px solid #ddd; /* Add border to dropdown */
+  margin-top: 20px;
+  border: 1px solid #ddd;
   padding: 20px;
   width: 1500px;
-  background-color: #f9f9f9; /* Change to your desired background color */
+  background-color: #f9f9f9;
 }
+.selected-month {
+  background-color: yellow; /* Change the color as needed */
+  font-weight: bold;
+}
+
+
+/* Styles for the Weathervisual component */
+/* styles.css */
+/* styles.css */
+
+.weather-contain {
+  text-align: center;
+  margin: 20px;
+}
+
+.weather-details {
+  font-size: 1.2em;
+}
+
+.weekly-forecast {
+  display: flex;
+  padding: 5px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  justify-content: center;
+  margin: 20px;
+  background-color: #f0f2f1f8;
+}
+
+day-forecast {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  max-width: 150px;
+  background-color: #087a4af8;
+  color: rgb(12, 89, 41);
+  height: 200px;  /* Set a fixed height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  /* Center content vertically */
+}
+
+.day-forecast p {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  max-width: 200px;
+  background-color: #087a4af8;  /* Changed background color to green */
+  color: rgb(16, 3, 3); /* Ensuring text color is readable against green background */
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+}
+
+@media (max-width: 768px) {
+  .weekly-forecast {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.calendar-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.date-picker-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 30px;
+  background-color: #ffffff; /* White background */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+.chart-table-container {
+  margin-bottom: 50px;
+}
+
+.button-container {
+  margin-bottom: 10px;
+}
+.date-picker-label {
+  margin-right: 20px; /* Adjust spacing between label and date picker */
+  font-size: 16px;
+  font-weight: bold; /* Make font bold */
+  color: #333333;
+}
+.react-datepicker-wrapper {
+  flex: 1; /* Expand date picker input to fill remaining space */
+}
+
+.react-datepicker__input-container {
+  display: block; /* Ensure input container is block level */
+  width: 100%; /* Full width */
+}
+
+.react-datepicker__input-container input {
+  width: 100%; /* Full width for input */
+  height: 30px; /* Adjust height as needed */
+  padding: 8px; /* Adjust padding for input */
+  font-size: 16px; /* Adjust font size for input */
+  border: 1px solid #ccc; /* Optional: Add border for input */
+  border-radius: 4px; /* Optional: Add border radius for input */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+
+
+
+
+
+
+
+
+
+
+.CropCalendarBudget {
+  font-family: Arial, sans-serif;
+  margin: 20px auto; /* Center align and provide some margin */
+  padding: 20px;
+  max-width: 1400px; /* Increased max-width to accommodate wider main components */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #2c3e50;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased minimum column width */
+  gap: 20px; /* Gap between grid items */
+}
+
+.activity-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.sub-activities {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f0f7fa;
+  border-radius: 4px;
+}
+
+.sub-activity {
+  margin-top: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+h3 {
+  color: #12bb5c;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.main-activity.open {
+  background-color: #cfe2f3; /* Background color when main activity is open */
+}
+
+.indicator {
+  margin-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+calendar-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.calendar-item {
+  background: #e7f3fe;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #cfe2f3;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-item:nth-child(even) {
+  background-color: #d0e7fc; /* Alternate background color for even items */
+}
+
+.calendar-month {
+  font-weight: bold;
+  color: #333; /* Month text color */
+}
+
+.calendar-activity {
+  font-style: italic;
+  color: #555; /* Activity text color */
+}
+
+
+
+
+/* Styles for tab links */
+.tab-link {
+  cursor: pointer;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.tab-link:hover {
+  color: #0d8a50;
+}
+
+.tab-link.active {
+  border-color: #0c7b50;
+}
+
+/* Styles for tab indicator */
+
+/* Example of centering the indicator under the active tab */
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%; /* Half the width of the tab link */
+}
+
+
+

@@ -1,93 +1,185 @@
-import React from 'react';
-import Forecast from '../pages/WeatherForecast/Forecast';
-import Form from '../pages/WeatherForecast/Form';
-import Weather from '../pages/WeatherForecast/Weather';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSeedling, faTint, faUmbrella, faExclamationCircle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-const API_KEY = "034fa1f439d5c604451a9f3fa492ab36";
 
-class WeatherApp extends React.Component {
-  state = {
-    currentTemperature: undefined,
-    currentCity: undefined,
-    currentCountry: undefined,
-    currentHumidity: undefined,
-    currentPressure: undefined,
-    currentWindSpeed: undefined,
-    currentSunrise: undefined,
-    currentSunset: undefined,
-    currentIcon: undefined,
-    error: undefined,
-    forecast: []
-  }
+const WeatherApp = () => {
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [weeklyForecast, setWeeklyForecast] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [visibleRecommendations, setVisibleRecommendations] = useState({});
 
-  getWeather = async (e) => {
-    e.preventDefault();
+  const processWeatherData = (forecastList) => {
+    const groupedData = {};
 
-    const city = e.target.elements.city.value;
-    const country = e.target.elements.country.value;
+    forecastList.forEach((item) => {
+      const date = new Date(item.dt * 1000).toLocaleDateString();
+      if (!groupedData[date]) {
+        groupedData[date] = item;
+      }
+    });
 
-    try {
-      const current_weather_api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`);
-      const current_weather_data = await current_weather_api_call.json();
+    const forecastData = Object.values(groupedData);
 
-      const forecast_api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=${API_KEY}`);
-      const forecast_data = await forecast_api_call.json();
+    // Add actionable insights
+    const actionableInsights = forecastData.map((day) => {
+      const { dt, weather, main, wind } = day;
+      const date = new Date(dt * 1000).toLocaleDateString();
+      const recommendations = [];
 
-      if (current_weather_data.cod === '404' || forecast_data.cod === '404') {
-        throw new Error("City not found");
+      // Example recommendation logic with icons
+      if (weather[0].main.toLowerCase().includes("rain")) {
+        recommendations.push({
+          text: "Avoid planting due to rain.",
+          icon: faUmbrella
+        });
+        recommendations.push({
+          text: "No irrigation needed due to rain.",
+          icon: faTint
+        });
+      } else if (weather[0].main.toLowerCase().includes("clear")) {
+        recommendations.push({
+          text: "Good day for planting.",
+          icon: faSeedling
+        });
+        recommendations.push({
+          text: "Irrigation needed.",
+          icon: faTint
+        });
+      } else {
+        recommendations.push({
+          text: "Monitor weather conditions before making decisions.",
+          icon: faExclamationCircle
+        });
       }
 
-      const filteredForecast = forecast_data.list.filter((day, index) => index % 8 === 0).slice(0, 7);
-      this.setState({
-        currentTemperature: current_weather_data.main.temp + " °C",
-        currentCity: current_weather_data.name,
-        currentCountry: current_weather_data.sys.country,
-        currentHumidity: current_weather_data.main.humidity + " %",
-        currentPressure: current_weather_data.main.pressure + " hPa",
-        currentWindSpeed: current_weather_data.wind.speed + " m/s",
-        currentSunrise: new Date(current_weather_data.sys.sunrise * 1000).toLocaleTimeString(),
-        currentSunset: new Date(current_weather_data.sys.sunset * 1000).toLocaleTimeString(),
-        currentIcon: current_weather_data.weather[0].icon,
-        error: "",
-        forecast: [{ label: 'Current Weather', ...current_weather_data }, ...filteredForecast]
-      });
-    } catch (error) {
-      this.setState({
-        currentTemperature: undefined,
-        currentCity: undefined,
-        currentCountry: undefined,
-        currentHumidity: undefined,
-        currentPressure: undefined,
-        currentWindSpeed: undefined,
-        currentSunrise: undefined,
-        currentSunset: undefined,
-        currentIcon: undefined,
-        error: "City not found",
-        forecast: []
-      });
-    }
+      return {
+        date,
+        weather: weather[0].description,
+        icon: weather[0].icon,
+        temp: main.temp,
+        humidity: main.humidity,
+        windSpeed: wind.speed,
+        recommendations,
+      };
+    });
+
+    return actionableInsights;
+  };
+
+  useEffect(() => {
+    const fetchWeather = async (lat, lon) => {
+      try {
+        console.log(`Fetching weather for lat: ${lat}, lon: ${lon}`);
+        const API_KEY = '034fa1f439d5c604451a9f3fa492ab36';
+        const currentWeatherResponse = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+        );
+
+        const dailyForecastResponse = await axios.get(
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+        );
+
+        console.log('Current Weather data:', currentWeatherResponse.data);
+        console.log('Daily Forecast data:', dailyForecastResponse.data);
+
+        setCurrentWeather(currentWeatherResponse.data);
+        const insights = processWeatherData(dailyForecastResponse.data.list);
+        setWeeklyForecast(insights);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+        setError('Unable to fetch weather data');
+        setLoading(false);
+      }
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log('Geolocation success:', position);
+        const { latitude, longitude } = position.coords;
+        fetchWeather(latitude, longitude);
+      },
+      (error) => {
+        console.error('Geolocation error:', error);
+        setError('Unable to retrieve your location');
+        setLoading(false);
+      }
+    );
+  }, []);
+
+  const toggleRecommendations = (date) => {
+    setVisibleRecommendations((prevState) => ({
+      ...prevState,
+      [date]: !prevState[date],
+    }));
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  render() {
-    return (
-      <div className="bg-green-500  min-h-screen flex flex-col justify-center items-center">
-        <Form getWeather={this.getWeather} />
-        <Weather
-          temperature={this.state.currentTemperature}
-          city={this.state.currentCity}
-          country={this.state.currentCountry}
-          humidity={this.state.currentHumidity}
-          pressure={this.state.currentPressure}
-          windSpeed={this.state.currentWindSpeed}
-          sunrise={this.state.currentSunrise}
-          sunset={this.state.currentSunset}
-          icon={this.state.currentIcon}
-          error={this.state.error}
-        />
-        <Forecast forecast={this.state.forecast} />
-      </div>
-    );
+  if (error) {
+    return <div>{error}</div>;
   }
-}
+
+  return (
+    <div className="weather-app">
+      <div className="weather-contain">
+        <h1>Weather at Your Location</h1>
+        {currentWeather && (
+          <div className="weather-details">
+            <h2>{currentWeather.name}</h2>
+            <img
+              src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`}
+              alt={currentWeather.weather[0].description}
+              className="weather-icon"
+            />
+            <p>{currentWeather.weather[0].description}</p>
+            <p>Temperature: {currentWeather.main.temp}°C</p>
+            <p>Humidity: {currentWeather.main.humidity}%</p>
+            <p>Wind Speed: {currentWeather.wind.speed} m/s</p>
+          </div>
+        )}
+      </div>
+
+      <div className="weekly-forecast">
+        <h2>Weekly Forecast</h2>
+        {weeklyForecast && weeklyForecast.map((day, index) => (
+          <div key={index} className="day-forecast">
+            <p>{day.date}</p>
+            <img
+              src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
+              alt={day.weather}
+              className="weather-icon"
+            />
+            <p>{day.weather}</p>
+            <p>Temperature: {day.temp}°C</p>
+            <p>Humidity: {day.humidity}%</p>
+            <p>Wind Speed: {day.windSpeed} m/s</p>
+            <button className="recommendation-button" onClick={() => toggleRecommendations(day.date)}>
+              <FontAwesomeIcon icon={visibleRecommendations[day.date] ? faChevronUp : faChevronDown} /> 
+              {visibleRecommendations[day.date] ? 'Hide Recommendations' : 'Show Recommendations'}
+            </button>
+            {visibleRecommendations[day.date] && (
+              <div className="recommendations">
+                <h3>Recommendations:</h3>
+                <ul>
+                  {day.recommendations.map((rec, recIndex) => (
+                    <li key={recIndex}>
+                      <FontAwesomeIcon icon={rec.icon} /> {rec.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default WeatherApp;

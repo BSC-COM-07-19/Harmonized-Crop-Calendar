@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import MarketPricing from '../components/MarketPricing';
 import ActivityCalendar from '../components/ActivityCalendar';
 import WeatherApp from '../components/WeatherApp';
+import Weathervisual from '../components/Weathervisual';
 //import pestDiseaseData from '../components/PestDiseaseMgt';
 
 const Home = () => {
@@ -32,6 +33,8 @@ const Home = () => {
         <Route path="/weather" element={<WeatherApp />} />
         <Route path="/calendar" element={<ActivityCalendar />} />
         <Route path="/pests" element={<pestDiseaseData />} />
+        <Route path="/Weathervisual" element={<Weathervisual />} />
+
       </Routes>
     </div>
   );

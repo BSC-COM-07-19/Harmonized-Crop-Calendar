@@ -11,6 +11,7 @@ const navigation = [
   { name: 'Market Pricing', href: '/market', current: false },
   { name: 'Weather Forecast', href: '/weather', current: false },
   { name: 'Pest And Diseases', href: '/pests', current: false },
+  { name: 'Weathervisual', href: '/weathervisual', current: false },
 ]
 
 function classNames(...classes) {

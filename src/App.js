@@ -10,6 +10,7 @@ import GroundnutsPestDisease from './components/Groundnuts';
 import SoybeansPestDisease from './components/Soy';
 import MaizePestDisease from './components/Maize';
 import RicePestDisease from './components/Rice';
+import Weathervisual from './components/Weathervisual';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/maize" element={<MaizePestDisease />} />
         <Route path="/groundnuts" element={<GroundnutsPestDisease />} />
         <Route path="/soybeans" element={<SoybeansPestDisease />} />
+        <Route path="/Weathervisual" element={<Weathervisual />} />
         </Routes>
       </div>
     </Router>
