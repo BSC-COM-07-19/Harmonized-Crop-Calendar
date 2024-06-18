@@ -32,6 +32,8 @@ class CropCreate(BaseModel):
     name: str
     water_requirement_start: int
     water_requirement_end: int 
+    typical_planting_month: str
+    typical_growing_duration_days: int
     
     
 
@@ -167,12 +169,16 @@ async def create_crop(crop: CropCreate, db: Session = Depends(get_dbconnection))
 
     if crop.water_requirement_start < 500:  # Example condition
         # If water requirement is low, associate with clay soil types
-        clay_soil_types = db.query(models.SoilType).filter(models.SoilType.name.in_(["Cambisol", "Alisol", "Luvisol"])).all()
-        associated_soil_types.extend(clay_soil_types)
+        soil_types_names = db.query(models.SoilType).filter(models.SoilType.name.in_(["Cambisol", "Alisol", "Luvisol"])).all()
+        associated_soil_types.extend(soil_types_names)
+
+    elif crop.water_requirement_start < 1000:
+        soil_types_names = db.query(models.SoilType).filter(models.SoilType.name.in_(["aerenosol", "Fluvisol", "Gleysol"])).all()
+        associated_soil_types.extend(soil_types_names)
     else:
         # If water requirement is high, associate with sandy soil types
-        sandy_soil_types = db.query(models.SoilType).filter(models.SoilType.name.in_(["aerenosol", "Fluvisol", "Gleysol", "Marsh"])).all()
-        associated_soil_types.extend(sandy_soil_types)
+        soil_types_names = db.query(models.SoilType).filter(models.SoilType.name.in_(["Marsh"])).all()
+        associated_soil_types.extend(soil_types_names)
 
     # Loop through the associated soil types and add them to the crop
     for soil_type in associated_soil_types:
