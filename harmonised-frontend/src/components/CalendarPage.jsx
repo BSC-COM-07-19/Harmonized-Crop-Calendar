@@ -10,6 +10,26 @@ const CalendarPage = () => {
   const [cropActivities, setCropActivities] = useState([]);
   const [plantingDate, setPlantingDate] = useState(new Date());
   const [cropDuration, setCropDuration] = useState("");
+  const [selectedActivity, setSelectedActivity] = useState(null);
+
+  const calculateActivityDates = (activities, duration, plantingDate) => {
+    const durationRange = duration.split("-").map((d) => parseInt(d));
+    const minDuration = durationRange[0];
+    const maxDuration = durationRange[1];
+    const midpointDuration = (minDuration + maxDuration) / 2;
+
+    return activities.map((activity, index) => {
+      let activityDate = new Date(plantingDate);
+      if (activity.activity !== "Land Preparation") {
+        const daysToAdd = Math.round(midpointDuration / (activities.length - 1) * (index - 1));
+        activityDate.setDate(plantingDate.getDate() + daysToAdd);
+      }
+      return {
+        ...activity,
+        date: activity.activity === "Land Preparation" ? `Before ${plantingDate.toLocaleDateString()}` : activityDate.toLocaleDateString(),
+      };
+    });
+  };
 
   useEffect(() => {
     if (selectedCrop) {
@@ -18,35 +38,29 @@ const CalendarPage = () => {
         .then((response) => {
           const activities = response.data.activities;
           const duration = response.data.duration;
-          setCropActivities(activities);
           setCropDuration(duration);
 
-          // Calculate activity dates based on planting date and duration
-          if (duration) {
-            const durationRange = duration.split("-").map((d) => parseInt(d));
-            const minDuration = durationRange[0];
-            const maxDuration = durationRange[1];
-            const midpointDuration = (minDuration + maxDuration) / 2;
-
-            const activityDates = activities.map((activity, index) => {
-              const daysToAdd = Math.round(midpointDuration / activities.length * index);
-              const activityDate = new Date(plantingDate);
-              activityDate.setDate(plantingDate.getDate() + daysToAdd);
-              return {
-                ...activity,
-                date: activityDate.toLocaleDateString()
-              };
-            });
-            setCropActivities(activityDates);
-          }
+          // Calculate activity dates with planting date starting from the second activity
+          const activityDates = calculateActivityDates(activities, duration, plantingDate);
+          setCropActivities(activityDates);
         })
         .catch((error) => {
           console.error("There was an error fetching the crop activities!", error);
         });
     }
-  }, [selectedCrop, plantingDate]);
+  }, [selectedCrop, plantingDate]); // Include plantingDate in dependencies
 
-  // Render calendar activities based on selected crop
+  useEffect(() => {
+    if (selectedCrop && cropDuration && cropActivities.length > 0) {
+      const updatedActivities = calculateActivityDates(cropActivities, cropDuration, plantingDate);
+      setCropActivities(updatedActivities);
+    }
+  }, [plantingDate, cropDuration, selectedCrop, cropActivities]); // Include cropActivities in dependencies
+
+  const handleActivityClick = (activityName) => {
+    setSelectedActivity(activityName);
+  };
+
   const renderCalendar = () => {
     if (!selectedCrop || cropActivities.length === 0) {
       return (
@@ -60,7 +74,11 @@ const CalendarPage = () => {
       <div className="flex justify-center overflow-x-auto">
         <div className="flex gap-4">
           {cropActivities.map((activity, index) => (
-            <div key={index} className="p-4 border rounded shadow-md bg-white text-center flex-1">
+            <div
+              key={index}
+              className="p-4 border rounded shadow-md bg-white text-center flex-1 cursor-pointer"
+              onClick={() => handleActivityClick(activity.activity)}
+            >
               <div className="font-bold mb-2 text-xs">{activity.activity}</div>
               <div className="text-xs">Date: {activity.date}</div>
             </div>
@@ -89,6 +107,17 @@ const CalendarPage = () => {
       <div className="flex justify-center">
         {renderCalendar()}
       </div>
+      {selectedActivity && (
+        <div className="text-center mt-4 text-lg">
+          <div>Selected Activity: {selectedActivity}</div>
+          {cropActivities.find(activity => activity.activity === selectedActivity)?.details && (
+            <div className="mt-2">
+              <div><strong>Sub-Activity:</strong> {cropActivities.find(activity => activity.activity === selectedActivity).details.sub_activity}</div>
+              <div><strong>Interval:</strong> {cropActivities.find(activity => activity.activity === selectedActivity).details.interval}</div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

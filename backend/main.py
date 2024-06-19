@@ -76,66 +76,64 @@ def get_dbconnection():
 db_dependency = Annotated[Session, Depends(get_dbconnection)]
 
 # Calendar Backend Code (Stsrt)
-
-
 crop_data = {
     "Maize": {
         "activities": [
-            {"activity": "Land Preparation"},
-            {"activity": "Planting"},
-            {"activity": "Weeding"},
-            {"activity": "Top-Dressing Fertilizer Application"},
-            {"activity": "Weeding (Second Round)"},
-            {"activity": "Pest and Disease Management"},
-            {"activity": "Harvesting"},
+            {"activity": "Land Preparation", "details": {"activity": "Clearing fields, plowing", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing maize seeds", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing)", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting maize cobs", "interval": "Approximately 4-5 months after planting"}},
         ],
         "duration": "90-120 days",
     },
     "Groundnuts": {
         "activities": [
-            {"activity": "Land Preparation"},
-            {"activity": "Planting"},
-            {"activity": "Weeding"},
-            {"activity": "Top-Dressing Fertilizer Application"},
-            {"activity": "Weeding (Second Round)"},
-            {"activity": "Pest and Disease Management"},
-            {"activity": "Harvesting"},
+            {"activity": "Land Preparation", "details": {"sub_activity": "Plowing, forming ridges or mounds", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing groundnut seeds", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing)", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting groundnut pods", "interval": "Approximately 3-4 months after planting"}},
         ],
         "duration": "100-150 days",
     },
     "Soya Beans": {
         "activities": [
-            {"activity": "Land Preparation"},
-            {"activity": "Planting"},
-            {"activity": "Weeding"},
-            {"activity": "Top-Dressing Fertilizer Application"},
-            {"activity": "Weeding (Second Round)"},
-            {"activity": "Pest and Disease Management"},
-            {"activity": "Harvesting"},
+            {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing soybean seeds", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing)", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting soybean pods", "interval": "Approximately 3-4 months after planting"}},
         ],
         "duration": "80-120 days",
     },
     "Rice": {
         "activities": [
-            {"activity": "Land Preparation"},
-            {"activity": "Planting"},
-            {"activity": "Weeding"},
-            {"activity": "Top-Dressing Fertilizer Application"},
-            {"activity": "Weeding (Second Round)"},
-            {"activity": "Pest and Disease Management"},
-            {"activity": "Harvesting"},
+            {"activity": "Land Preparation", "details": {"sub_activity": "Leveling fields, preparing paddies", "interval": "Before planting"}},
+            {"activity": "Transplanting or Direct Seeding", "details": {"sub_activity": "Transplanting rice seedlings or direct seeding", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing)", "interval": "4-5 weeks after planting"}},
+            {"activity": "Water Management", "details": {"sub_activity": "Managing water levels in paddies", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting rice grains", "interval": "Approximately 4-5 months after planting"}},
         ],
         "duration": "100-160 days",
     },
     "Beans": {
         "activities": [
-            {"activity": "Land Preparation"},
-            {"activity": "Planting"},
-            {"activity": "Weeding"},
-            {"activity": "Top-Dressing Fertilizer Application"},
-            {"activity": "Weeding (Second Round)"},
-            {"activity": "Pest and Disease Management"},
-            {"activity": "Harvesting"},
+            {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing bean seeds", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing)", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting bean pods", "interval": "Approximately 2-3 months after planting"}},
         ],
         "duration": "60-90 days",
     },
@@ -149,6 +147,7 @@ async def get_activities(crop: str):
         return {"activities": crop_info["activities"], "duration": crop_info["duration"]}
     else:
         return {"activities": [], "duration": "Unknown"}
+
 
 # Calendar Backend Code (End)
 
