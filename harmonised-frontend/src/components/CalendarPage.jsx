@@ -77,6 +77,10 @@ const CalendarPage = () => {
     }
   };
 
+  const handleViewPestAndDisease = () => {
+    alert(`View Pest and Disease for ${selectedCrop}`);
+  };
+
   const renderCalendar = () => {
     if (!selectedCrop || cropActivities.length === 0) {
       return (
@@ -133,7 +137,7 @@ const CalendarPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-200">
       <h2 className="text-2xl font-bold mb-8 text-center mt-4">{selectedCrop} Farming Calendar</h2>
       <div className="flex justify-center mb-4">
         <label className="mr-2">Select Planting Date:</label>
@@ -163,6 +167,14 @@ const CalendarPage = () => {
                 ))}
               </ul>
               <div className="text-lg font-bold mt-2">Interval: {cropActivities.find(activity => activity.activity === selectedActivity)?.details.interval}</div>
+              {selectedActivity === "Pest and Disease Management" && (
+                <button
+                  onClick={handleViewPestAndDisease}
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  View Pest and Disease for {selectedCrop}
+                </button>
+              )}
             </div>
           )}
         </div>
