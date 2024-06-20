@@ -33,13 +33,13 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5vw; /* Use vw units for padding to maintain responsiveness */
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  padding: -5vw; /* Use vw units for padding to maintain responsiveness */
+  background-color: #f5f8f7;
+  
+  border-radius: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 100px) {
   .seasonal-chart-container {
     padding: 20px; /* Adjust padding for smaller screens */
   }
@@ -48,7 +48,7 @@ code {
 .seasonal-chart {
   display: table;
   border-collapse: collapse;
-  width: 1800px;
+  width: 1500px;
   height: 150px;
   
 }
@@ -156,6 +156,17 @@ day-forecast {
   justify-content: center;  /* Center content vertically */
 }
 
+
+
+
+
+
+
+
+
+
+
+
 .day-forecast p {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -204,7 +215,7 @@ day-forecast {
 }
 
 .chart-table-container {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .button-container {
@@ -242,9 +253,6 @@ day-forecast {
 
 
 
-
-
-
 .CropCalendarBudget {
   font-family: Arial, sans-serif;
   margin: 20px auto; /* Center align and provide some margin */
@@ -272,8 +280,6 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-
-
 
 .activity-grid {
   display: grid;
@@ -334,8 +340,7 @@ h3 {
   display: none;
 }
 
-
-calendar-list {
+.calendar-list {
   list-style-type: none;
   padding: 0;
 }
@@ -366,6 +371,42 @@ calendar-list {
   font-style: italic;
   color: #555; /* Activity text color */
 }
+
+/* New styles for crop recommendations, market prices, and weather forecast */
+.recommendations-list, .market-prices-list, .weather-forecast-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.recommendation-item, .market-price-item, .weather-forecast-item {
+  background: #e7f3fe;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #cfe2f3;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.recommendation-item:nth-child(even), .market-price-item:nth-child(even), .weather-forecast-item:nth-child(even) {
+  background-color: #d0e7fc; /* Alternate background color for even items */
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin-top: 0;
+}
+
+h3.total-budget {
+  text-align: right;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
 
 
 
@@ -400,3 +441,101 @@ calendar-list {
 
 
 
+
+
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  gap: 25px;
+  padding: 25px;
+  justify-content: center; /* Center the grid horizontally */
+  align-items: center; /* Center the grid vertically */
+  margin-top: 20px; /* Add margin to move the grid down */
+  transition: filter 0.3s; /* Smooth transition for the blur effect */
+}
+
+.card {
+  position: relative; /* Enable positioning context for absolute positioning */
+  background-color: #f9f9f9;
+  border: 1px solid #16810a;
+  border-radius: 15px;
+  overflow: hidden; /* Ensure images do not overflow */
+  box-shadow: 0 15px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-content {
+  position: relative;
+  height: 100%; /* Ensure content fills the card height */
+}
+
+.card-text {
+  text-align: center; /* Center text horizontally */
+  font-weight: bold;
+  padding: 10px;
+  color: #16810a; /* Green color */
+}
+
+.card-image {
+  width: 100%; /* Ensure image fills the card */
+  height: auto;
+  border-radius: 25px;
+  object-fit: cover; /* Maintain aspect ratio and cover the space */
+  padding: 5px; /* Add padding around the image */
+}
+
+.plus-circle {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: white; /* White background */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Circular shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-icon {
+  font-size: 20px;
+  color: #0e903c; /* Icon color */
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
+  }
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+button {
+  background-color: #0aa85c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-open .card-grid {
+  filter: blur(5px); /* Apply blur effect when modal is open */
+}

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { getCropRecommendations, getMarketPrices, getWeatherForecast } from '../api'; // Mock API calls
 
 const activities = {
   landPreparation: ['Soil testing', 'Plowing/tilling', 'Levelling', 'Irrigation setup'],
@@ -20,8 +22,7 @@ const activities = {
 
 function Weathervisual() {
   const [calendar, setCalendar] = useState([
-    { month: 'January', activity: 'Soil Testing' },
-    { month: 'February', activity: 'Plowing and Tilling' },
+  
     // Add more months and activities as needed
   ]);
 
@@ -34,7 +35,16 @@ function Weathervisual() {
   }, {});
 
   const [budget, setBudget] = useState(initialBudgetState);
-  const [openDropdown, setOpenDropdown] = useState(null); // Track the open dropdown
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
+  const [marketPrices, setMarketPrices] = useState([]);
+  const [weather, setWeather] = useState([]);
+
+  useEffect(() => {
+    getCropRecommendations().then(setRecommendations);
+    getMarketPrices().then(setMarketPrices);
+    getWeatherForecast().then(setWeather);
+  }, []);
 
   const handleBudgetChange = (mainActivity, subActivity) => (e) => {
     const value = Number(e.target.value);
@@ -57,7 +67,7 @@ function Weathervisual() {
 
   return (
     <div className="CropCalendarBudget">
-      <h1> Budget Evaluation</h1>
+      <h1>Budget Evaluation</h1>
       
       <section>
         <h2>Crop Calendar</h2>
@@ -99,6 +109,33 @@ function Weathervisual() {
           ))}
         </div>
         <h3>Total Budget: ${totalBudget}</h3>
+      </section>
+
+      <section>
+        <h2>Crop Recommendations</h2>
+        <ul className="recommendations-list">
+          {recommendations.map((crop, index) => (
+            <li key={index} className="recommendation-item">{crop}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Local Market Prices</h2>
+        <ul className="market-prices-list">
+          {marketPrices.map((price, index) => (
+            <li key={index} className="market-price-item">{price.crop}: ${price.price}/unit</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Weather Forecast</h2>
+        <ul className="weather-forecast-list">
+          {weather.map((day, index) => (
+            <li key={index} className="weather-forecast-item">{day.date}: {day.forecast}</li>
+          ))}
+        </ul>
       </section>
     </div>
   );
