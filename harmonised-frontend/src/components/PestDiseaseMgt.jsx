@@ -9,7 +9,7 @@ const cropData = {
       {
         name: "Early Leaf Spot",
         type: "disease",
-        image: "early.jpg", 
+        image: "/early.jpg", 
         symptoms: [
           "May attack the crop soon after emergence.",
           "It causes defoliation and has a potential of reducing yields by up to 50%.",
@@ -21,7 +21,7 @@ const cropData = {
       {
         name: "Late Leaf Spot",
         type: "disease",
-        image: "late.png", 
+        image: "/late.png", 
         symptoms: [
           "Occurs later in the season than early leaf spot.",
           "The lesions are nearly circular rough and darker on the lower leaf surface.",
@@ -33,7 +33,7 @@ const cropData = {
       {
         name: "Rust",
         type: "disease",
-        image: "rust_g.jpg",
+        image: "/rust_g.jpg",
         symptoms: [
           "Orange colored pustules on the lower surface of the leaflets.",
           "The pustules rupture to release reddish brown spores and the leaves become reddish then dry up."
@@ -43,7 +43,7 @@ const cropData = {
       {
         name: "Groundnut Rosette",
         type: "disease",
-        image: "ros.png",
+        image: "/ros.png",
         symptoms: [
           "Caused by a virus whose vector is an aphid.",
           "It can be serious in fields that are planted late and when the field is or has gaps, low plant populations.",
@@ -58,7 +58,7 @@ const cropData = {
       {
         name: "Stem Rot",
         type: "disease",
-        image: "ste.jpg",
+        image: "/ste.jpg",
         symptoms: [
           "It is a fungal disease and is commonly known as white mold, sclerotium rot, sclerotium blight, sclerotium wilt, root rot or foot rot.",
           "The disease is more pronounced in the warmer climates causing stems to rot close to the ground level."
@@ -75,7 +75,7 @@ const cropData = {
       {
         name: "Aphids",
         type: "pest",
-        image: "aphs.jpg",
+        image: "/aphs.jpg",
         symptoms: [
           "Aphids feed on leaves and transmit viruses that cause Rosette disease."
         ],
@@ -87,7 +87,7 @@ const cropData = {
       {
         name: "Termites",
         type: "pest",
-        image: "terms.png",
+        image: "/terms.png",
         symptoms: [
           "Scarification of the pods. This weakens the shells and makes them liable to shattering or cracking during harvesting.",
           "Penetration & hollowing of the tap root. Termites are capable of reaching upper parts of the plant inside the stems. This is common in wet period of the growing season and pass unnoticed until the plants wilt and die."
@@ -101,7 +101,7 @@ const cropData = {
       {
         name: "Cut-worms",
         type: "pest",
-        image: "cut_worms.jpg",
+        image: "/cut_worms.jpg",
         symptoms: [
           "The worms cause young plants to be completely or partially severed at the ground level.",
           "It also attack developing pods of older plants causing yield reduction."
@@ -127,7 +127,7 @@ const cropData = {
           "Early planting",
           "Remove and destroy all the infected growing plants."
         ],
-        image: "maize_1.jpg"
+        image: "/maize_1.jpg"
       },
       {
         name: "Army worm",
@@ -136,7 +136,7 @@ const cropData = {
           "Feeds on maize leaves and they attack in large numbers (army worm) and very serious under dry condition."
         ],
         control: "Control is by spraying carbarlyl 85%wp (sevin) dissolved in 14 litres of water and providing training to farmers.",
-        image: "army.jpg"
+        image: "/army.jpg"
       },
       {
         name: "Maize Weevil",
@@ -145,7 +145,7 @@ const cropData = {
           "This is a post-harvest insect which eats stored maize grain. It is more destructive on dent maize."
         ],
         control: "Control is done by dusting Actellic dust or other recommended chemicals by extension officers.",
-        image: "weev.jpg"
+        image: "/weev.jpg"
       },
       {
         name: "Termites",
@@ -154,7 +154,7 @@ const cropData = {
           "They attack maize stalks causing lodging. Fallen cobs are also attacked in the process."
         ],
         control: "To reduce the damage, banking should be done when the plants are still young.",
-        image: "termites.jpg"
+        image: "/termites.jpg"
       },
       {
         name: "Rodents",
@@ -163,7 +163,7 @@ const cropData = {
           "These are very common in storage. They feed on the maize grain from the storage."
         ],
         control: [],
-        image: "rods.jpg"
+        image: "/rods.jpg"
       },
       //diseases
       {
@@ -176,7 +176,7 @@ const cropData = {
           "The younger the plant, the greater the reduction in yield."
         ],
         control: "Use of improved certified seed. At a larger scale spray of some fungicides might be necessary.",
-        image: "leaf.jpg"
+        image: "/leaf.jpg"
       },
       {
         name: "Rust",
@@ -187,7 +187,7 @@ const cropData = {
           "They attack every part of the plant."
         ],
         control: [],
-        image: "rust.jpg"
+        image: "/rust.jpg"
       },
       {
         name: "Smut",
@@ -201,7 +201,7 @@ const cropData = {
           "Control virus vectors, aphids and white flies.",
           "Use resistant varieties."
         ],
-        image: "smut.jpg"
+        image: "/smut.jpg"
       }
     ]
   },
@@ -216,7 +216,7 @@ const cropData = {
           "Common insects are grasshoppers (bwanoni), short fly and army worm, rice keeper, mole cricket, ant and armyworm."
         ],
         control: "Control by early sowing, maintaining, weed-free, applying carbarbly, cypermetrine, and fenitrothhion.",
-        image: "rice_4.jpg"
+        image: "/rice_4.jpg"
       },
       //diseases
       {
@@ -227,7 +227,7 @@ const cropData = {
           "In intensified rice production systems it causes a yield loss of 6%."
         ],
         control: "Plant resistant varieties, avoid planting infected seed and applying mancozeb and carbendazim.",
-        image: "rice_5.jpg"
+        image: "/rice_5.jpg"
       },
       {
         name: "Bacterial blight",
@@ -238,7 +238,7 @@ const cropData = {
           "In adverse conditions leaves turn yellow to straw-colored and wilt leading whole seedlings to dry up and die."
         ],
         control: "The disease is treated by nitrogen fertilizers.",
-        image: "rice_7.jpg"
+        image: "/rice_7.jpg"
       },
       {
         name: "Rice blast",
@@ -249,7 +249,7 @@ const cropData = {
           "Symptoms; it produces so may pathogenic races which tend to differ in terms of varieties."
         ],
         control: "It can best be controlled by planting resistant varieties.",
-        image: "rice_8.jpg"
+        image: "/rice_8.jpg"
       },
       {
         name: "Sheath rot",
@@ -262,7 +262,7 @@ const cropData = {
           "The disease can be managed by planting resistant varieties.",
           "To eradicate seed-borne pathogens use mancozeb an benomyl for seed treatment."
         ],
-        image: "rice_9.jpg"
+        image: "/rice_9.jpg"
       },
       {
         name: "Yellow Mottle Virus (RYMV)",
@@ -273,7 +273,7 @@ const cropData = {
           "Severe infected by plats die."
         ],
         control: "Planting Resistant varieties.",
-        image: "rice_10.jpg"
+        image: "/rice_10.jpg"
       }
     ]
   },
@@ -284,7 +284,7 @@ const cropData = {
       {
         name: "Caterpillars",
         type: "pest",
-        image: "soy_2.png",
+        image: "/soy_2.png",
         symptoms: [
           "Soybean lopper, leaf miners, leaf rollers.",
           "These insect pests feed on the foliage.",
@@ -295,7 +295,7 @@ const cropData = {
       {
         name: "Termite",
         type: "pest",
-        image: "soy_3.jpg",
+        image: "/soy_3.jpg",
         symptoms: [
           "Can attack soybean plants at any stage of development from seed to mature soybean plant particularly when there is prolonged dry spell.",
           "First sign of termite attack is wilting leading to death or falling over of plants.",
@@ -310,7 +310,7 @@ const cropData = {
       {
         name: "Soybean Rust",
         type: "disease",
-        image: "soy_4.png",
+        image: "/soy_4.png",
         symptoms: [
           "The only disease of economic importance.",
           "Other diseases such as frogeye, bacterial pastule, red lead blotch occur but are less important economically.",
@@ -326,7 +326,7 @@ const cropData = {
       {
         name: "Soybean cyst nematode (SCN), Heterodera glycines",
         type: "disease",
-        image: "soy_6.jpg",
+        image: "/soy_6.jpg",
         symptoms: [
           "It can be present in the field without causing obvious above-ground symptoms.",
           "In heavily infested fields, SCN can cause yield losses of more than 30%.",
@@ -342,7 +342,7 @@ const cropData = {
       {
         name: "Pod-sucking buds",
         type: "disease",
-        image: "soy_8.jpg",
+        image: "/soy_8.jpg",
         symptoms: [
           "Attack crop from flowering onwards."
         ],
@@ -351,7 +351,7 @@ const cropData = {
       {
         name: "Virus diseases",
         type: "disease",
-        image: "soy_9.jpg",
+        image: "/soy_9.jpg",
         symptoms: [
           "Commonly transmitted by insects such as whitefly.",
           "Symptoms range from mosaic and mottling, leaf curling, green vein banding, and stunting.",
@@ -362,7 +362,7 @@ const cropData = {
       {
         name: "General Control of Soybean diseases",
         type: "disease",
-        image: "soy_7.png",
+        image: "/soy_7.png",
         control: [
           "Use certified seed to avoid seed-borne infection.",
           "Use varieties resistant to prevailing diseases of the area.",
@@ -385,6 +385,7 @@ const PestDiseasePage = () => {
   const cropInfo = cropData[crop.toLowerCase()];
 
   const [showPests, setShowPests] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   if (!cropInfo) {
     return <div>Invalid crop selected.</div>;
@@ -397,6 +398,15 @@ const PestDiseasePage = () => {
   const togglePestsDiseases = () => {
     setShowPests(!showPests);
   };
+
+  
+  const handleReadMore = () => {
+    setShowAll(true);
+  };
+
+  const itemsToShow = cropInfo.pestsDiseases.filter(item => showPests ? item.type === 'pest' : item.type === 'disease');
+  const items = showAll ? itemsToShow : itemsToShow.slice(0, 2);
+
 
   return (
     <div className="mb-8">
