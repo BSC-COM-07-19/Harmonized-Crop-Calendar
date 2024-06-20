@@ -318,6 +318,24 @@ def create_soil_type(soil_type: SoilTypeModel, db: Session = Depends(get_dbconne
     db.refresh(new_soil_type)
     return new_soil_type
 
+
+# PUT endpoint for updating a crop
+@router.put("/crop/{crop_id}/", response_model=CropCreate)
+async def update_crop(crop_id: int, updated_crop: CropCreate, db: db_dependency):
+    crop = db.query(models.Crop).filter(models.Crop.id == crop_id).first()
+    if crop is None:
+        raise HTTPException(status_code=404, detail="Crop not found")
+
+    crop.name = updated_crop.name
+    crop.water_requirement_start = updated_crop.water_requirement_start
+    crop.water_requirement_end = updated_crop.water_requirement_end
+    crop.typical_planting_month = updated_crop.typical_planting_month
+    crop.typical_growing_duration_days = updated_crop.typical_growing_duration_days
+
+    db.commit()
+    db.refresh(crop)
+    return crop
+
 # # Route to get all soil types
 @app.get("/soil_types/", response_model=None)
 def get_soil_types(skip: int = 0, limit: int = 10, db: Session = Depends(get_dbconnection)):

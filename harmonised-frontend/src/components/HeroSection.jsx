@@ -12,6 +12,7 @@ const HeroSection = () => {
   const [selectedEpa, setSelectedEpa] = useState("");
   const [selectedCrop, setSelectedCrop] = useState("");
   const [crops, setCrops] = useState([]);
+  const [soilTypes, setSoilTypes] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,17 +34,22 @@ const HeroSection = () => {
     setSelectedEpa("");
     setSelectedCrop("");
     setCrops([]);
+    setSoilTypes([]);
   };
 
   const handleEpaChange = async (epaName) => {
     setSelectedEpa(epaName);
     try {
-      const response = await api.get(`/epa/crops/${epaName}`);
-      setCrops(response.data[epaName] || []);
+      const cropResponse = await api.get(`/epa/crops/${epaName}`);
+      setCrops(cropResponse.data[epaName] || []);
       setSelectedCrop("");
+
+      const soilResponse = await api.get(`/epa_soil_types/${epaName}`);
+      setSoilTypes(soilResponse.data.soil_types || []);
     } catch (error) {
-      console.error("Error fetching crops:", error);
+      console.error("Error fetching crops or soil types:", error);
       setCrops([]);
+      setSoilTypes([]);
     }
   };
 
@@ -131,6 +137,17 @@ const HeroSection = () => {
           </button>
         )}
       </div>
+
+      {soilTypes.length > 0 && (
+        <div className="absolute bottom-20 left-0 right-0 mx-6 lg:mx-0 lg:left-6 xl:left-12 w-full lg:w-auto h-auto bg-white lg:py-6 lg:px-10 py-4 px-6 shadow-lg rounded-md">
+          <h2 className="font-bold text-green-700 mb-2">Soil Types:</h2>
+          <ul className="list-disc list-inside text-green-700">
+            {soilTypes.map((soilType, index) => (
+              <li key={index}>{soilType}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
