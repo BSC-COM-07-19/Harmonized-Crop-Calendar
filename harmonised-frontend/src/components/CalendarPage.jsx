@@ -36,7 +36,7 @@ const CalendarPage = () => {
   useEffect(() => {
     if (selectedCrop) {
       axios
-        .get(`https://harmonised-crop-calendar-1.onrender.com/activities/${selectedCrop}`)
+        .get(`https://harmonized-crop-calendar-1.onrender.com/activities/${selectedCrop}`)
         .then((response) => {
           const activities = response.data.activities;
           const duration = response.data.duration;
