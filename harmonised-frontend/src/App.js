@@ -10,6 +10,10 @@ import GroundnutsPestDisease from './components/Groundnuts';
 import SoybeansPestDisease from './components/Soy';
 import MaizePestDisease from './components/Maize';
 import RicePestDisease from './components/Rice';
+import MarketPricing from './components/MarketPricing';
+//import WeatherApp from './components/WeatherApp';
+//import PestDiseaseMgt from './components/PestDiseaseMgt';
+import CalendarPage from "./components/CalendarPage"; // Import the new calendar page component
 
 const App = () => {
   return (
@@ -26,6 +30,10 @@ const App = () => {
         <Route path="/maize" element={<MaizePestDisease />} />
         <Route path="/groundnuts" element={<GroundnutsPestDisease />} />
         <Route path="/soybeans" element={<SoybeansPestDisease />} />
+          <Route path="/market" element={<MarketPricing />} />
+          {/* <Route path="/weather" element={<WeatherApp />} />
+          <Route path="/pests" element={<PestDiseaseMgt />} /> */}
+          <Route path="/calendar" element={<CalendarPage />} />
         </Routes>
       </div>
     </Router>
