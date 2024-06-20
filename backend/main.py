@@ -80,65 +80,65 @@ db_dependency = Annotated[Session, Depends(get_dbconnection)]
 # Calendar Backend Code (Stsrt)
 crop_data = {
     "Maize": {
-    "activities": [
-        {"activity": "Land Preparation", "details": {"sub_activity": "Clearing fields, plowing, leveling fields, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
-        {"activity": "Planting", "details": {"sub_activity": "Sowing maize seeds, transplanting rice seedlings or direct seeding, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
-        {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
-        {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
-        {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
-        {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
-        {"activity": "Harvesting", "details": {"sub_activity": "Harvesting maize cobs, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 4-5 months after planting"}}
-    ],
-    "duration": "90-120 days"
-},
-   "Groundnuts": {
-    "activities": [
-        {"activity": "Land Preparation", "details": {"sub_activity": "Plowing, forming ridges or mounds, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
-        {"activity": "Planting", "details": {"sub_activity": "Sowing groundnut seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
-        {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
-        {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
-        {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
-        {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
-        {"activity": "Harvesting", "details": {"sub_activity": "Harvesting groundnut pods, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 3-4 months after planting"}}
-    ],
-    "duration": "100-150 days"
-},
-   "SoyaBeans": {
-    "activities": [
-        {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
-        {"activity": "Planting", "details": {"sub_activity": "Sowing soybean seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
-        {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
-        {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
-        {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
-        {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
-        {"activity": "Harvesting", "details": {"sub_activity": "Harvesting soybean pods, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 3-4 months after planting"}}
-    ],
-    "duration": "80-120 days"
-},
+        "activities": [
+            {"activity": "Land Preparation", "details": {"sub_activity": "Clearing fields, plowing, leveling fields, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing maize seeds, transplanting rice seedlings or direct seeding, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting maize cobs, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 4-5 months after planting"}}
+        ],
+        "duration": "90-120 days"
+    },
+    "Groundnuts": {
+        "activities": [
+            {"activity": "Land Preparation", "details": {"sub_activity": "Plowing, forming ridges or mounds, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing groundnut seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting groundnut pods, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 3-4 months after planting"}}
+        ],
+        "duration": "100-150 days"
+    },
+    "SoyaBeans": {
+        "activities": [
+            {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing soybean seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting soybean pods, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 3-4 months after planting"}}
+        ],
+        "duration": "80-120 days"
+    },
     "Rice": {
         "activities": [
-            {"activity": "Land Preparation", "details": {"sub_activity": "Leveling fields, preparing paddies, Soil testing, Adding soil amendments (e.g., compost, lime), Drainage system preparation, Soil mulching", "interval": "Before planting"}},
-            {"activity": "Transplanting or Direct Seeding", "details": {"sub_activity": "Transplanting rice seedlings or direct seeding, Hardening Off, Preparing Transplant Holes:, Timing: Determining the optimal time for transplanting, Handling seedlings carefully to minimize root damage, Spacing and Alignment:, Regularly monitoring transplanted seedlings for signs of stress, disease, or pests", "interval": "Start of planting"}},
-            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, Hand weeding around plants, Using mechanical weeders, Applying herbicides (selective or non-selective), Mulching to suppress weed growth, Hoeing between rows, Crop rotation to disrupt weed cycles, Maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
-            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), Adjusting pH if necessary before application[Adding Lime]", "interval": "4-5 weeks after planting"}},
-            {"activity": "Water Management", "details": {"sub_activity": "Managing water levels in paddies, Making Canal To let Water move out when water level is very High[Outlet], Making Canal To let Water move in when Water level is Low[inlet]", "interval": "Ongoing throughout growing period"}},
+            {"activity": "Land Preparation", "details": {"sub_activity": "Leveling fields, preparing paddies, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
+            {"activity": "Transplanting or Direct Seeding", "details": {"sub_activity": "Transplanting rice seedlings or direct seeding, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment, regularly monitoring transplanted seedlings for signs of stress, disease, or pests", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application [adding lime]", "interval": "4-5 weeks after planting"}},
+            {"activity": "Water Management", "details": {"sub_activity": "Managing water levels in paddies, making canal to let water move out when water level is very high [outlet], making canal to let water move in when water level is low [inlet]", "interval": "Ongoing throughout growing period"}},
             {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
-            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting rice grains, Determining crop maturity, Selecting appropriate harvesting tools (e.g., knives, shears), Sorting and grading harvested produce, Packing produce into containers or Sacks, Storing harvested crops in shaded, ventilated areas, Recording harvest yields and quality", "interval": "Approximately 4-5 months after planting"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting rice grains, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 4-5 months after planting"}}
         ],
-        "duration": "100-160 days",
+        "duration": "100-160 days"
     },
-"Beans": {
-    "activities": [
-        {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization, Clearing fields, plowing, forming ridges or mounds, Soil testing, Adding soil amendments (e.g., compost, lime), Drainage system preparation, Soil mulching", "interval": "Before planting"}},
-        {"activity": "Planting", "details": {"sub_activity": "Sowing bean seeds, Sowing maize seeds, Sowing groundnut seeds, Sowing soybean seeds, Transplanting rice seedlings or direct seeding, Hardening Off, Preparing Transplant Holes, Timing: Determining the optimal time for transplanting, Handling seedlings carefully to minimize root damage, Spacing and Alignment", "interval": "Start of planting"}},
-        {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, Hand weeding around plants, Using mechanical weeders, Applying herbicides (selective or non-selective), Mulching to suppress weed growth, Hoeing between rows, Crop rotation to disrupt weed cycles, Maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
-        {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), Adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
-        {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
-        {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
-        {"activity": "Harvesting", "details": {"sub_activity": "Harvesting bean pods, Harvesting maize cobs, Harvesting groundnut pods, Harvesting soybean pods, Harvesting rice grains, Determining crop maturity, Selecting appropriate harvesting tools (e.g., knives, shears), Sorting and grading harvested produce, Packing produce into containers or Sacks, Storing harvested crops in shaded, ventilated areas, Recording harvest yields and quality", "interval": "Approximately 2-5 months after planting"}}
-    ],
-    "duration": "60-160 days"
-},
+    "Beans": {
+        "activities": [
+            {"activity": "Land Preparation", "details": {"sub_activity": "Plowing, harrowing, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
+            {"activity": "Planting", "details": {"sub_activity": "Sowing bean seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
+            {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
+            {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
+            {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
+            {"activity": "Pest and Disease Management", "details": {"sub_activity": "Monitoring and managing pests and diseases", "interval": "Ongoing throughout growth period"}},
+            {"activity": "Harvesting", "details": {"sub_activity": "Harvesting bean pods, determining crop maturity, selecting appropriate harvesting tools (e.g., knives, shears), sorting and grading harvested produce, packing produce into containers or sacks, storing harvested crops in shaded, ventilated areas, recording harvest yields and quality", "interval": "Approximately 2-3 months after planting"}}
+        ],
+        "duration": "70-120 days"
+    }
 }
 
 @app.get("/activities/{crop}")
