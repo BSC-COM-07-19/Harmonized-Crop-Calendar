@@ -15,17 +15,10 @@
     "braces": "^3.0.3",
     "chart.js": "^4.4.2",
     "chartjs-adapter-date-fns": "^3.0.0",
-<<<<<<< HEAD
-    "file-saver": "^2.0.5",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
-    "papaparse": "^5.4.1",
-=======
     "ejs": "^3.1.10",
     "jspdf": "^2.5.1",
     "nth-check": "^2.1.1",
     "postcss": "^8.4.38",
->>>>>>> 7d4e433a109c37027bffe50403aa139c117ce357
     "react": "^18.2.0",
     "react-calendar": "^5.0.0",
     "react-chartjs-2": "^5.2.0",
@@ -36,11 +29,7 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
-<<<<<<< HEAD
-    "stream-browserify": "^3.0.0",
-=======
     "recharts": "^2.12.7",
->>>>>>> 7d4e433a109c37027bffe50403aa139c117ce357
     "tailwindcss": "^3.4.3",
     "web-vitals": "^2.1.4"
   },
