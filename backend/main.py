@@ -103,7 +103,7 @@ crop_data = {
     ],
     "duration": "100-150 days"
 },
-   "Soya Beans": {
+   "SoyaBeans": {
     "activities": [
         {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
         {"activity": "Planting", "details": {"sub_activity": "Sowing soybean seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
