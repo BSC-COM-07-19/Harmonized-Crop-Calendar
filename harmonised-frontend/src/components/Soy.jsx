@@ -7,7 +7,7 @@ const soybeansData = {
   pestsDiseases: [
     {
       name: "Caterpillars",
-      image: "soy_2.png", // Replace with actual image URL
+      image: "soy_2.png", 
       symptoms: [
         "Soybean lopper, leaf miners, leaf rollers.",
         "These insect pests feed on the foliage.",
