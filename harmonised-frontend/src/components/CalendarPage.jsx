@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate  } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CalendarPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedCrop } = location.state || {};
   const [cropActivities, setCropActivities] = useState([]);
   const [plantingDate, setPlantingDate] = useState(new Date());
@@ -36,7 +37,7 @@ const CalendarPage = () => {
   useEffect(() => {
     if (selectedCrop) {
       axios
-        .get(`http://localhost:8000/activities/${selectedCrop}`)
+        .get(`https://harmonized-crop-calendar-1.onrender.com/activities/${selectedCrop}`)
         .then((response) => {
           const activities = response.data.activities;
           const duration = response.data.duration;
@@ -62,8 +63,7 @@ const CalendarPage = () => {
       const updatedActivities = calculateActivityDates(cropActivities, cropDuration, plantingDate);
       setCropActivities(updatedActivities);
     }
-  }, [plantingDate, cropDuration, selectedCrop, cropActivities]); // Include cropActivities in dependencies
-
+  }, [plantingDate, cropDuration, selectedCrop, cropActivities]); 
   const handleActivityClick = (activityName, color) => {
     setSelectedActivity(activityName);
     setSelectedActivityColor(color);
@@ -77,8 +77,11 @@ const CalendarPage = () => {
     }
   };
 
+  // const handleViewPestAndDisease = () => {
+  //   alert(`View Pest and Disease for ${selectedCrop}`);
+  // };
   const handleViewPestAndDisease = () => {
-    alert(`View Pest and Disease for ${selectedCrop}`);
+    navigate(`/pests-diseases/${selectedCrop}`);
   };
 
   const renderCalendar = () => {
@@ -172,7 +175,7 @@ const CalendarPage = () => {
                   onClick={handleViewPestAndDisease}
                   className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  View Pest and Disease for {selectedCrop}
+                  View Pests and Diseases for {selectedCrop}
                 </button>
               )}
             </div>

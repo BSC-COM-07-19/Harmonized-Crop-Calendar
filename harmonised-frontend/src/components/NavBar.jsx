@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'; // Import Link component
 
 const navigation = [
   // { name: 'HCC', href: '#', current: false },
-  { name: 'Home', href: '/', current: false },
-  { name: 'Calendar', href: '/season', current: false },
+     { name: 'Home', href: '/', current: false },
+  // { name: 'Calendar', href: '/season', current: false },
   // { name: 'Market Pricing', href: '/market', current: false },
   // { name: 'Weather Forecast', href: '/weather', current: false },
-  { name: 'Pest And Diseases', href: '/pests', current: false },
+  // { name: 'Pest And Diseases', href: '/pests', current: false },
 ]
 
 function classNames(...classes) {
