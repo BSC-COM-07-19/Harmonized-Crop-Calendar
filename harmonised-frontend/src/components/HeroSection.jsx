@@ -75,12 +75,12 @@ const HeroSection = () => {
         </p>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 mx-6 lg:mx-0 lg:left-6 xl:left-12 w-full lg:w-auto h-10 shadow-lg bg-green-700 lg:py-6 lg:px-10 py-4 px-6 flex flex-col lg:flex-row items-center justify-between">
-        <div className="flex items-center mb-2 lg:mb-0">
-          <label className="font-bold text-white lg:mr-4">District</label>
-          <FaMapMarkerAlt className="w-8 h-8 text-white" />
+      <div className="absolute bottom-0 mb-[-32px] left-0 right-0 mx-auto max-w-screen-xl w-full lg:w-auto h-auto shadow-md bg-green-700 lg:py-6 lg:px-10 py-4 px-6 flex flex-col md:flex-row items-center justify-between rounded-md">
+        <div className="flex items-center mb-2 md:mb-0">
+          <label className="font-bold text-white md:mr-4">District</label>
+          <FaMapMarkerAlt className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
           <select
-            className="rounded-md ml-4 lg:ml-2 lg:w-48 h-7 pl-2"
+            className="rounded-md ml-4 md:ml-2 md:w-48 h-7 pl-2"
             onChange={(e) => handleDistrictClick(e.target.value)}
           >
             <option value="">Select District</option>
@@ -92,12 +92,12 @@ const HeroSection = () => {
           </select>
         </div>
 
-        <div className="flex items-center mt-2 lg:mt-0 lg:ml-4">
+        <div className="flex items-center mt-2 md:mt-0 md:ml-4">
           <label className="font-bold text-white">EPA</label>
-          <FaMapMarkerAlt className="w-8 h-8 text-white ml-2 lg:ml-2" />
+          <FaMapMarkerAlt className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-2 md:ml-2" />
           {epasForSelectedDistrict.length > 0 ? (
             <select
-              className="rounded-md ml-2 lg:w-48 h-7 pl-2"
+              className="rounded-md ml-2 md:w-48 h-7 pl-2"
               onChange={(e) => handleEpaChange(e.target.value)}
               value={selectedEpa}
             >
@@ -113,11 +113,11 @@ const HeroSection = () => {
           )}
         </div>
 
-        <div className="flex items-center mt-2 lg:mt-0 lg:ml-4">
+        <div className="flex items-center mt-2 md:mt-0 md:ml-4">
           <label className="font-bold text-white">CROP</label>
-          <FaLeaf className="w-8 h-8 text-white ml-2 lg:ml-2" />
+          <FaLeaf className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-2 md:ml-2" />
           <select
-            className="rounded-md ml-2 lg:w-48 h-7 pl-2"
+            className="rounded-md ml-2 md:w-48 h-7 pl-2"
             value={selectedCrop}
             onChange={(e) => handleCropChange(e.target.value)}
           >
@@ -131,21 +131,32 @@ const HeroSection = () => {
         </div>
 
         {selectedCrop && (
-          <button onClick={handleViewCalendar} className="flex items-center mt-2 lg:mt-0 ml-2 lg:ml-4 cursor-pointer hover:text-red-300">
+          <button onClick={handleViewCalendar} className="flex items-center mt-2 md:mt-0 ml-2 md:ml-4 cursor-pointer hover:text-red-300">
             <label className="text-white">View Calendar</label>
-            <FaCalendar className="text-white ml-2" />
+            <FaCalendar className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-2 md:ml-2" />
           </button>
         )}
       </div>
 
-      {soilTypes.length > 0 && (
-        <div className="absolute bottom-20 left-0 right-0 mx-6 lg:mx-0 lg:left-6 xl:left-12 w-full lg:w-auto h-auto bg-white lg:py-6 lg:px-10 py-4 px-6 shadow-lg rounded-md">
+      {selectedEpa && soilTypes.length > 0 && (
+        <div className="absolute bottom-10 left-0 right-0 mx-auto max-w-screen-xl w-full lg:w-auto h-auto bg-blue-100 lg:py-6 lg:px-10 py-4 px-6 shadow-md rounded-md">
           <h2 className="font-bold text-green-700 mb-2">Soil Types:</h2>
-          <ul className="list-disc list-inside text-green-700">
-            {soilTypes.map((soilType, index) => (
-              <li key={index}>{soilType}</li>
-            ))}
-          </ul>
+          <table className="min-w-full bg-white shadow-md rounded-md">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 text-green-700">Crop</th>
+                <th className="px-4 py-2 text-green-700">Soil Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {soilTypes.map((soilType, index) => (
+                <tr key={index}>
+                  <td className="border px-4 py-2">{selectedCrop}</td>
+                  <td className="border px-4 py-2">{soilType}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
