@@ -8,10 +8,11 @@ const navigation = [
   // { name: 'HCC', href: '#', current: false },
   { name: 'Home', href: '/', current: false },
   { name: 'Calendar', href: '/season', current: false },
+  { name: 'Budgeting', href: '/weathervisual', current: false },
   { name: 'Market Pricing', href: '/market', current: false },
   { name: 'Weather Forecast', href: '/weather', current: false },
   { name: 'Pest And Diseases', href: '/pests', current: false },
-  { name: 'Weathervisual', href: '/weathervisual', current: false },
+  
 ]
 
 function classNames(...classes) {

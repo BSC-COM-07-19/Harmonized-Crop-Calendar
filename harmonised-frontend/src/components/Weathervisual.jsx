@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { getCropRecommendations, getMarketPrices, getWeatherForecast } from '../api'; // Mock API calls
 
 const activities = {
@@ -22,7 +21,6 @@ const activities = {
 
 function Weathervisual() {
   const [calendar, setCalendar] = useState([
-  
     // Add more months and activities as needed
   ]);
 
@@ -47,7 +45,7 @@ function Weathervisual() {
   }, []);
 
   const handleBudgetChange = (mainActivity, subActivity) => (e) => {
-    const value = Number(e.target.value);
+    const value = Math.max(0, Number(e.target.value)); // Restrict to non-negative values
     setBudget(prevBudget => ({
       ...prevBudget,
       [mainActivity]: {
@@ -99,6 +97,7 @@ function Weathervisual() {
                           type="number" 
                           value={budget[mainActivity][subActivity]} 
                           onChange={handleBudgetChange(mainActivity, subActivity)} 
+                          placeholder="MK"
                         />
                       </label>
                     </div>
@@ -108,35 +107,15 @@ function Weathervisual() {
             </div>
           ))}
         </div>
-        <h3>Total Budget: ${totalBudget}</h3>
+        <h3>Total Budget: MKW{totalBudget}</h3>
       </section>
 
       <section>
-        <h2>Crop Recommendations</h2>
-        <ul className="recommendations-list">
-          {recommendations.map((crop, index) => (
-            <li key={index} className="recommendation-item">{crop}</li>
-          ))}
-        </ul>
+        <h2></h2>
+       
       </section>
 
-      <section>
-        <h2>Local Market Prices</h2>
-        <ul className="market-prices-list">
-          {marketPrices.map((price, index) => (
-            <li key={index} className="market-price-item">{price.crop}: ${price.price}/unit</li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <h2>Weather Forecast</h2>
-        <ul className="weather-forecast-list">
-          {weather.map((day, index) => (
-            <li key={index} className="weather-forecast-item">{day.date}: {day.forecast}</li>
-          ))}
-        </ul>
-      </section>
+    
     </div>
   );
 }
