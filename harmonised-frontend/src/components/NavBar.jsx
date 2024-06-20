@@ -1,25 +1,25 @@
 import React from "react";
-import logo from "../assets/Transparent-Logo3.png"; 
-import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'; // Import Link component
+import logo from "../assets/Transparent-Logo3.png";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom"; // Import Link component
 
 const navigation = [
   // { name: 'HCC', href: '#', current: false },
-     { name: 'Home', href: '/', current: false },
+  { name: "Home", href: "/", current: false },
   // { name: 'Calendar', href: '/season', current: false },
   // { name: 'Market Pricing', href: '/market', current: false },
   // { name: 'Weather Forecast', href: '/weather', current: false },
   // { name: 'Pest And Diseases', href: '/pests', current: false },
-]
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 const NavBar = () => {
   return (
-    <Disclosure as="nav" className="bg-green-700 text-green-100">
+    <Disclosure as="nav" className="bg-green-700 text-green-100 fixed w-full z-50 mt-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -37,12 +37,8 @@ const NavBar = () => {
               </div>
               {/* Image */}
               <div className="flex flex-shrink-0 items-center">
-                <img
-                  className="h-24 w-auto mr-4"
-                  src={logo}
-                  alt="Your Company"
-                />
-              <Link
+                <img className="h-24 w-auto mr-4" src={logo} alt="Your Company" />
+                <Link
                   to="#"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-medium font-bold sm:block"
                 >
@@ -51,15 +47,17 @@ const NavBar = () => {
               </div>
               {/* Navigation Links */}
               <div className="flex flex-shrink-0 items-center">
-                {navigation.map(item => (
+                {navigation.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white text-lg' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'rounded-md px-3 py-2 text-medium font-bold hidden sm:block'
+                      item.current
+                        ? "bg-gray-900 text-white text-lg"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-medium font-bold hidden sm:block"
                     )}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={item.current ? "page" : undefined}
                   >
                     {item.name}
                   </Link>
@@ -76,10 +74,12 @@ const NavBar = () => {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
