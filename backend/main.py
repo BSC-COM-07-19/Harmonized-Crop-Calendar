@@ -320,7 +320,7 @@ def create_soil_type(soil_type: SoilTypeModel, db: Session = Depends(get_dbconne
 
 
 # PUT endpoint for updating a crop
-@app.put("/crop/{crop_id}/", response_model=CropCreate)
+@app.put("/crop/{crop_id}", response_model=CropCreate)
 async def update_crop(crop_id: int, updated_crop: CropCreate, db: db_dependency):
     crop = db.query(models.Crop).filter(models.Crop.id == crop_id).first()
     if crop is None:
