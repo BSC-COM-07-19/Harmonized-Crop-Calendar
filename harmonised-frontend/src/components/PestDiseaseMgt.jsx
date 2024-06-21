@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState} from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 
 const cropData = {
   groundnuts: {
     name: "Groundnuts",
     pestsDiseases: [
+      //Diseases
       {
         name: "Early Leaf Spot",
+        type: "disease",
         image: "early.jpg", 
         symptoms: [
           "May attack the crop soon after emergence.",
@@ -18,6 +20,7 @@ const cropData = {
       },
       {
         name: "Late Leaf Spot",
+        type: "disease",
         image: "late.png", 
         symptoms: [
           "Occurs later in the season than early leaf spot.",
@@ -29,6 +32,7 @@ const cropData = {
       },
       {
         name: "Rust",
+        type: "disease",
         image: "rust_g.jpg",
         symptoms: [
           "Orange colored pustules on the lower surface of the leaflets.",
@@ -38,6 +42,7 @@ const cropData = {
       },
       {
         name: "Groundnut Rosette",
+        type: "disease",
         image: "ros.png",
         symptoms: [
           "Caused by a virus whose vector is an aphid.",
@@ -52,6 +57,7 @@ const cropData = {
       },
       {
         name: "Stem Rot",
+        type: "disease",
         image: "ste.jpg",
         symptoms: [
           "It is a fungal disease and is commonly known as white mold, sclerotium rot, sclerotium blight, sclerotium wilt, root rot or foot rot.",
@@ -65,8 +71,10 @@ const cropData = {
           "Practicing crop rotation."
         ]
       },
+      //Pests
       {
         name: "Aphids",
+        type: "pest",
         image: "aphs.jpg",
         symptoms: [
           "Aphids feed on leaves and transmit viruses that cause Rosette disease."
@@ -78,6 +86,7 @@ const cropData = {
       },
       {
         name: "Termites",
+        type: "pest",
         image: "terms.png",
         symptoms: [
           "Scarification of the pods. This weakens the shells and makes them liable to shattering or cracking during harvesting.",
@@ -91,6 +100,7 @@ const cropData = {
       },
       {
         name: "Cut-worms",
+        type: "pest",
         image: "cut_worms.jpg",
         symptoms: [
           "The worms cause young plants to be completely or partially severed at the ground level.",
@@ -106,6 +116,7 @@ const cropData = {
   maize: {
     name: "Maize",
     pestsDiseases: [
+      //pests
       {
         name: "Stalk-borer or stem-borer",
         type: "pest",
@@ -154,6 +165,7 @@ const cropData = {
         control: [],
         image: "rods.jpg"
       },
+      //diseases
       {
         name: "Leaf Blight",
         type: "disease",
@@ -196,16 +208,20 @@ const cropData = {
   rice: {
     name: "Rice",
     pestsDiseases: [
+      //pests
       {
         name: "Rice insect pests",
+        type: "pest",
         symptoms: [
           "Common insects are grasshoppers (bwanoni), short fly and army worm, rice keeper, mole cricket, ant and armyworm."
         ],
         control: "Control by early sowing, maintaining, weed-free, applying carbarbly, cypermetrine, and fenitrothhion.",
         image: "rice_4.jpg"
       },
+      //diseases
       {
         name: "Sheath Blight",
+        type: "disease",
         symptoms: [
           "Symptoms are observed from tillering to milk stage.",
           "In intensified rice production systems it causes a yield loss of 6%."
@@ -215,6 +231,7 @@ const cropData = {
       },
       {
         name: "Bacterial blight",
+        type: "disease",
         symptoms: [
           "Affects rice at seedling stage.",
           "Symptoms: infected leaves turn grayish green and roll up.",
@@ -225,6 +242,7 @@ const cropData = {
       },
       {
         name: "Rice blast",
+        type: "disease",
         symptoms: [
           "It is caused by fungus.",
           "The disease is common in Nkhata Bay.",
@@ -235,6 +253,7 @@ const cropData = {
       },
       {
         name: "Sheath rot",
+        type: "disease",
         symptoms: [
           "It is caused by virus and identified.",
           "Symptoms it is observed by rotted growing panicle being incompletely exerted with numerous empty grains."
@@ -247,6 +266,7 @@ const cropData = {
       },
       {
         name: "Yellow Mottle Virus (RYMV)",
+        type: "disease",
         symptoms: [
           "It is caused by a virus.",
           "Symptoms: stunted plants, and reduced tillering, mottling, yellowish streaking of leaves, malformation and panicle partial emergency.",
@@ -260,8 +280,10 @@ const cropData = {
   SoyaBeans: {
     name: "Soya Beans",
     pestsDiseases: [
+      //pests
       {
         name: "Caterpillars",
+        type: "pest",
         image: "soy_2.png",
         symptoms: [
           "Soybean lopper, leaf miners, leaf rollers.",
@@ -272,6 +294,7 @@ const cropData = {
       },
       {
         name: "Termite",
+        type: "pest",
         image: "soy_3.jpg",
         symptoms: [
           "Can attack soybean plants at any stage of development from seed to mature soybean plant particularly when there is prolonged dry spell.",
@@ -283,8 +306,10 @@ const cropData = {
         ],
         control: "Crop rotation and removal of other debris from the field reduces build-up of termites, reduces potential termite food supplies, thus reducing termite number and subsequent attack."
       },
+      //diseases
       {
         name: "Soybean Rust",
+        type: "disease",
         image: "soy_4.png",
         symptoms: [
           "The only disease of economic importance.",
@@ -300,6 +325,7 @@ const cropData = {
       },
       {
         name: "Soybean cyst nematode (SCN), Heterodera glycines",
+        type: "disease",
         image: "soy_6.jpg",
         symptoms: [
           "It can be present in the field without causing obvious above-ground symptoms.",
@@ -315,6 +341,7 @@ const cropData = {
       },
       {
         name: "Pod-sucking buds",
+        type: "disease",
         image: "soy_8.jpg",
         symptoms: [
           "Attack crop from flowering onwards."
@@ -323,6 +350,7 @@ const cropData = {
       },
       {
         name: "Virus diseases",
+        type: "disease",
         image: "soy_9.jpg",
         symptoms: [
           "Commonly transmitted by insects such as whitefly.",
@@ -333,6 +361,7 @@ const cropData = {
       },
       {
         name: "General Control of Soybean diseases",
+        type: "disease",
         image: "soy_7.png",
         control: [
           "Use certified seed to avoid seed-borne infection.",
@@ -355,6 +384,8 @@ const PestDiseasePage = () => {
   const { crop } = useParams();
   const cropInfo = cropData[crop.toLowerCase()];
 
+  const [showPests, setShowPests] = useState(false);
+
   if (!cropInfo) {
     return <div>Invalid crop selected.</div>;
   }
@@ -363,16 +394,33 @@ const PestDiseasePage = () => {
     navigate(-1); // Navigate back one step in the history stack
   };
 
+  const togglePestsDiseases = () => {
+    setShowPests(!showPests);
+  };
+
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-semibold mb-2">
         <button className="back-button" onClick={handleBack}>
-          {/* Add back arrow icon if needed */}
-          ←
+            ←
         </button>
         {cropInfo.name}
       </h2>
-      {cropInfo.pestsDiseases.map((item) => (
+      <div className="mb-4">
+        <button
+          className={`toggle-button ${!showPests ? 'active' : ''}`}
+          onClick={() => setShowPests(false)}
+        >
+          Diseases
+        </button>
+        <button
+          className={`toggle-button ${showPests ? 'active' : ''}`}
+          onClick={() => setShowPests(true)}
+        >
+          Pests
+        </button>
+      </div>
+      {cropInfo.pestsDiseases.filter(item => showPests ? item.type === 'pest' : item.type === 'disease').map((item) => (
         <div key={item.name} className="mb-4 p-4 border rounded-lg flex">
           {item.image && (
             <img src={item.image} alt={item.name} className="h-32 w-32 object-cover mr-4 rounded-lg" />
