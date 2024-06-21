@@ -278,7 +278,7 @@ const cropData = {
     ]
   },
   SoyaBeans: {
-    name: "Soya Beans",
+    name: "SoyaBeans",
     pestsDiseases: [
       //pests
       {
