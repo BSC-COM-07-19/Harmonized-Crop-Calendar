@@ -46,6 +46,7 @@ const HeroSection = () => {
 
       const soilResponse = await api.get(`/epa_soil_types/${epaName}`);
       setSoilTypes(soilResponse.data.soil_types || []);
+      console.log("Soil Types:", soilResponse.data.soil_types);
     } catch (error) {
       console.error("Error fetching crops or soil types:", error);
       setCrops([]);
@@ -144,14 +145,12 @@ const HeroSection = () => {
           <table className="min-w-full bg-white shadow-md rounded-md">
             <thead>
               <tr>
-                <th className="px-4 py-2 text-green-700">Crop</th>
                 <th className="px-4 py-2 text-green-700">Soil Type</th>
               </tr>
             </thead>
             <tbody>
               {soilTypes.map((soilType, index) => (
                 <tr key={index}>
-                  <td className="border px-4 py-2">{selectedCrop}</td>
                   <td className="border px-4 py-2">{soilType}</td>
                 </tr>
               ))}

@@ -203,3 +203,532 @@ code {
   background-color: #28a745; /* Green color for hover */
   color: #fff;
 }
+
+.CropCalendarBudget {
+  font-family: Arial, sans-serif;
+  margin: 20px auto; /* Center align and provide some margin */
+  padding: 20px;
+  max-width: 1400px; /* Increased max-width to accommodate wider main components */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #2c3e50;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased minimum column width */
+  gap: 20px; /* Gap between grid items */
+}
+
+.activity-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.sub-activities {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f0f7fa;
+  border-radius: 4px;
+}
+
+.sub-activity {
+  margin-top: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+h3 {
+  color: #12bb5c;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.main-activity.open {
+  background-color: #cfe2f3; /* Background color when main activity is open */
+}
+
+.indicator {
+  margin-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.calendar-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.calendar-item {
+  background: #e7f3fe;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #cfe2f3;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-item:nth-child(even) {
+  background-color: #d0e7fc; /* Alternate background color for even items */
+}
+
+.calendar-month {
+  font-weight: bold;
+  color: #333; /* Month text color */
+}
+
+.calendar-activity {
+  font-style: italic;
+  color: #555; /* Activity text color */
+}
+
+/* New styles for crop recommendations, market prices, and weather forecast */
+.recommendations-list, .market-prices-list, .weather-forecast-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.recommendation-item, .market-price-item, .weather-forecast-item {
+  background: #e7f3fe;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #cfe2f3;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.recommendation-item:nth-child(even), .market-price-item:nth-child(even), .weather-forecast-item:nth-child(even) {
+  background-color: #d0e7fc; /* Alternate background color for even items */
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin-top: 0;
+}
+
+h3.total-budget {
+  text-align: right;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+
+
+
+
+/* Styles for tab links */
+.tab-link {
+  cursor: pointer;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.tab-link:hover {
+  color: #0d8a50;
+}
+
+.tab-link.active {
+  border-color: #0c7b50;
+}
+
+/* Styles for tab indicator */
+
+/* Example of centering the indicator under the active tab */
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%; /* Half the width of the tab link */
+}
+
+
+
+
+
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  gap: 25px;
+  padding: 25px;
+  justify-content: center; /* Center the grid horizontally */
+  align-items: center; /* Center the grid vertically */
+  margin-top: 20px; /* Add margin to move the grid down */
+  transition: filter 0.3s; /* Smooth transition for the blur effect */
+}
+
+.card {
+  position: relative; /* Enable positioning context for absolute positioning */
+  background-color: #f9f9f9;
+  border: 1px solid #16810a;
+  border-radius: 15px;
+  overflow: hidden; /* Ensure images do not overflow */
+  box-shadow: 0 15px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-content {
+  position: relative;
+  height: 100%; /* Ensure content fills the card height */
+}
+
+.card-text {
+  text-align: center; /* Center text horizontally */
+  font-weight: bold;
+  padding: 10px;
+  color: #16810a; /* Green color */
+}
+
+.card-image {
+  width: 100%; /* Ensure image fills the card */
+  height: auto;
+  border-radius: 25px;
+  object-fit: cover; /* Maintain aspect ratio and cover the space */
+  padding: 5px; /* Add padding around the image */
+}
+
+.plus-circle {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: white; /* White background */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Circular shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-icon {
+  font-size: 20px;
+  color: #0e903c; /* Icon color */
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
+  }
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+button {
+  background-color: #0aa85c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-open .card-grid {
+  filter: blur(5px); /* Apply blur effect when modal is open */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.activity-item {
+  position: relative;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+.clickable {
+  cursor: pointer;
+}
+
+.clickable-price {
+  background-color: #8eff8a; /* Light green background */
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.hoverable:hover {
+  background-color: #7bcc7b; /* Darker green background on hover */
+}
+.total-budget {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28a745;
+  background-color: #e9f7ef;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+}
+.clickable-price .remove-icon {
+  position: absolute;
+  right: -20px;
+  top: 0;
+}
+
+
+
+
+
+.CropCalendarBudget {
+  font-family: Arial, sans-serif;
+  padding: 5px;
+}
+
+h1, h2, h3 {
+  margin: 10px 0;
+}
+
+.calendar-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.calendar-item {
+  margin: 10px 0;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.activity-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.main-activity {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-close-button {
+  background-color: green; /* Green background color */
+  color: white; /* White text color */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-close-button:hover {
+  background-color: darkgreen; /* Darker green on hover */
+}
+
+.main-activity.open {
+  color: #007BFF;
+}
+
+.indicator {
+  margin-left: 10px;
+}
+
+.add-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.remove-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: red;
+}
+
+.sub-activities {
+  margin-top: 15px;
+}
+
+.sub-activity {
+  margin-bottom: 10px;
+}
+
+.sub-activity label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-activity input {
+  margin-left: 10px;
+  padding: 5px;
+  width: 100px;
+}
+
+.total-budget {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28a745;
+  background-color: #e9f7ef;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-body th, .modal-body td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.clickable-price {
+  cursor: pointer;
+  color: #007BFF;
+  text-decoration: underline;
+  position: relative;
+}
+
+.clickable-price .remove-icon {
+  position: absolute;
+  right: -20px;
+  top: 0;
+}
+
+

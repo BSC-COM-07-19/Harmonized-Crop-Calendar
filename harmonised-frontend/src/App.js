@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import WeatherApp from './components/WeatherApp';
-import CalendarPage from "./components/CalendarPage"; 
+import Weathervisual from "./components/Weathervisual"; 
 import PestDiseasePage from "./components/PestDiseaseMgt";
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/pests-diseases/:crop" element={<PestDiseasePage />} /> 
             <Route path="/weather" element={<WeatherApp />} />
-            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/budget" element={<Weathervisual />} />
           </Routes>
         </div>
       </div>
