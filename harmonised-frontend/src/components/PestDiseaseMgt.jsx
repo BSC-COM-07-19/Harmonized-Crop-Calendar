@@ -413,9 +413,6 @@ const PestDiseasePage = () => {
        <button className="back-button bg-green-500 text-white px-2 py-1 rounded-full mr-2 mb-1" onClick={handleBack}>
   ←
 </button>
-
-
-
         <span className="flex-1 text-center">{cropInfo.name}</span>
       </h2>
       <div className="mb-4">
