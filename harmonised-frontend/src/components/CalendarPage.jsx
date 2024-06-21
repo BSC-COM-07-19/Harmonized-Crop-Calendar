@@ -4,6 +4,15 @@ import { useLocation, useNavigate  } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+
+import landPreparationImage from "./images/labour.jpg";
+import transplantingImage from "./images/planting.jpg";
+import weedingImage from "./images/weeding.jpg";
+import topDressingImage from "./images/fertilizer.jpg";
+import waterManagementImage from "./images/fertilizers.jpg";
+import pestDiseaseImage from "./images/AR-farming.jpg";
+import harvestingImage from "./images/harvesti.png";
+
 const CalendarPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,7 +23,10 @@ const CalendarPage = () => {
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
   const [selectedActivityColor, setSelectedActivityColor] = useState("#FFFFFF");
+  const [selectedActivityImage, setSelectedActivityImage] = useState(null);
 
+ 
+ 
   const calculateActivityDates = (activities, duration, plantingDate) => {
     const durationRange = duration.split("-").map((d) => parseInt(d));
     const minDuration = durationRange[0];
@@ -37,7 +49,7 @@ const CalendarPage = () => {
   useEffect(() => {
     if (selectedCrop) {
       axios
-        .get(`https://harmonized-crop-calendar-1.onrender.com/activities/${selectedCrop}`)
+        .get(`https://harmonized-crop-calendar1.onrender.com/activities/${selectedCrop}`)
         .then((response) => {
           const activities = response.data.activities;
           const duration = response.data.duration;
@@ -64,9 +76,10 @@ const CalendarPage = () => {
       setCropActivities(updatedActivities);
     }
   }, [plantingDate, cropDuration, selectedCrop, cropActivities]); 
-  const handleActivityClick = (activityName, color) => {
+  
+  const handleActivityClick = (activityName, image) => {
     setSelectedActivity(activityName);
-    setSelectedActivityColor(color);
+    setSelectedActivityImage(image);
 
     // Find the selected activity and set recommendations
     const selected = cropActivities.find(activity => activity.activity === activityName);
@@ -77,9 +90,7 @@ const CalendarPage = () => {
     }
   };
 
-  // const handleViewPestAndDisease = () => {
-  //   alert(`View Pest and Disease for ${selectedCrop}`);
-  // };
+  
   const handleViewPestAndDisease = () => {
     navigate(`/pests-diseases/${selectedCrop}`);
   };
@@ -92,7 +103,6 @@ const CalendarPage = () => {
         </div>
       );
     }
-
     return (
       <div className="flex justify-center overflow-x-auto">
         <div className="flex gap-4">
@@ -100,9 +110,13 @@ const CalendarPage = () => {
             <div
               key={index}
               className="p-4 border rounded shadow-md bg-white text-center flex-1 cursor-pointer"
-              onClick={() => handleActivityClick(activity.activity, getActivityColor(activity.activity))}
-              style={{ backgroundColor: getActivityColor(activity.activity) }}
+              onClick={() => handleActivityClick(activity.activity, getActivityImage(activity.activity))}
             >
+              <img
+                src={getActivityImage(activity.activity)}
+                alt={activity.activity}
+                className="object-cover w-full h-40 rounded-md mb-2"
+              />
               <div className="font-bold mb-2 text-sm" style={{ fontSize: "1.1rem" }}>{activity.activity}</div>
               <div className="text-xs">Date: {activity.date}</div>
             </div>
@@ -116,26 +130,25 @@ const CalendarPage = () => {
     // Split the sub_activity string by commas and return an array of tasks
     return subActivity.split(",").map(task => task.trim());
   };
-
-  const getActivityColor = (activityName) => {
-    // Define colors for each activity based on activityName
+  const getActivityImage = (activityName) => {
+    // Return image URL based on activityName
     switch (activityName) {
       case "Land Preparation":
-        return "#FFCC00"; // Yellow
+        return landPreparationImage;
       case "Transplanting or Direct Seeding":
-        return "#FF5733"; // Orange
+        return transplantingImage;
       case "Weeding":
-        return "#33FF57"; // Green
+        return weedingImage;
       case "Top-Dressing Fertilizer Application":
-        return "#3366FF"; // Blue
+        return topDressingImage;
       case "Water Management":
-        return "#FF33FF"; // Pink
+        return waterManagementImage;
       case "Pest and Disease Management":
-        return "#FF3366"; // Red
+        return pestDiseaseImage;
       case "Harvesting":
-        return "#6633FF"; // Purple
+        return harvestingImage;
       default:
-        return "#CCCCCC"; // Gray for unknown or undefined activities
+        return null;
     }
   };
 
