@@ -7,10 +7,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import landPreparationImage from "./images/labour.jpg";
 import transplantingImage from "./images/planting.jpg";
+import plantingImage from "./images/planting.jpg";
 import weedingImage from "./images/weeding.jpg";
 import topDressingImage from "./images/fertilizer.jpg";
-import waterManagementImage from "./images/fertilizers.jpg";
-import pestDiseaseImage from "./images/AR-farming.jpg";
+import waterManagementImage from "./images/water.jpg";
+import weedingImage2 from "./images/weeding.jpg";
+import pestDiseaseImage from "./images/pests.jpg";
+//import harvestingImage from "./images/Rharvesting.jpg";
 import harvestingImage from "./images/harvesti.png";
 
 const CalendarPage = () => {
@@ -137,12 +140,16 @@ const CalendarPage = () => {
         return landPreparationImage;
       case "Transplanting or Direct Seeding":
         return transplantingImage;
+      case "Planting":
+        return plantingImage;
       case "Weeding":
-        return weedingImage;
+        return weedingImage;   
       case "Top-Dressing Fertilizer Application":
         return topDressingImage;
+      case "Weeding (Second Round)":
+        return weedingImage2; 
       case "Water Management":
-        return waterManagementImage;
+        return waterManagementImage; 
       case "Pest and Disease Management":
         return pestDiseaseImage;
       case "Harvesting":
@@ -188,7 +195,7 @@ const CalendarPage = () => {
                   onClick={handleViewPestAndDisease}
                   className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  View Pests and Diseases for {selectedCrop}
+                   Pests and Diseases for {selectedCrop}
                 </button>
               )}
             </div>
