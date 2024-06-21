@@ -1,93 +1,283 @@
-import React from 'react';
-import Forecast from '../pages/WeatherForecast/Forecast';
-import Form from '../pages/WeatherForecast/Form';
-import Weather from '../pages/WeatherForecast/Weather';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
-const API_KEY = "034fa1f439d5c604451a9f3fa492ab36";
+const API_KEY = '034fa1f439d5c604451a9f3fa492ab36'; // Your actual API key from OpenWeatherMap
 
-class WeatherApp extends React.Component {
-  state = {
-    currentTemperature: undefined,
-    currentCity: undefined,
-    currentCountry: undefined,
-    currentHumidity: undefined,
-    currentPressure: undefined,
-    currentWindSpeed: undefined,
-    currentSunrise: undefined,
-    currentSunset: undefined,
-    currentIcon: undefined,
-    error: undefined,
-    forecast: []
-  }
+const WeatherApp = () => {
+  const location = useLocation();
+  const { selectedActivity } = location.state || {};
+  const [country, setCountry] = useState('Malawi'); // Default country set to Malawi
+  const [city, setCity] = useState('Zomba'); // Default city set to Zomba
+  const [weatherForecast, setWeatherForecast] = useState([]);
+  const [validActivity, setValidActivity] = useState(false);
+  const [reasons, setReasons] = useState([]);
+  const [bestDays, setBestDays] = useState({
+    LandPreparation: [],
+    Planting: [],
+    Weeding: [],
+    SecondWeeding: [],
+    Harvesting: []
+  });
+  const [topDressingRecommendation, setTopDressingRecommendation] = useState([]);
+  const [error, setError] = useState(null);
 
-  getWeather = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    // Fetch weather data on initial page load with default country (Malawi) and city (Zomba)
+    handleFetchWeather();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const city = e.target.elements.city.value;
-    const country = e.target.elements.country.value;
+  const handleFetchWeather = () => {
+    if (country && city) {
+      const weatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=${API_KEY}`;
 
-    try {
-      const current_weather_api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`);
-      const current_weather_data = await current_weather_api_call.json();
+      axios.get(weatherApiUrl)
+        .then(response => {
+          const forecastData = response.data.list.reduce((acc, item, index) => {
+            const date = index === 0 ? 'Today\'s Weather' : new Date(item.dt * 1000).toLocaleDateString();
+            // Check if the date is not already added to avoid duplicates
+            if (!acc.find(day => day.date === date)) {
+              acc.push({
+                date,
+                temperature: item.main.temp,
+                humidity: item.main.humidity,
+                windSpeed: item.wind.speed,
+                description: item.weather[0].description,
+                main: item.weather[0].main,
+                rain: item.rain ? item.rain['3h'] : 0,
+                snow: item.snow ? item.snow['3h'] : 0
+              });
+            }
+            return acc;
+          }, []).slice(0, 7); // Limit to next 7 days including today
 
-      const forecast_api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=${API_KEY}`);
-      const forecast_data = await forecast_api_call.json();
+          setWeatherForecast(forecastData);
 
-      if (current_weather_data.cod === '404' || forecast_data.cod === '404') {
-        throw new Error("City not found");
-      }
+          // Check validity and reasons
+          const reasonsList = forecastData.map(day => {
+            const conditions = {
+              description: day.description.toLowerCase(),
+              temperature: day.temperature,
+              rain: day.rain,
+              snow: day.snow
+            };
 
-      const filteredForecast = forecast_data.list.filter((day, index) => index % 8 === 0).slice(0, 7);
-      this.setState({
-        currentTemperature: current_weather_data.main.temp + " °C",
-        currentCity: current_weather_data.name,
-        currentCountry: current_weather_data.sys.country,
-        currentHumidity: current_weather_data.main.humidity + " %",
-        currentPressure: current_weather_data.main.pressure + " hPa",
-        currentWindSpeed: current_weather_data.wind.speed + " m/s",
-        currentSunrise: new Date(current_weather_data.sys.sunrise * 1000).toLocaleTimeString(),
-        currentSunset: new Date(current_weather_data.sys.sunset * 1000).toLocaleTimeString(),
-        currentIcon: current_weather_data.weather[0].icon,
-        error: "",
-        forecast: [{ label: 'Current Weather', ...current_weather_data }, ...filteredForecast]
-      });
-    } catch (error) {
-      this.setState({
-        currentTemperature: undefined,
-        currentCity: undefined,
-        currentCountry: undefined,
-        currentHumidity: undefined,
-        currentPressure: undefined,
-        currentWindSpeed: undefined,
-        currentSunrise: undefined,
-        currentSunset: undefined,
-        currentIcon: undefined,
-        error: "City not found",
-        forecast: []
-      });
+            const dayReasons = [];
+
+            switch (selectedActivity) {
+              case 'Land Preparation':
+                if (conditions.description.includes('clear sky')) {
+                  dayReasons.push('Clear sky is suitable for land preparation.');
+                } else {
+                  dayReasons.push('Land preparation is not suitable.');
+                }
+                break;
+              case 'Planting':
+                if (conditions.rain > 0.0) {
+                  dayReasons.push('Heavy or Normal rainfall is suitable for planting.');
+                } else {
+                  dayReasons.push('No rainfall for planting. NOT suitable for planting');
+                }
+                break;
+              case 'Weeding':
+                if (conditions.description.includes('clear sky')) {
+                  dayReasons.push('Clear sky is suitable for weeding.');
+                } else {
+                  dayReasons.push('Rainfall is not suitable for weeding.');
+                }
+                break;
+              case 'Weeding (Second Round)':
+                if (conditions.description.includes('clear sky')) {
+                  dayReasons.push('Clear sky is suitable for second weeding.');
+                } else {
+                  dayReasons.push('Rainfall is not suitable for second weeding.');
+                }
+                break;
+              case 'Harvesting':
+                if (!conditions.description.includes('rain') && !conditions.description.includes('snow')) {
+                  dayReasons.push('Clear sky is suitable for harvesting.');
+                } else {
+                  dayReasons.push('Rainfall is not suitable for harvesting.');
+                }
+                break;
+              case 'Top Dressing':
+                // Determine top dressing recommendation
+                if (!conditions.description.includes('cool')) {
+                  dayReasons.push('Top dressing is recommended for this day.');
+                } else {
+                  dayReasons.push('Top dressing is not recommended due to cool weather.');
+                }
+                break;
+              default:
+                dayReasons.push('No specific recommendation for this activity.');
+                break;
+            }
+
+            return {
+              date: day.date,
+              isValid: dayReasons.length > 0,
+              reasons: dayReasons
+            };
+          });
+
+          const isValid = reasonsList.some(day => day.isValid);
+          setValidActivity(isValid);
+          setReasons(reasonsList);
+          setError(null); // Clear any previous errors
+
+          // Find the best days for each activity
+          const bestDays = findBestDays(reasonsList);
+          setBestDays(bestDays);
+
+          // Find top dressing recommendations
+          const topDressingRecommendation = reasonsList.filter(day => day.isValid && day.reasons.includes('Top dressing is recommended for this day.'));
+          setTopDressingRecommendation(topDressingRecommendation);
+        })
+        .catch(error => {
+          console.error("Error fetching weather data", error);
+          setError("Error fetching weather data. Please try again.");
+          setWeatherForecast([]);
+          setValidActivity(false);
+          setReasons([]);
+          setBestDays({
+            LandPreparation: [],
+            Planting: [],
+            Weeding: [],
+            SecondWeeding: [],
+            Harvesting: []
+          });
+          setTopDressingRecommendation([]);
+        });
+    } else {
+      setError("Please enter both country and city.");
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="bg-green-500  min-h-screen flex flex-col justify-center items-center">
-        <Form getWeather={this.getWeather} />
-        <Weather
-          temperature={this.state.currentTemperature}
-          city={this.state.currentCity}
-          country={this.state.currentCountry}
-          humidity={this.state.currentHumidity}
-          pressure={this.state.currentPressure}
-          windSpeed={this.state.currentWindSpeed}
-          sunrise={this.state.currentSunrise}
-          sunset={this.state.currentSunset}
-          icon={this.state.currentIcon}
-          error={this.state.error}
+  // Function to find the best days for each activity based on reasons
+  const findBestDays = (reasonsList) => {
+    const bestDays = {
+      LandPreparation: [],
+      Planting: [],
+      Weeding: [],
+      SecondWeeding: [],
+      Harvesting: []
+    };
+
+    reasonsList.forEach(day => {
+      switch (day.date) {
+        case 'Land Preparation':
+          if (day.isValid && day.reasons.includes('Clear sky is suitable for land preparation.')) {
+            bestDays.LandPreparation.push(day);
+          }
+          break;
+        case 'Planting':
+          if (day.isValid && day.reasons.includes('Heavy, Normal rainfall is suitable for planting.')) {
+            bestDays.Planting.push(day);
+          }
+          break;
+        case 'Weeding':
+          if (day.isValid && day.reasons.includes('Clear sky is suitable for weeding.')) {
+            bestDays.Weeding.push(day);
+          }
+          break;
+        case 'Weeding (Second Round)':
+          if (day.isValid && day.reasons.includes('Clear sky is suitable for second weeding.')) {
+            bestDays.SecondWeeding.push(day);
+          }
+          break;
+        case 'Harvesting':
+          if (day.isValid && day.reasons.includes('Clear sky is suitable for harvesting.')) {
+            bestDays.Harvesting.push(day);
+          }
+          break;
+        default:
+          break;
+      }
+    });
+
+    return bestDays;
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4">
+      <h2 className="text-2xl font-bold mb-4">
+        Weather Forecast for "{selectedActivity}" Recommendation based on the selected activity
+      </h2>
+      <div className="flex flex-col md:flex-row items-start md:items-center w-full max-w-screen-lg">
+        <input
+          type="text"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          className="border border-gray-300 rounded p-2 w-full md:w-auto mb-2 md:mb-0 md:mr-2"
+          placeholder="Enter country"
         />
-        <Forecast forecast={this.state.forecast} />
+        <input
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="border border-gray-300 rounded p-2 w-full md:w-auto mb-2 md:mb-0 md:mr-2"
+          placeholder="Enter city"
+        />
+        <button
+          onClick={handleFetchWeather}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-auto"
+        >
+          Fetch Weather
+        </button>
       </div>
-    );
-  }
-}
+      {error && (
+        <div className="text-red-500 mt-4">
+          {error}
+        </div>
+      )}
+      {weatherForecast.length > 0 && (
+        <div className="mt-4 w-full max-w-screen-lg overflow-x-auto">
+          <div className="flex flex-nowrap overflow-x-auto">
+            {weatherForecast.map((day, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md p-4 mx-2 mb-4 max-w-xs">
+                <h4 className="text-lg font-bold mb-2">{day.date}</h4>
+                <p className="mb-2">{day.description}</p>
+                <p className="font-semibold">Temperature: {day.temperature}°C</p>
+                <p className="font-semibold">Humidity: {day.humidity}%</p>
+                <p className="font-semibold">Wind Speed: {day.windSpeed} m/s</p>
+              </div>
+            ))}
+          </div>
+          {reasons.map((day, index) => (
+            <div key={index} className={`mt-4 p-4 rounded ${day.isValid ? 'bg-green-500' : 'bg-red-500'} text-white`}>
+              <p>{day.isValid
+                ? day.reasons.map((reason, idx) => (
+                    <p key={idx}>{reason}</p>
+                  ))
+                : `The selected activity is not suitable for ${day.date} based on the weather forecast.`}</p>
+            </div>
+          ))}
+          {Object.keys(bestDays).map(activity => (
+            bestDays[activity].length > 0 && (
+              <div key={activity} className="mt-4 p-4 rounded bg-blue-500 text-white">
+                <p>{`The best day(s) for ${activity} based on the weather forecast:`}</p>
+                <ul className="list-disc ml-6">
+                  {bestDays[activity].map((day, idx) => (
+                    <li key={idx}>{day.date}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          ))}
+          {selectedActivity === 'Top Dressing' && (
+            <div className="mt-4 p-4 rounded bg-yellow-500 text-white">
+              <p>Top dressing recommendations:</p>
+              <ul className="list-disc ml-6">
+                {topDressingRecommendation.map((day, idx) => (
+                  <li key={idx}>{day.date}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default WeatherApp;
