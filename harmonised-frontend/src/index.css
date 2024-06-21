@@ -539,3 +539,228 @@ button {
 .modal-open .card-grid {
   filter: blur(5px); /* Apply blur effect when modal is open */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.activity-item {
+  position: relative;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+.clickable {
+  cursor: pointer;
+}
+
+.clickable-price {
+  background-color: #8eff8a; /* Light green background */
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.hoverable:hover {
+  background-color: #7bcc7b; /* Darker green background on hover */
+}
+.total-budget {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28a745;
+  background-color: #e9f7ef;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+}
+.clickable-price .remove-icon {
+  position: absolute;
+  right: -20px;
+  top: 0;
+}
+
+
+
+
+
+.CropCalendarBudget {
+  font-family: Arial, sans-serif;
+  padding: 5px;
+}
+
+x
+
+.calendar-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.calendar-item {
+  margin: 10px 0;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.activity-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.main-activity {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-activity.open {
+  color: #007BFF;
+}
+
+.indicator {
+  margin-left: 10px;
+}
+
+.add-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.remove-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: red;
+}
+
+.sub-activities {
+  margin-top: 15px;
+}
+
+.sub-activity {
+  margin-bottom: 10px;
+}
+
+.sub-activity label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-activity input {
+  margin-left: 10px;
+  padding: 5px;
+  width: 100px;
+}
+
+.total-budget {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28a745;
+  background-color: #e9f7ef;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-body th, .modal-body td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.clickable-price {
+  cursor: pointer;
+  color: #007BFF;
+  text-decoration: underline;
+  position: relative;
+}
+
+.clickable-price .remove-icon {
+  position: absolute;
+  right: -20px;
+  top: 0;
+}
+
