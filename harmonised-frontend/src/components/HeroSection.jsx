@@ -110,7 +110,7 @@ const HeroSection = () => {
               ))}
             </select>
           ) : (
-            <p className="ml-2 text-white">EPAs for {selectedDistrict} are yet to be added.</p>
+            <p className="ml-2 text-white">{selectedDistrict}</p>
           )}
         </div>
 

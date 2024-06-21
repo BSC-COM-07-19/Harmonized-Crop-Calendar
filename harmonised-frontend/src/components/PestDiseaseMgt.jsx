@@ -407,14 +407,16 @@ const PestDiseasePage = () => {
   const itemsToShow = cropInfo.pestsDiseases.filter(item => showPests ? item.type === 'pest' : item.type === 'disease');
   const items = showAll ? itemsToShow : itemsToShow.slice(0, 2);
 
-
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-semibold mb-2">
-        <button className="back-button" onClick={handleBack}>
-            ←
-        </button>
-        {cropInfo.name}
+       <h2 className="text-2xl font-semibold mb-2 flex items-center">
+       <button className="back-button bg-green-500 text-white px-2 py-1 rounded-full mr-2 mb-1" onClick={handleBack}>
+  ←
+</button>
+
+
+
+        <span className="flex-1 text-center">{cropInfo.name}</span>
       </h2>
       <div className="mb-4">
         <button
@@ -430,7 +432,7 @@ const PestDiseasePage = () => {
           Pests
         </button>
       </div>
-      {cropInfo.pestsDiseases.filter(item => showPests ? item.type === 'pest' : item.type === 'disease').map((item) => (
+      {items.map((item) => (
         <div key={item.name} className="mb-4 p-4 border rounded-lg flex">
           {item.image && (
             <img src={item.image} alt={item.name} className="h-32 w-32 object-cover mr-4 rounded-lg" />
@@ -466,6 +468,13 @@ const PestDiseasePage = () => {
           </div>
         </div>
       ))}
+      {!showAll && itemsToShow.length > 2 && (
+        <div className="flex justify-center">
+          <button onClick={handleReadMore} className="read-more-button bg-green-500 text-white px-4 py-2 rounded-full">
+            Read More...
+          </button>
+        </div>
+      )}
     </div>
   );
 };

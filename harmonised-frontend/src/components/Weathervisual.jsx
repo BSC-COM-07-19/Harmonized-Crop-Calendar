@@ -249,7 +249,7 @@ function Weathervisual() {
       <h1>Crop Calendar and Budget Evaluation</h1>
 
       <section>
-        <h2>Crop Calendar</h2>
+        {/* <h2>Crop Calendar</h2> */}
         <ul className="calendar-list">
           {calendar.map((item, index) => (
             <li key={index} className="calendar-item">
