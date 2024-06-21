@@ -13,7 +13,7 @@ app = FastAPI()
 router = APIRouter()
 
 origins = [
-    "http://localhost:3000"
+    "https://crop-calendar-xfcw.vercel.app"
     # "https://harmonized-crop-calendar.vercel.app"
 ]
 
