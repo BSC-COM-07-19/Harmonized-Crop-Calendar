@@ -1,10 +1,45 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-
 const cropData = {
   groundnuts: {
     name: "Groundnuts",
-    pestsDiseases: [
+    pests: [
+      {
+        name: "Aphids",
+        image: "aphs.jpg",
+        symptoms: [
+          "Aphids feed on leaves and transmit viruses that cause Rosette disease."
+        ],
+        control: [
+          "Early planting at correct spacing will help to control the spreading of aphids.",
+          "Use rosette resistant varieties such as RG1, Nsinjiro and Baka in rosette endemic areas."
+        ]
+      },
+      {
+        name: "Termites",
+        image: "terms.png",
+        symptoms: [
+          "Scarification of the pods. This weakens the shells and makes them liable to shattering or cracking during harvesting.",
+          "Penetration & hollowing of the tap root. Termites are capable of reaching upper parts of the plant inside the stems. This is common in wet period of the growing season and pass unnoticed until the plants wilt and die."
+        ],
+        control: [
+          "Use uniform cultivars to ensure even ripening and single harvesting.",
+          "There is need to have repeated mechanical cultivation to reduce termite population",
+          "For termite prone areas, aldrin or dieldrin can be used at a rate of 500g a.i. (active ingredient) per hectare. Seeds can also be dressed with aldrin at 28.5g a.i per kg of seed."
+        ]
+      },
+      {
+        name: "Cut-worms",
+        image: "cut_worms.jpg",
+        symptoms: [
+          "The worms cause young plants to be completely or partially severed at the ground level.",
+          "It also attack developing pods of older plants causing yield reduction."
+        ],
+        control: [
+          "Use 450g of 50% dieldrin of Wettable (Water) Powder plus 50kg of maize meal which is then wetted crumbly.",
+          "Apply this mixture per hectare as a chemical bait and should be broadcasted in the afternoon so that they are able to feed on it before it gets dry."
+        ]
+      }
+    ],
+    diseases: [
       {
         name: "Early Leaf Spot",
         image: "early.jpg", 
@@ -64,48 +99,12 @@ const cropData = {
           "Avoid throwing the soil to the base of the plant",
           "Practicing crop rotation."
         ]
-      },
-      {
-        name: "Aphids",
-        image: "aphs.jpg",
-        symptoms: [
-          "Aphids feed on leaves and transmit viruses that cause Rosette disease."
-        ],
-        control: [
-          "Early planting at correct spacing will help to control the spreading of aphids.",
-          "Use rosette resistant varieties such as RG1, Nsinjiro and Baka in rosette endemic areas."
-        ]
-      },
-      {
-        name: "Termites",
-        image: "terms.png",
-        symptoms: [
-          "Scarification of the pods. This weakens the shells and makes them liable to shattering or cracking during harvesting.",
-          "Penetration & hollowing of the tap root. Termites are capable of reaching upper parts of the plant inside the stems. This is common in wet period of the growing season and pass unnoticed until the plants wilt and die."
-        ],
-        control: [
-          "Use uniform cultivars to ensure even ripening and single harvesting.",
-          "There is need to have repeated mechanical cultivation to reduce termite population",
-          "For termite prone areas, aldrin or dieldrin can be used at a rate of 500g a.i. (active ingredient) per hectare. Seeds can also be dressed with aldrin at 28.5g a.i per kg of seed."
-        ]
-      },
-      {
-        name: "Cut-worms",
-        image: "cut_worms.jpg",
-        symptoms: [
-          "The worms cause young plants to be completely or partially severed at the ground level.",
-          "It also attack developing pods of older plants causing yield reduction."
-        ],
-        control: [
-          "Use 450g of 50% dieldrin of Wettable (Water) Powder plus 50kg of maize meal which is then wetted crumbly.",
-          "Apply this mixture per hectare as a chemical bait and should be broadcasted in the afternoon so that they are able to feed on it before it gets dry."
-        ]
       }
     ]
   },
   maize: {
     name: "Maize",
-    pestsDiseases: [
+    pests: [
       {
         name: "Stalk-borer or stem-borer",
         type: "pest",
@@ -153,7 +152,9 @@ const cropData = {
         ],
         control: [],
         image: "rods.jpg"
-      },
+      }
+    ],
+    diseases: [
       {
         name: "Leaf Blight",
         type: "disease",
@@ -195,7 +196,7 @@ const cropData = {
   },
   rice: {
     name: "Rice",
-    pestsDiseases: [
+    pests: [
       {
         name: "Rice insect pests",
         symptoms: [
@@ -203,7 +204,9 @@ const cropData = {
         ],
         control: "Control by early sowing, maintaining, weed-free, applying carbarbly, cypermetrine, and fenitrothhion.",
         image: "rice_4.jpg"
-      },
+      }
+    ],
+    diseases: [
       {
         name: "Sheath Blight",
         symptoms: [
@@ -216,28 +219,39 @@ const cropData = {
       {
         name: "Bacterial blight",
         symptoms: [
-          "Affects rice at seedling stage.",
-          "Symptoms: infected leaves turn grayish green and roll up.",
-          "In adverse conditions leaves turn yellow to straw-colored and wilt leading whole seedlings to dry up and die."
+          "Affects rice at all growth stages.",
+          "Disease causes circular lesions on leaf sheaths, lesions develop on leaves.",
+          "In severe cases leaves turn brown.",
+          "It causes browning of leaves leading to defoliation, brown to grey spindle shaped lesions on the leaf blade, leaf sheaths and culms. When lesions girdle the culms, they cause the culms to rot and lodge."
         ],
-        control: "The disease is treated by nitrogen fertilizers.",
+        control: "The disease can be controlled by application of Benlate or Bavistine or Dithane M45.",
+        image: "rice_6.jpg"
+      },
+      {
+        name: "Brown spot disease",
+        symptoms: [
+          "Affects seedlings and adult plants.",
+          "On leaves lesions are small, circular to oval and brown to dark brown in color.",
+          "In severe infections leaves dry up and die."
+        ],
+        control: "Control is by applying nitrogen fertilizers.",
         image: "rice_7.jpg"
       },
       {
         name: "Rice blast",
         symptoms: [
-          "It is caused by fungus.",
-          "The disease is common in Nkhata Bay.",
-          "Symptoms; it produces so may pathogenic races which tend to differ in terms of varieties."
+          "Caused by fungus.",
+          "Common in Nkhata Bay.",
+          "Produces many pathogenic races which tend to differ in terms of varieties."
         ],
-        control: "It can best be controlled by planting resistant varieties.",
+        control: "Planting resistant varieties.",
         image: "rice_8.jpg"
       },
       {
         name: "Sheath rot",
         symptoms: [
-          "It is caused by virus and identified.",
-          "Symptoms it is observed by rotted growing panicle being incompletely exerted with numerous empty grains."
+          "Caused by virus and identified.",
+          "Observed by rotted growing panicle being incompletely exerted with numerous empty grains."
         ],
         control: [
           "The disease can be managed by planting resistant varieties.",
@@ -248,18 +262,18 @@ const cropData = {
       {
         name: "Yellow Mottle Virus (RYMV)",
         symptoms: [
-          "It is caused by a virus.",
-          "Symptoms: stunted plants, and reduced tillering, mottling, yellowish streaking of leaves, malformation and panicle partial emergency.",
-          "Severe infected by plats die."
+          "Caused by a virus.",
+          "Symptoms: stunted plants, reduced tillering, mottling, yellowish streaking of leaves, malformation and panicle partial emergency.",
+          "Severely infected plants die."
         ],
         control: "Planting Resistant varieties.",
         image: "rice_10.jpg"
       }
     ]
   },
-  SoyaBeans: {
-    name: "Soya Beans",
-    pestsDiseases: [
+  soybeans: {
+    name: "Soy Beans",
+    pests: [
       {
         name: "Caterpillars",
         image: "soy_2.png",
@@ -283,6 +297,16 @@ const cropData = {
         ],
         control: "Crop rotation and removal of other debris from the field reduces build-up of termites, reduces potential termite food supplies, thus reducing termite number and subsequent attack."
       },
+      {
+        name: "Pod-sucking buds",
+        image: "soy_8.jpg",
+        symptoms: [
+          "Attack crop from flowering onwards."
+        ],
+        control: "Insect pests can be controlled with a single spray of Cypermethrin + Dimethoate 10 EC. Read the chemical label for instructions."
+      }
+    ],
+    diseases: [
       {
         name: "Soybean Rust",
         image: "soy_4.png",
@@ -314,14 +338,6 @@ const cropData = {
         ]
       },
       {
-        name: "Pod-sucking buds",
-        image: "soy_8.jpg",
-        symptoms: [
-          "Attack crop from flowering onwards."
-        ],
-        control: "Insect pests can be controlled with a single spray of Cypermethrin + Dimethoate 10 EC. Read the chemical label for instructions."
-      },
-      {
         name: "Virus diseases",
         image: "soy_9.jpg",
         symptoms: [
@@ -349,67 +365,4 @@ const cropData = {
   }
 };
 
-
-const PestDiseasePage = () => {
-  const navigate = useNavigate();
-  const { crop } = useParams();
-  const cropInfo = cropData[crop.toLowerCase()];
-
-  if (!cropInfo) {
-    return <div>Invalid crop selected.</div>;
-  }
-
-  const handleBack = () => {
-    navigate(-1); // Navigate back one step in the history stack
-  };
-
-  return (
-    <div className="mb-8">
-      <h2 className="text-2xl font-semibold mb-2">
-        <button className="back-button" onClick={handleBack}>
-          {/* Add back arrow icon if needed */}
-          ←
-        </button>
-        {cropInfo.name}
-      </h2>
-      {cropInfo.pestsDiseases.map((item) => (
-        <div key={item.name} className="mb-4 p-4 border rounded-lg flex">
-          {item.image && (
-            <img src={item.image} alt={item.name} className="h-32 w-32 object-cover mr-4 rounded-lg" />
-          )}
-          <div>
-            <h3 className="text-xl font-bold">{item.name}</h3>
-            <div className="ml-4">
-              {item.symptoms && (
-                <>
-                  <h4 className="font-semibold">Symptoms:</h4>
-                  <ul className="list-disc list-inside">
-                    {item.symptoms.map((symptom, index) => (
-                      <li key={index}>{symptom}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
-              {item.control && (
-                <>
-                  <h4 className="font-semibold mt-2">Control:</h4>
-                  {Array.isArray(item.control) ? (
-                    <ul className="list-disc list-inside">
-                      {item.control.map((controlItem, index) => (
-                        <li key={index}>{controlItem}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{item.control}</p>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default PestDiseasePage;
+export default cropData;

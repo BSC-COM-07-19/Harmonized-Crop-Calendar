@@ -92,7 +92,7 @@ crop_data = {
    "Groundnuts": {
     "activities": [
         {"activity": "Land Preparation", "details": {"sub_activity": "Plowing, forming ridges or mounds, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
-        {"activity": "Planting", "details": {"sub_activity": "Sowing groundnut seeds, transplanting rice seedlings or direct seeding, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
+        {"activity": "Planting", "details": {"sub_activity": "Sowing groundnut seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
         {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
         {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
         {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
@@ -104,7 +104,7 @@ crop_data = {
    "Soya Beans": {
     "activities": [
         {"activity": "Land Preparation", "details": {"sub_activity": "Soil cultivation, fertilization, soil testing, adding soil amendments (e.g., compost, lime), drainage system preparation, soil mulching", "interval": "Before planting"}},
-        {"activity": "Planting", "details": {"sub_activity": "Sowing soybean seeds, transplanting rice seedlings or direct seeding, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
+        {"activity": "Planting", "details": {"sub_activity": "Sowing soybean seeds, hardening off, preparing transplant holes, timing: determining the optimal time for transplanting, handling seedlings carefully to minimize root damage, spacing and alignment", "interval": "Start of planting"}},
         {"activity": "Weeding", "details": {"sub_activity": "Initial weeding, hand weeding around plants, using mechanical weeders, applying herbicides (selective or non-selective), mulching to suppress weed growth, hoeing between rows, crop rotation to disrupt weed cycles, maintaining clean field edges and borders", "interval": "2-3 weeks after planting"}},
         {"activity": "Top-Dressing Fertilizer Application", "details": {"sub_activity": "Applying fertilizers (e.g., top-dressing), adjusting pH if necessary before application", "interval": "4-5 weeks after planting"}},
         {"activity": "Weeding (Second Round)", "details": {"sub_activity": "Second round of weeding", "interval": "6-7 weeks after planting"}},
