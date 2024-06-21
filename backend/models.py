@@ -21,6 +21,8 @@ class Crop(Base):
     name = Column(String, index=True)
     water_requirement_start = Column(Integer, index=True, nullable=False)
     water_requirement_end = Column(Integer, index=True, nullable=False)
+    typical_planting_month = Column(String, index=True, nullable=False)
+    typical_growing_duration_days = Column(Integer, index=True, nullable=False)
     # Define relationship with SoilType through CropSoilType table
     soil_types = relationship("SoilType", secondary="crop_soil_type", back_populates="crops")
 
@@ -39,17 +41,6 @@ class SoilType(Base):
 
     # Define relationship with Crop through CropSoilType table
     crops = relationship("Crop", secondary="crop_soil_type", back_populates="soil_types")
-
-
-# class CropSoilType(Base):
-#     __tablename__ = "crop_soil_type"
-
-#     crop_id = Column(Integer, ForeignKey("crops.id"), primary_key=True)
-#     soil_type_id = Column(Integer, ForeignKey("soil_types.id"), primary_key=True)
-
-#     # Define relationship with Crop and SoilType
-#     crop = relationship("Crop", backref="crop_soil_type")
-#     soil_type = relationship("SoilType", backref="crop_soil_type")
 
 
 class Epa(Base):
