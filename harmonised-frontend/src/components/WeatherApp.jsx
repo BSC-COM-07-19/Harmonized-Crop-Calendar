@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { IoMdArrowBack } from 'react-icons/io';
 
 const API_KEY = '034fa1f439d5c604451a9f3fa492ab36'; // Your actual API key from OpenWeatherMap
 
@@ -22,6 +23,11 @@ const WeatherApp = () => {
   const [topDressingRecommendation, setTopDressingRecommendation] = useState([]);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+  
+  const handleBack = () =>{
+    navigate(-1);
+  }
   useEffect(() => {
     // Fetch weather data on initial page load with default country (Malawi) and city (Zomba)
     handleFetchWeather();
@@ -203,6 +209,10 @@ const WeatherApp = () => {
       <h2 className="text-2xl font-bold mb-4">
         Weather Forecast for "{selectedActivity}" Recommendation based on the selected activity
       </h2>
+      <button className="back-button bg-green-500 text-white px-2 py-0 box-full absolute top-12 left-0 mt-6 ml-4" onClick={handleBack}>
+        <IoMdArrowBack className="mr-1" />
+        Back
+      </button>
       <div className="flex flex-col md:flex-row items-start md:items-center w-full max-w-screen-lg">
         <input
           type="text"
@@ -220,7 +230,7 @@ const WeatherApp = () => {
         />
         <button
           onClick={handleFetchWeather}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-auto"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-auto"
         >
           Fetch Weather
         </button>
