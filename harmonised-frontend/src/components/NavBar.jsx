@@ -1,3 +1,9 @@
+
+/**
+ * NavBar component renders a responsive navigation bar with links and a logo.
+ * Uses Disclosure for a mobile-friendly menu.
+ */
+
 import React from "react";
 import logo from "../assets/Transparent-Logo3.png";
 import { Disclosure } from "@headlessui/react";

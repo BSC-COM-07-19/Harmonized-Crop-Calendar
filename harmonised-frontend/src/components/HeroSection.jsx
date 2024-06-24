@@ -1,3 +1,11 @@
+
+/**
+ * HeroSection component handles the hero section of the Crop Calendar application.
+ * It displays a hero image, selection controls for district, EPA, and crop,
+ * and allows users to view a calendar based on their selections. It fetches
+ * data from APIs to populate dropdowns and displays soil types based on EPA selection.
+ */
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HeroImage from "../assets/crop-calendar.jpg";

@@ -89,6 +89,15 @@ function Modal({ title, children, onClose }) {
   );
 }
 
+
+/**
+ * Weathervisual component provides an interface for evaluating a crop calendar and budget.
+ * It allows users to:
+ * - View and manage a crop calendar with various farming activities.
+ * - Set and adjust budget allocations for different farming activities.
+ * - Open modals to view detailed information and add items to the budget.
+ * - Track the total budget dynamically based on user input.
+ */
 function Weathervisual() {
   const [calendar, setCalendar] = useState([
     // Add more months and activities as needed

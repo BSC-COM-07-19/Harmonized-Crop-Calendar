@@ -5,6 +5,11 @@ import { IoMdArrowBack } from 'react-icons/io';
 
 const API_KEY = '034fa1f439d5c604451a9f3fa492ab36'; // Your actual API key from OpenWeatherMap
 
+/**
+ * WeatherApp component fetches and displays a weather forecast for a specified city and country.
+ * It provides recommendations for various farming activities based on the weather conditions.
+ * Users can input a city and country to get a 7-day forecast and view the suitability of selected farming activities.
+ */
 const WeatherApp = () => {
   const location = useLocation();
   const { selectedActivity } = location.state || {};

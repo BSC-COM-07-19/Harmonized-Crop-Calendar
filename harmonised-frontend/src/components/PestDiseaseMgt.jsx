@@ -1,3 +1,10 @@
+
+/**
+ * PestDiseasePage component displays pest and disease information for a selected crop.
+ * Users can toggle between viewing pests or diseases and see detailed information including images, symptoms, and control methods.
+ * Supports navigation back to the previous page.
+ */
+
 import React, { useState} from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 

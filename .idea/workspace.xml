@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60823a8b-b76d-4f68-981f-4712b0919179" name="Changes" comment="" />
+    <list default="true" id="60823a8b-b76d-4f68-981f-4712b0919179" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/harmonised-crop-calendar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/harmonised-crop-calendar.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/database/DatabaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database/DatabaseConnection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/AboutUs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/AboutUs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/CalendarPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/CalendarPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/Facts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/Facts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/HeroSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/HeroSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/HomeLink.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/HomeLink.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/NavBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/PestDiseaseMgt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/PestDiseaseMgt.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/WeatherApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/WeatherApp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/components/Weathervisual.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/components/Weathervisual.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Fom.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Fom.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Forecast.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Forecast.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Weather.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/harmonised-frontend/src/pages/WeatherForecast/Weather.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,9 +45,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2frgHuWfsF7oNTiC2zGIB5wDBtC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,8 +58,8 @@
     "Python.DatabaseConnection.executor": "Run",
     "Python.crop_calendar.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "home",
-    "last_opened_file_path": "C:/Users/EZEKIEL/AppData/Local/Programs/Python/Python310/python.exe",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/bsc_com_10_19/Desktop/Harmonized-Crop-Calendar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,6 +74,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bsc_com_10_19\Desktop\Harmonized-Crop-Calendar" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="crop_calendar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="harmonised-crop-calendar" />
@@ -82,8 +112,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
-        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.17890.14" />
+        <option value="bundled-python-sdk-5b207ade9991-7e9c3bbb6e34-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.17890.14" />
       </set>
     </attachedChunks>
   </component>
@@ -96,11 +126,23 @@
       <option name="presentableId" value="Default" />
       <updated>1714564556919</updated>
       <workItem from="1714564562925" duration="8269000" />
+      <workItem from="1719245317475" duration="6150000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/harmonised_crop_calendar$crop_calendar.coverage" NAME="crop_calendar Coverage Results" MODIFIED="1714573152033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
