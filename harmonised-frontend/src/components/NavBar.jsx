@@ -2,6 +2,8 @@
 /**
  * NavBar component renders a responsive navigation bar with links and a logo.
  * Uses Disclosure for a mobile-friendly menu.
+ *
+ * @component
  */
 
 import React from "react";
@@ -19,6 +21,13 @@ const navigation = [
   // { name: 'Pest And Diseases', href: '/pests', current: false },
 ];
 
+
+/**
+ * Helper function to concatenate CSS classes conditionally.
+ *
+ * @param {...string} classes - Array of CSS classes to concatenate.
+ * @returns {string} - Concatenated string of CSS classes.
+ */
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }

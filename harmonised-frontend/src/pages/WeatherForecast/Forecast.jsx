@@ -1,6 +1,13 @@
 import React from "react";
 
-// Functional component named Forecast
+/**
+ * Forecast component displays a 7-day weather forecast with recommendations.
+ * @param {Object} props - Component props.
+ * @param {Array} props.forecast - Array of forecast data for each day.
+ * @param {Array} props.recommendations - Array of recommendations for activities.
+ * @returns {JSX.Element} Forecast component JSX.
+ */
+
 const Forecast = ({ forecast, recommendations }) => {
     // Array to store the names of days of the week
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -9,7 +16,10 @@ const Forecast = ({ forecast, recommendations }) => {
     const today = new Date().getDay();
 
     return (
-        // Main container for the forecast component
+        /**
+     * Render function for generating weather forecast cards.
+     * @returns {JSX.Element[]} Array of weather forecast card components.
+     */
         <div className="forecast mt-4 flex flex-col items-center">
             {/* Title of the component */}
             <h3 className="text-xl font-bold mb-4">7-Day Weather Forecast</h3>

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-// Form component to get weather information based on district and crop inputs
+/**
+ * Form component to get weather information based on district and crop inputs.
+ * @param {Object} props - The props object containing the getWeather function.
+ * @param {Function} props.getWeather - Function to fetch weather information based on district and crop.
+ * @returns {JSX.Element} JSX element representing the form.
+ */
 const Form = ({ getWeather }) => {
   // State to hold the value of the district input
   const [district, setDistrict] = useState('');

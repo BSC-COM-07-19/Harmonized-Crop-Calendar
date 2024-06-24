@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -8,22 +9,22 @@ import CalendarPage from "./components/CalendarPage";
 import PestDiseasePage from "./components/PestDiseaseMgt";
 
 
-
 /**
- * App component serves as the main entry point for the application.
+ * @author {Harmonized Crop Calendar Group}
+ *  App component serves as the main entry point for the application.
  * It sets up the router, navigation, and routes for different pages of the application.
- *
  * Features:
  * - Displays a navigation bar at the top of the page using NavBar component.
  * - Provides route definitions for different pages including Home, Weather App, Weather Visual, Calendar, and Pest and Disease Management pages.
  * - Utilizes React Router for client-side routing.
- *
+ * @returns {
  * Routes:
- * - "/" renders the Home component.
- * - "/pests-diseases/:crop" renders the PestDiseasePage component with a dynamic crop parameter.
- * - "/weather" renders the WeatherApp component.
- * - "/WeatherVisual" renders the Weathervisual component.
- * - "/calendar" renders the CalendarPage component.
+* - "/" renders the Home component.
+* - "/pests-diseases/:crop" renders the PestDiseasePage component with a dynamic crop parameter.
+* - "/weather" renders the WeatherApp component.
+* - "/WeatherVisual" renders the Weathervisual component.
+* - "/calendar" renders the CalendarPage component.
+ * }
  */
 const App = () => {
   return (

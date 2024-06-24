@@ -73,6 +73,14 @@ const fertilizationData = [
   { name: 'D-Compound', quantity: '50kg', price: 59000 }
 ];
 
+
+/**
+ * Modal component for displaying detailed information in a modal dialog.
+ * @param {Object} props - Component props.
+ * @param {string} props.title - Title of the modal.
+ * @param {ReactNode} props.children - Content to display inside the modal.
+ * @param {Function} props.onClose - Callback function to close the modal.
+ */
 function Modal({ title, children, onClose }) {
   return (
     <div className="modal-overlay">

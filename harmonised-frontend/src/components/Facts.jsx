@@ -1,12 +1,12 @@
 
+
 /**
- * AboutUs component for displaying information about the Crop Calendar initiative.
+ * AboutUs component displays information about the Crop Calendar application.
+ * It includes animated sections with text content and an image.
  *
- * This component provides a section with animated text and an image that describes the goals and mission
- * of the Crop Calendar. It uses animations from the 'react-awesome-reveal' library for a more engaging presentation.
- *
- * Usage:
- * - This component is part of a larger application focused on agricultural management and education.
+ * @component
+ * @returns {JSX.Element} Rendered AboutUs component.
+ * @example
  */
 
 import React from "react";

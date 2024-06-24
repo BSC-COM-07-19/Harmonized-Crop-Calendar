@@ -1,14 +1,9 @@
 
 /**
- * CalendarPage component for displaying and managing the crop calendar activities.
- *
- * This component allows users to select a crop and planting date, and then displays a calendar of activities
- * for that crop. Users can click on individual activities to view recommendations and navigate to other
- * pages for more detailed information.
- *
- * Usage:
- * - This component is part of a larger application intended to help farmers manage their crop activities.
- *
+ * CalendarPage component displays a farming calendar for a selected crop.
+ * It allows users to select a planting date and provides information about crop activities.
+ * Users can view recommended sub-activities and navigate to manage pests and diseases.
+ * @component
  */
 
 import React, { useEffect, useState } from "react";
@@ -43,7 +38,16 @@ const CalendarPage = () => {
   const [selectedActivityColor, setSelectedActivityColor] = useState("#FFFFFF");
   const [selectedActivityImage, setSelectedActivityImage] = useState(null);
 
-  // Function to calculate activity dates based on crop duration and planting date
+  
+  /**
+   * Function to calculate activity dates based on crop duration and planting date.
+   *
+   * @param {Array} activities - List of crop activities.
+   * @param {string} duration - Duration range of crop activities.
+   * @param {Date} plantingDate - Date when the crop is planted.
+   * @returns {Array} List of activities with calculated dates.
+   */
+
   const calculateActivityDates = (activities, duration, plantingDate) => {
     const durationRange = duration.split("-").map((d) => parseInt(d));
     const minDuration = durationRange[0];
@@ -69,6 +73,11 @@ const CalendarPage = () => {
   // Effect hook to fetch crop activities and duration when selectedCrop or plantingDate changes
   useEffect(() => {
     if (selectedCrop) {
+
+      /**
+     * Fetches crop activities and duration from the API based on selected crop and planting date.
+     * Updates cropActivities state with calculated activity dates.
+     */
       axios
           .get(`https://harmonized-crop-calendar1.onrender.com/activities/${selectedCrop}`)
           .then((response) => {
@@ -94,12 +103,22 @@ const CalendarPage = () => {
   // Effect hook to update activity dates if plantingDate or cropDuration changes
   useEffect(() => {
     if (selectedCrop && cropDuration && cropActivities.length > 0) {
+
+      /**
+     * Updates activity dates when plantingDate or cropDuration changes.
+     */
       const updatedActivities = calculateActivityDates(cropActivities, cropDuration, plantingDate);
       setCropActivities(updatedActivities);
     }
   }, [plantingDate, cropDuration, selectedCrop, cropActivities]);
 
-  // Function to handle click on an activity card, setting selected activity and recommendations
+   /**
+   * Handles click on an activity card, setting selected activity and recommendations.
+   *
+   * @param {string} activityName - Name of the selected activity.
+   * @param {string} image - Image associated with the selected activity.
+   */
+
   const handleActivityClick = (activityName, image) => {
     setSelectedActivity(activityName);
     setSelectedActivityImage(image);
@@ -123,7 +142,12 @@ const CalendarPage = () => {
     navigate("/weather", { state: { selectedActivity, selectedCrop } });
   };
 
-  // Function to render the calendar view of crop activities
+  /**
+   * Renders the calendar view of crop activities.
+   *
+   * @returns {JSX.Element} Calendar view of crop activities.
+   */
+
   const renderCalendar = () => {
     if (!selectedCrop || cropActivities.length === 0) {
       return <div className="text-center text-red-500">No crop selected or data available for this crop.</div>;
@@ -153,12 +177,24 @@ const CalendarPage = () => {
     );
   };
 
-  // Function to split sub-activities into recommendations
+  /**
+   * Splits sub-activities into recommendations.
+   *
+   * @param {string} subActivity - Comma-separated list of sub-activities.
+   * @returns {Array} List of recommendations.
+   */
+
   const splitSubActivities = (subActivity) => {
     return subActivity.split(",").map((task) => task.trim());
   };
 
-  // Function to get image URL based on activityName
+  /**
+   * Retrieves image URL based on activityName.
+   *
+   * @param {string} activityName - Name of the activity.
+   * @returns {string|null} Image URL or null if not found.
+   */
+
   const getActivityImage = (activityName) => {
     switch (activityName) {
       case "Land Preparation":
@@ -184,7 +220,12 @@ const CalendarPage = () => {
     }
   };
 
-  // Function to render recommendations section
+  /**
+   * Renders recommendations section based on selected activity.
+   *
+   * @returns {JSX.Element|null} Recommendations section JSX or null if no recommendations.
+   */
+  
   const renderRecommendations = () => {
     if (recommendations.length === 0) {
       return null;

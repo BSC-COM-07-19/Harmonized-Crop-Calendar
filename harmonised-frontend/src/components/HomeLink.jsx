@@ -1,8 +1,13 @@
 /**
  * HomeLink component renders a link styled as a button with a home icon and text.
  * It accepts a 'href' prop for the link destination.
+ *
+ * @component
+ * @param {object} props - React props for the component.
+ * @param {string} props.href - The URL to navigate when the link is clicked.
+ * @returns {JSX.Element} - Rendered HomeLink component.
+ * 
  */
-
 import React from "react";
 import { IoIosHome } from "react-icons/io";
 const HomeLink = ({ href }) => {

@@ -1,6 +1,11 @@
 import React from "react";
 
-// Functional component named Form
+/**
+ * Functional component representing a form for weather information.
+ * @param {object} props - Props passed to the component.
+ * @param {function} props.getWeather - Function to handle form submission and retrieve weather information.
+ * @returns {JSX.Element} JSX element representing the weather information form.
+ */
 const Form = ({ getWeather }) => {
     // Return JSX for rendering a form
     return (

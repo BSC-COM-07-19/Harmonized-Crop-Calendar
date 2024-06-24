@@ -10,6 +10,14 @@ import ActivityCalendar from '../components/ActivityCalendar';
 import WeatherApp from '../components/WeatherApp';
 //import pestDiseaseData from '../components/PestDiseaseMgt';
 
+
+/**
+ * Home component represents the main page of the application.
+ * It includes sections like HeroSection, AboutUs, Facts, and may include other
+ * components depending on the selected crop.
+ * @returns {JSX.Element} Home component JSX.
+ */
+
 const Home = () => {
   // const [selectedDistrict, setSelectedDistrict] = useState("");
   const [setSelectedCrop] = useState("");
@@ -27,12 +35,12 @@ const Home = () => {
           {<Facts />}
         </div>
       </div>
-      <Routes>
+      {/* <Routes>
         <Route path="/market" element={<MarketPricing />} />
         <Route path="/weather" element={<WeatherApp />} />
         <Route path="/calendar" element={<ActivityCalendar />} />
         <Route path="/pests" element={<pestDiseaseData />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 };

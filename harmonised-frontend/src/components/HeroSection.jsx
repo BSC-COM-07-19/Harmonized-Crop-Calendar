@@ -1,9 +1,11 @@
 
 /**
- * HeroSection component handles the hero section of the Crop Calendar application.
- * It displays a hero image, selection controls for district, EPA, and crop,
- * and allows users to view a calendar based on their selections. It fetches
- * data from APIs to populate dropdowns and displays soil types based on EPA selection.
+ * HeroSection component renders a hero section with interactive elements for agricultural planning.
+ * It displays district selection, EPA selection, crop selection, and a button to view the calendar.
+ * It also fetches data from APIs to populate dropdowns and display soil types.
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered HeroSection component.
  */
 
 import React, { useState, useEffect } from "react";
@@ -24,6 +26,11 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+     /**
+     * Fetches EPA data from API upon component mount.
+     * Sets fetched EPA data into 'epas' state.
+     * Logs error if API call fails.
+     */
     const fetchData = async () => {
       try {
         const response = await api.get("/epa");
@@ -35,6 +42,13 @@ const HeroSection = () => {
     fetchData();
   }, []);
 
+  /**
+   * Handles district selection and filters EPAs accordingly.
+   * Resets selected EPA, crop, crops list, and soil types on district change.
+   *
+   * @param {string} district - Selected district name.
+   */
+
   const handleDistrictClick = (district) => {
     setSelectedDistrict(district);
     const epasFiltered = epas.filter((epa) => epa.district_name === district);
@@ -44,6 +58,14 @@ const HeroSection = () => {
     setCrops([]);
     setSoilTypes([]);
   };
+
+   /**
+   * Handles EPA selection and fetches associated crops and soil types.
+   * Sets fetched crop and soil type data into 'crops' and 'soilTypes' states respectively.
+   * Logs error if API call fails.
+   *
+   * @param {string} epaName - Selected EPA name.
+   */
 
   const handleEpaChange = async (epaName) => {
     setSelectedEpa(epaName);
@@ -62,10 +84,20 @@ const HeroSection = () => {
     }
   };
 
+  /**
+   * Handles crop selection.
+   *
+   * @param {string} crop - Selected crop name.
+   */
+
   const handleCropChange = (crop) => {
     setSelectedCrop(crop);
   };
 
+   /**
+   * Navigates to the calendar page with selected crop and current month as state.
+   */
+  
   const handleViewCalendar = () => {
     navigate("/calendar", { state: { selectedCrop, selectedMonth: new Date() } });
   };

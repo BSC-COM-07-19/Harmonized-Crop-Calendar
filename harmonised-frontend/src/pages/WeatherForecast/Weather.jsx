@@ -1,5 +1,24 @@
 import React from "react";
 
+
+/**
+ * Weather component displays weather information including temperature,
+ * city, country, humidity, pressure, wind speed, sunrise, sunset, weather icon,
+ * and error message if present.
+ * @param {Object} props - Component props.
+ * @param {number} props.temperature - Temperature value to display.
+ * @param {string} props.city - Name of the city for which weather information is displayed.
+ * @param {string} props.country - Name of the country where the city is located.
+ * @param {number} props.humidity - Humidity value to display.
+ * @param {number} props.pressure - Atmospheric pressure value to display.
+ * @param {number} props.windSpeed - Wind speed value to display.
+ * @param {string} props.sunrise - Time of sunrise to display.
+ * @param {string} props.sunset - Time of sunset to display.
+ * @param {string} props.icon - Weather icon code to display.
+ * @param {string} props.error - Error message to display if weather data retrieval fails.
+ * @returns {JSX.Element} Weather component JSX.
+ */
+
 const Weather = ({ temperature, city, country, humidity, pressure, windSpeed, sunrise, sunset, icon, error }) => {
   return (
       <div className="weather">

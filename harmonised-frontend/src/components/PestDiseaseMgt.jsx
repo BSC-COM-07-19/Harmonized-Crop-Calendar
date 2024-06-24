@@ -3,8 +3,9 @@
  * PestDiseasePage component displays pest and disease information for a selected crop.
  * Users can toggle between viewing pests or diseases and see detailed information including images, symptoms, and control methods.
  * Supports navigation back to the previous page.
+ * 
+ * @returns {JSX.Element} PestDiseasePage component
  */
-
 import React, { useState} from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -385,6 +386,13 @@ const cropData = {
   }
 };
 
+/**
+ * Component to display pest and disease information for a selected crop.
+ * Users can toggle between viewing pests or diseases and see detailed information including images, symptoms, and control methods.
+ * Supports navigation back to the previous page.
+ * 
+ * @returns {JSX.Element} PestDiseasePage component
+ */
 
 const PestDiseasePage = () => {
   const navigate = useNavigate();
@@ -398,10 +406,16 @@ const PestDiseasePage = () => {
     return <div>Invalid crop selected.</div>;
   }
 
+  /**
+   * Handles navigation back to the previous page.
+   */
   const handleBack = () => {
     navigate(-1); // Navigate back one step in the history stack
   };
 
+  /**
+   * Toggles between showing pests or diseases.
+   */
   const togglePestsDiseases = () => {
     setShowPests(!showPests);
   };

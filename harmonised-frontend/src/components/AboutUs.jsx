@@ -1,18 +1,19 @@
+
 /**
- * AboutUs component displaying information about a sustainable farming initiative.
+ * AboutUs component displays information about a sustainable farming initiative.
+ * It includes textual content describing the initiative and an image section.
  *
- * This component provides an overview of the initiative's commitment to promoting sustainable farming practices and
- * environmental stewardship. It features a textual description and an accompanying image.
- *
- * Usage:
- * - This component can be used as a part of an informational page to provide users with insights into the goals and
- *   mission of the sustainable farming initiative.
+ * @component
  */
 
 import React from "react";
 import AboutUsImage from "../assets/istockphoto-1126541751-612x612.jpg";
 
-// Component displaying information about a sustainable farming initiative
+/**
+ * Renders the AboutUs component with textual content and an image section.
+ *
+ * @returns {JSX.Element} JSX representation of the AboutUs component.
+ */
 const AboutUs = () => {
     return (
         <div className="flex justify-between items-center p-4 mr-10">

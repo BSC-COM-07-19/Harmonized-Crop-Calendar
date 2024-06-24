@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+
+/**
+ * Calendar component displays activities for a selected crop based on the chosen month.
+ * Uses axios to fetch data from the backend API and updates based on selected month and crop.
+ * @returns {JSX.Element} Calendar component JSX.
+ */
+
 const Calendar = () => {
     const [month, setMonth] = useState("");
     const [activities, setActivities] = useState([]);
@@ -25,6 +32,12 @@ const Calendar = () => {
 
     }, [month, selectedCrop]); // Include month and selectedCrop in dependency array
 
+
+    /**
+     * Event handler to update the selected month in state.
+     * @param {React.ChangeEvent<HTMLSelectElement>} e - The change event from the month selection dropdown.
+     */
+    
     const handleMonthChange = (e) => {
         setMonth(e.target.value);
     };
